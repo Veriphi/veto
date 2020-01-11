@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "next build && tsc --project tsconfig.server.json",
-    "start": "ts-node dist/index.js"
+    "start": "ts-node src/index.ts"
   },
   "dependencies": {
   },

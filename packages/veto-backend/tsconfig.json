@@ -2,8 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "jsx": "preserve",
-    "lib": ["dom", "es2017"],
+    "lib": ["esnext"],
     "baseUrl": ".",
     "moduleResolution": "node",
     "strict": true,
@@ -14,13 +13,12 @@
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "isolatedModules": true,
     "removeComments": false,
     "preserveConstEnums": true,
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "exclude": ["dist", ".next", "out", "next.config.js"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "exclude": ["dist", ".next", "out"],
+  "include": ["src/**/*.ts"]
 }
