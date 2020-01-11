@@ -1,5 +1,5 @@
 {
-  "name": "veto-app",
+  "name": "veto-backend",
   "version": "0.0.0",
   "workspaces": ["packages/*"],
   "scripts": {
