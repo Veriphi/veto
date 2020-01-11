@@ -1,0 +1,9 @@
+{
+  "name": "screen-app",
+  "version": "0.0.0",
+  "description": "veto hardware dashboard application",
+  "main": "index.js",
+  "author": "Veriphi",
+  "license": "UNLICENCED",
+  "private": true
+}

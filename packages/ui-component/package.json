@@ -1,0 +1,9 @@
+{
+  "name": "ui-component",
+  "version": "0.0.0",
+  "description": "Veto ui component library",
+  "main": "index.js",
+  "author": "Veriphi",
+  "license": "UNLICENSED",
+  "private": true
+}

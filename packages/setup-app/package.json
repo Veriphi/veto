@@ -1,0 +1,9 @@
+{
+  "name": "setup-app",
+  "version": "0.0.0",
+  "description": "Veto setup and update application",
+  "main": "index.js",
+  "author": "Veriphi",
+  "license": "UNLICENSED",
+  "private": true
+}
