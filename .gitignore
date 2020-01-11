@@ -1,4 +1,7 @@
 # Dependency directories
 node_modules/
-.idea/
 yarn-error.log
+
+# IDE
+.idea/
+.vscode

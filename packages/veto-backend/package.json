@@ -9,7 +9,7 @@
   "license": "PRIVATE",
   "private": true,
   "scripts": {
-    "dev": "nodemon",
+    "start:watch": "nodemon",
     "build": "next build && tsc --project tsconfig.server.json",
     "start": "ts-node src/index.ts"
   },

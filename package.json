@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "next build && tsc --project tsconfig.server.json",
-    "start": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn workspace veto-backend start' 'yarn workspace veto-frontend start'"
+    "start": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn workspace veto-backend start:watch' 'yarn workspace veto-frontend start'"
   },
   "description": "Veto software",
   "main": "null",
