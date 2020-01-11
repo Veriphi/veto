@@ -6,6 +6,7 @@ Veto
 * `yarn`
 * `node`
 * `git`
+* `bash`
 
 ### Installation
 Clone this repo
