@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "nodemon",
     "build": "next build && tsc --project tsconfig.server.json",
-    "start": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn workspace veto-backend start:watch' 'yarn workspace veto-frontend start'"
+    "start": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn workspace veto-backend start:watch' 'yarn workspace veto-frontend start'",
+    "lint": "prettier -l '**/*.{ts,tsx,js,jsx,json}'",
+    "lint-fix": "prettier --write '**/*.{ts,tsx,js,jsx,json}'"
   },
   "description": "Veto software",
   "main": "null",
@@ -17,11 +19,13 @@
   "private": true,
   "devDependencies": {
     "husky": "^4.0.6",
-    "concurrently": "^5.0.2"
+    "concurrently": "^5.0.2",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^2.0.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo 'linter & unit tests'"
+      "pre-commit": "pretty-quick --staged"
     }
   }
 }
