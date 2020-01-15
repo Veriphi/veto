@@ -13,8 +13,11 @@ Clone this repo
 `yarn install`
 
 ### Start the application
-Front end
+Both front end and back end
+`yarn start`
+
+Only front end
 `yarn workspace veto-frontend start`
 
-Back end
+Only back end
 `yarn workspace veto-backend start`
