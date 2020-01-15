@@ -1,0 +1,41 @@
+{
+  "name": "ui-component",
+  "version": "0.0.0",
+  "description": "Veto ui component library",
+  "main": "index.js",
+  "author": "Veriphi",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build-storybook": "build-storybook",
+    "generate": "plop",
+    "storybook": "start-storybook -p 6006"
+  },
+  "dependencies": {
+    "@emotion/core": "^10",
+    "@emotion/styled": "^10",
+    "@lightspeed/flame": "^1.2.10",
+    "emotion-theming": "^10",
+    "react": "^16",
+    "react-dom": "^16"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@storybook/addon-actions": "^5.3.3",
+    "@storybook/addon-info": "^5.3.3",
+    "@storybook/addon-links": "^5.3.3",
+    "@storybook/addons": "^5.3.3",
+    "@storybook/core": "^5.3.3",
+    "@storybook/react": "^5.3.3",
+    "@types/jest": "^24.9.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
+    "inquirer-directory": "^2.2.0",
+    "jest": "^24.9.0",
+    "plop": "^2.5.3",
+    "react-docgen-typescript-loader": "^3.6.0",
+    "react-json-view": "^1.19.1",
+    "ts-jest": "^24.3.0",
+    "typescript": "^3.7.4"
+  }
+}
