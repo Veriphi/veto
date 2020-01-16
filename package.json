@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "dev": "nodemon",
-    "build": "next build && tsc --project tsconfig.server.json",
+    "build": "yarn workspace veto-backend build && yarn workspace veto-frontend build",
     "start": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn workspace veto-backend start:watch' 'yarn workspace veto-frontend start'",
     "lint": "prettier -l '**/*.{ts,tsx,js,jsx,json}'",
     "lint-fix": "prettier --write '**/*.{ts,tsx,js,jsx,json}'"
