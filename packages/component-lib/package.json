@@ -1,5 +1,5 @@
 {
-  "name": "ui-component",
+  "name": "component-lib",
   "version": "0.0.0",
   "description": "Veto ui component library",
   "main": "index.js",
