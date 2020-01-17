@@ -1,10 +1,8 @@
 # Dependency directories
 node_modules/
 
-# next.js build output
-.next
-
 # production server output
-dist
+out/
+
 # cyphernode will be cloned at bootup
 cyphernode
