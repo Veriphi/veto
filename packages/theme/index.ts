@@ -1,30 +1,14 @@
 import { lightTheme } from '@lightspeed/flame/Core'
-// import { lighten, darken } from 'polished'
-
-// ----- Constants -----
-
-// Colors
-const highlight = '#f5912e'
-const main = '#2a335b'
-const homeBg = '#FFFDFD'
-
-// border radii
-const buttonRadius = '0.35rem'
+import deepmerge from 'deepmerge'
+import colors from './colors'
+import buttonVariants from './buttonVariants'
 
 // Extending the Flame theme
 export default {
   ...lightTheme,
 
-  textStyles: {
-    ...lightTheme.textStyles,
-    color: main,
-  },
-  colors: {
-    ...lightTheme.colors,
-    highlight: highlight,
-    main: main,
-    textHeading: main,
-    homeBg: homeBg,
-  },
+  colors: deepmerge(lightTheme.colors, colors),
   breakpoints: [...lightTheme.breakpoints, '1400px'],
+
+  buttonVariants: deepmerge(lightTheme.buttonVariants, buttonVariants),
 }
