@@ -1,0 +1,9 @@
+# Do not commit files generated from cyphernode's setup script
+apps
+cyphernode
+.cyphernodeconf
+docker-compose.yaml
+start.sh
+stop.sh
+testdeployment.sh
+testfeatures.sh
