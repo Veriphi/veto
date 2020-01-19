@@ -7,3 +7,6 @@ start.sh
 stop.sh
 testdeployment.sh
 testfeatures.sh
+config.json
+keys.txt
+cacert.pem
