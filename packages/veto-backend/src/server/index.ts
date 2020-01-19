@@ -1,27 +1,16 @@
 import serveFrontend from './serveFrontend'
 import setupMiddlewares from './middlewares'
-import { Application, Request, Response } from 'express'
+import { Application } from 'express'
 import { Config } from '../utils/config'
-import { getGatewayInstance } from '../api/cyphernode/getGatewayInstance'
+import setupRoutes from '../routes'
 
 export default async function serverSetup(app: Application, config: Config): Promise<void> {
+  console.log('Server is starting...')
   setupMiddlewares(app, config)
-    .then((app: Application) => {
-      app.get('/api/gateway', async (request: Request, response: Response) => {
-        const axios = getGatewayInstance()
-        const result = await axios.get('/')
-
-        response.send(result)
-      })
-      app.get('/api', (request: Request, response: Response) => {
-        response.send({ message: 'Hello World from Veto API! ' + Math.random() })
-      })
-
-      return app
-    })
+    .then(setupRoutes)
     // Note: serveFrontend need to be last to not override /api
     .then(serveFrontend(config))
     .then((app: Application) => {
-      app.listen(config.port, () => console.log(`Example app listening on port ${config.port}!`))
+      app.listen(config.port, () => console.log(`Veto-backend is now listening on port ${config.port}!`))
     })
 }
