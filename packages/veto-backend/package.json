@@ -1,7 +1,9 @@
 {
   "name": "veto-backend",
   "version": "0.0.0",
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "description": "Veriphy software",
   "main": "src/index.ts",
   "repository": "git@github.com:Veriphi/veto.git",
@@ -14,6 +16,7 @@
     "start": "ts-node src/index.ts"
   },
   "dependencies": {
+    "axios": "^0.19.1",
     "express": "^4.17.1"
   },
   "devDependencies": {
