@@ -7,7 +7,6 @@
   "license": "UNLICENCED",
   "private": true,
   "scripts": {
-    "start:watch": "nodemon",
     "build": "tsc -p ./tsconfig.json",
     "start": "ts-node src/index.ts"
   },
@@ -20,7 +19,6 @@
     "@types/node": "^13.1.6",
     "@types/blessed": "^0.1.17",
     "@types/express": "^4.17.2",
-    "nodemon": "^2.0.2",
     "ts-node": "^8.6.1",
     "typescript": "^3.7.4"
   }

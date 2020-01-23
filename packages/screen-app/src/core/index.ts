@@ -59,12 +59,6 @@ class Core<S extends DefaultState> {
     setInterval(() => {
       // Do not waste cpu time if the state has not changes
 
-      // @ts-ignore
-      this.screen?.debug(
-        `${Date.now() - (this.startTime ?? 0)} : Is state new? ${this.state !== this.lastState} \n ${
-          this.state.logs.length
-        } vs ${this.lastState.logs.length}`,
-      )
       if (this.state !== this.lastState) {
         this.screen?.debug(`${Date.now() - (this.startTime ?? 0)} New state, rendering...`)
         this.lastState = this.state

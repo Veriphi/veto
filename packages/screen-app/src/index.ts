@@ -9,10 +9,9 @@ type AppState = DefaultState & {
 }
 type SetState = (newState: Partial<AppState>) => void
 type GetState = () => AppState
-
 ;(async () => {
   const lifecycle = core<AppState>({
-    fps: 5,
+    fps: 30,
     title: 'Veto Screen App',
     // Disable debugging in production
     debug: process.env.NODE_ENV !== 'production',
@@ -52,7 +51,7 @@ function logComponent(screen: Screen, getState: GetState, setState: SetState) {
   // Simulate a network call with a setInterval
   setInterval(() => {
     onNewLogs('log line ' + Date.now())
-  }, 1000)
+  }, 150)
 
   function onNewLogs(newLine: string) {
     const state = getState()
