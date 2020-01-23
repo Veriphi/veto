@@ -9,10 +9,13 @@ Theses concepts are basically the same in both world.
 
 ## Lifecycle
 
+Location: `./src/core/index.ts`
+
 Details of each step the application takes during its lifetime.
 
 ### Initialization
 
+Location: `./src/init.ts`
 During this step the core of the application is booted, the first view appears. It is akin to a loading screen.
 Then, the application will retrieve everything it need to run properly, this includes (but is not limited to) :
 
@@ -20,26 +23,21 @@ Then, the application will retrieve everything it need to run properly, this inc
 - Connection to veto-backend
 - Various buffers of information to display
 
+### Business logic
+
+Location: & `./src/[componentName]/reducer.ts`
+Screen-app respond to socket packets, the application's logic is based on those and is only invoked when suck packets are received.
+Upon arrival the state of the application is changed based on the data extracted said packets.
+This system is similar to `redux`'s way of managing state.
+`[backend] sends <event> => [screen] receive <event> => <event> change <state> => display <state>`
+
+A function will be provided to change the state (similar to react `setState()`)
+
 ### Render loop
 
-Once the initialisation is done, the first data is displayed and the render loop beguins.
-
-The render loop is compromised of two sub-steps:
-
-- Logic
-- Render
-
-#### Logic
-
-This is the first par of the loop.
-It contain the business logic of the application, like network calls and processing data.
-Given the async nature of node, it is important to not duplicate in-flights network call.
-
-Note: To make the consumption of data easier, websocket will be used, this will have the effect of moving the network call out of the logic loop to its own module.
-Note: At the beginning, this application will likely receive information exclusively. Sending information might happen at a later stage.
-
-#### Render
-
-This is the last sub-step of the render loop, where we format the data and render it.
-This is akin to the render function in `react`.
+Location: `./src/core/loop.ts` & `./src/[componentName]/view.ts`
+Once the initialisation is done, the first data is displayed and the render loop begins.
+This is akin to the render function in `react`, this is where we format the data and render it.
 No business logic should ever be added to the render function.
+
+Since the state can be changed multiple times per second, the render loop also acts as a scheduler. It will delay rendering if the state has not changed, and will throttle the rendering if the state is changing too quickly.

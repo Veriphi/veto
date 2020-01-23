@@ -62,7 +62,7 @@ To start the application run `./run.sh`
 This will start veto and cyphernode
 By default the application is exposed through port 80.
 
-You can now navigate to `localhost` in your webbrowser to use the app.
+You can now navigate to `localhost` in your webrowser to use the app.
 The api is available at `localhost/api`
 
 ### Starting the component library storybook
