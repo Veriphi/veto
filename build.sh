@@ -7,8 +7,10 @@ VERSION_NUMBER=${VERSION_NUMBER:-"latest"}
 #--------------------------------------#
 #-- Veto ------------------------------#
 #--------------------------------------#
-echo "Building Veto docker image..."
-docker build . -t "veto:${VERSION_NUMBER}"
+echo "Building Veto docker image..." && \
+docker build . --target veto-app -t "veto:${VERSION_NUMBER}" && \
+echo "Building Veto's screen-app docker image..." && \
+docker build . --target screen-app -t "veto-screen:${VERSION_NUMBER}"
 
 #--------------------------------------#
 #-- Cyphernode ------------------------#
