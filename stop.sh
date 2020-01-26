@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+VERSION_NUMBER=${VERSION_NUMBER:-latest}
+
 # Fetch running Veto instances
 runningVetoInstances=$(docker ps | grep "veto" | awk '{ print $1 }');
 
