@@ -17,6 +17,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "exclude": ["dist", ".next", "out"],
+  "exclude": ["dist", "out"],
   "include": ["src/**/*.ts"]
 }
