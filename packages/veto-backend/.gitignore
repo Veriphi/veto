@@ -3,6 +3,3 @@ node_modules/
 
 # production server output
 out/
-
-# cyphernode will be cloned at bootup
-cyphernode

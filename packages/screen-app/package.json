@@ -7,7 +7,7 @@
   "license": "UNLICENCED",
   "private": true,
   "scripts": {
-    "build": "tsc -p ./tsconfig.json",
+    "build": "tsc -p ./tsconfig.json --outDir ./out",
     "start": "ts-node src/index.ts"
   },
   "dependencies": {
