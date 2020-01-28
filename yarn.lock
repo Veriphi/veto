@@ -2144,6 +2144,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/blessed@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@types/blessed/-/blessed-0.1.17.tgz#15b3280a6b8729f3c270a762ccafc8514ac5120d"
+  integrity sha512-BKvUtnrXksNdK0fOYV/9HJGkjCcAvOGMSCJsiHaBFyBeyqHwy2OHK32r5XNI+q0eXuAuGqtPOnDetHnbZoYqag==
+  dependencies:
+    "@types/node" "*"
+
 "@types/body-parser@*":
   version "1.17.1"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.17.1.tgz#18fcf61768fb5c30ccc508c21d6fd2e8b3bf7897"
@@ -3146,6 +3153,13 @@ axios@0.19.0:
     follow-redirects "1.5.10"
     is-buffer "^2.0.2"
 
+axios@^0.19.1:
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.1.tgz#8a6a04eed23dfe72747e1dd43c604b8f1677b5aa"
+  integrity sha512-Yl+7nfreYKaLRvAvjNPkvfjnQHJM1yLBY3zhqAwcJSwR/6ETkanUgylgtIvkvz0xJ+p/vZuNw8X7Hnb7Whsbpw==
+  dependencies:
+    follow-redirects "1.5.10"
+
 axobject-query@^2.0.2:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.1.1.tgz#2a3b1271ec722d48a4cd4b3fcc20c853326a49a7"
@@ -3634,6 +3648,11 @@ bindings@^1.5.0:
   integrity sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==
   dependencies:
     file-uri-to-path "1.0.0"
+
+blessed@^0.1.81:
+  version "0.1.81"
+  resolved "https://registry.yarnpkg.com/blessed/-/blessed-0.1.81.tgz#f962d687ec2c369570ae71af843256e6d0ca1129"
+  integrity sha1-+WLWh+wsNpVwrnGvhDJW5tDKESk=
 
 bluebird@^3.3.5, bluebird@^3.5.5:
   version "3.7.2"
