@@ -1,14 +1,16 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-// import React from 'react'
-import { Button } from '@lightspeed/flame/Button'
+import { Button, ButtonProps } from '@lightspeed/flame/Button'
+import { Merge } from 'type-fest'
 
-type Props = {
-  children?: React.ReactNode
-  variant?: 'primary' | 'secondary' | 'neutral' | 'danger' | 'plain'
-}
+type Props = Merge<
+  ButtonProps,
+  {
+    variant?: 'primary' | 'secondary' | 'neutral' | 'danger' | 'plain'
+  }
+>
 
-export default (props) => {
+export default (props: Props) => {
   const { variant = 'plain' } = props
   return (
     <Button
@@ -16,6 +18,7 @@ export default (props) => {
       {...props}
       variant={variant}
       css={
+        // This allows for icon children to be styled the right color (exclusive to "plain" type buttons)
         variant === 'plain' &&
         ((theme) => css`
           svg {

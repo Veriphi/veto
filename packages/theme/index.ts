@@ -7,7 +7,15 @@ import buttonVariants from './buttonVariants'
 export default {
   ...lightTheme,
 
+  fontFamily: {
+    ...lightTheme.fontFamily,
+    ...{
+      'sans-serif': 'Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif',
+    },
+  },
+
   colors: deepmerge(lightTheme.colors, colors),
+
   breakpoints: [...lightTheme.breakpoints, '1400px'],
 
   buttonVariants: deepmerge(lightTheme.buttonVariants, buttonVariants),

@@ -37,6 +37,7 @@
     "react-docgen-typescript-loader": "^3.6.0",
     "react-json-view": "^1.19.1",
     "ts-jest": "^24.3.0",
+    "type-fest": "^0.8.1",
     "typescript": "^3.7.4"
   }
 }

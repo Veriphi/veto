@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, getByTestId } from 'test-utils'
+import { render, getByTestId } from 'component-lib/test-utils'
 import '@testing-library/jest-dom/extend-expect'
 
 import {{ properCase name }} from './{{ properCase name }}'

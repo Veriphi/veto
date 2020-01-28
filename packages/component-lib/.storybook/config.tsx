@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { addDecorator, addParameters } from '@storybook/react'
 import { FlameGlobalStyles, Box } from '@lightspeed/flame/Core'
 import ThemeProvider from '../../theme/ThemeProvider'

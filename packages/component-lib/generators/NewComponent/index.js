@@ -20,7 +20,7 @@ module.exports = (plop) => {
         name: 'name',
         message: 'What is the component name? (UpperCamelCase)',
         validate: (value) =>
-          /^[A-Z]*([A-Z][a-z]*)*$/.test(value) ? true : 'Invalid format. Must be UpperCamelCase (letters only)',
+          /^[A-Z]*([A-Z]|[a-z]|[0-9]*)*$/.test(value) ? true : 'Invalid format. Must be UpperCamelCase (letters only)',
       },
     ],
     actions: (data) => {
