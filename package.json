@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "yarn workspace veto-backend build && yarn workspace veto-frontend build && yarn workspace screen-app build",
-    "start": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:backend' 'yarn start:frontend'",
+    "start": "SKIP_PREFLIGHT_CHECK=true NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:backend' 'yarn start:frontend'",
     "start:frontend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-frontend start",
     "start:backend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-backend start:watch",
     "start:screen": "NODE_ENV=${NODE_ENV:-dev} yarn workspace screen-app start",

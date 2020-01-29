@@ -30,7 +30,7 @@ graph TD;
 ## Key points
 
 - Backend serve front-end as static content
-- Aside from serving static context, the backend is purely an API
+- Aside from serving static content, the backend is purely an API
 
 ### Difference between dev & prod
 

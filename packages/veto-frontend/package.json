@@ -1,6 +1,7 @@
 {
   "name": "veto-frontend",
   "version": "0.0.0",
+  "description": "Veto front-end application",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
