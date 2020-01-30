@@ -1486,6 +1486,11 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
+"@rehooks/local-storage@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@rehooks/local-storage/-/local-storage-2.1.1.tgz#e9d9a36a17308667f2aee9b01cbec9a29d53d341"
+  integrity sha512-w+7kwnFn3tdRreDG+Pi610eqozTyuJnmYIqwa0GojNpoLMjnYDSCF02eyWQOkVPUj1UHf+Zeqnjg+jzqg3OcuQ==
+
 "@sheerun/mutationobserver-shim@^0.3.2":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@sheerun/mutationobserver-shim/-/mutationobserver-shim-0.3.2.tgz#8013f2af54a2b7d735f71560ff360d3a8176a87b"
@@ -3155,7 +3160,7 @@ axios@0.19.0:
     follow-redirects "1.5.10"
     is-buffer "^2.0.2"
 
-axios@^0.19.1:
+axios@^0.19.1, axios@^0.19.2:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
