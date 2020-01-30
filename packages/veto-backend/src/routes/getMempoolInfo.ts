@@ -1,11 +1,13 @@
 import { Application, Request, Response } from 'express'
-import getActiveWatches from '../api/cyphernode/getActiveWatches'
+import getMempoolInfo from '../api/cyphernode/getMempoolInfo'
 
-export default function getActiveWatchesRoute(app: Application): Application {
-  app.get('/api/getactivewatches', async (request: Request, response: Response) => {
+export default function getMempoolInfoRoute(app: Application): Application {
+  app.get('/api/getmempoolinfo', async (request: Request, response: Response) => {
     try {
-      const result = await getActiveWatches()
+      console.log('\n\n\n\n', 'ATTEMPTING GETMEMPOOLINFO', '\n\n\n\n')
+      const result = await getMempoolInfo()
 
+      console.log('\n%cresult', 'color:orange;font-weight:bold;', result, '\n\n')
       console.log('result', Object.keys(result.data))
 
       response.send(result.data)
