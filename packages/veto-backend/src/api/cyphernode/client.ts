@@ -1,21 +1,23 @@
 import axios, { AxiosInstance } from 'axios'
 import https from 'https'
-import fs from 'fs'
-import path from 'path'
 import crypto from 'crypto'
 import config from '../../utils/config'
+// import * as fs from "fs";
 
 // Create https agent with self signed cyphernode certificate.
 
 //TODO: switch to path from config
-const pathToCert = path.normalize(config.cyphernode.pathToCert)
-const cyphernodeKey = config.cyphernode.key
-const cyphernodeKeyId = config.cyphernode.keyId
+const cyphernodeKey = config.cyphernode.credentials.key
+const cyphernodeKeyId = config.cyphernode.credentials.keyId
 
+// const buffer = fs.readFileSync('../../cyphernode/cacert.pem');
+const buffer = Buffer.from(config.cyphernode.credentials.cert)
+console.log('ze buffer', buffer.toString() === config.cyphernode.credentials.cert)
 // Todo, move to utils file
 const httpsAgent = new https.Agent({
   rejectUnauthorized: false, // (NOTE: this will disable client verification)
-  ca: fs.readFileSync(pathToCert),
+  ca: buffer,
+  // ca: Buffer.from(config.cyphernode.credentials.cert),
 })
 
 /**
@@ -23,13 +25,13 @@ const httpsAgent = new https.Agent({
  * Cyphernode has a weird implementation of JWT at the moment.
  * TODO: Implement standard JWT signing when cyphernode updates this.
  */
-function getBearerToken(cyKey: string): string {
+function getBearerToken(key: string, keyId: string): string {
   const current = Math.round(new Date().getTime() / 1000) + 60
   const h64 = Buffer.from('{"alg":"HS256","typ":"JWT"}').toString('base64')
-  const payload = '{"id":"' + cyphernodeKeyId + '","exp":' + current + '}'
+  const payload = '{"id":"' + keyId + '","exp":' + current + '}'
   const p64 = Buffer.from(payload).toString('base64')
 
-  const hmac = crypto.createHmac('sha256', cyKey)
+  const hmac = crypto.createHmac('sha256', key)
   hmac.update(h64 + '.' + p64)
   const s = hmac.digest('hex')
 
@@ -45,7 +47,7 @@ export default function makeClient(): AxiosInstance {
       httpsAgent,
       baseURL: 'https://localhost:2009/v0/',
       timeout: 1000,
-      headers: { Authorization: `Bearer ${getBearerToken(cyphernodeKey)}` },
+      headers: { Authorization: `Bearer ${getBearerToken(cyphernodeKey, cyphernodeKeyId)}` },
     })
   }
 
