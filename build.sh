@@ -15,9 +15,9 @@ docker build . --target screen-app -t "veto-screen:${VERSION_NUMBER}"
 #--------------------------------------#
 #-- Cyphernode ------------------------#
 #--------------------------------------#
-if [[ "${SKIP_CYPHERNODE}" -eq "true" ]]; then
+if [ "${SKIP_CYPHERNODE}" == "true" ]; then
   echo 'Skip building Cyphernode...'
-elif [ "${CFG_PASSWORD}" -ne "" ]; then
+elif [ "${CFG_PASSWORD}" != "" ]; then
   echo 'Building Cyphernode' && \
   # Install cyphernode using premade config
   CFG_PASSWORD=$CFG_PASSWORD ./cyphernode/setup.sh -irc
