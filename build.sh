@@ -28,7 +28,7 @@ elif [ "${CFG_PASSWORD}" != "" ]; then
   CFG_PASSWORD=$CFG_PASSWORD ./cyphernode/setup.sh -irc
 
   # Extract key & cert
-  CFG_PASSWORD=$CFG_PASSWORD ./pre-run.sh
+  CFG_PASSWORD=$CFG_PASSWORD ./pre-start.sh
 else
   echo 'No cyphernode password provided (CFG_PASSWORD)'
   echo 'Skip building Cyphernode...'
