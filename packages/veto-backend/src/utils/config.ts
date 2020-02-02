@@ -64,13 +64,12 @@ export default {
     user: process.env.CYPHERNODE_USER ?? 'veriphi-dev',
     // Gateway password provided during cyphernode setup process
     password: process.env.CYPHERNODE_PSW ?? 'veriphirocks!',
-    // Path to pem file generated during cyphernode setup process (usually located in `./client.7z`0
     credentials: {
       cert: process.env.CYPHERNODE_CERT ?? DEFAULT_DEV_CERT,
       // Key generated during cyphernode setup process (one of the three found in `./client.7z`)
-      key: process.env.CYPHERNODE_KEY ?? '4ac7ca763d62c89e76a2f37c53b9b61aedebfb07c5cc682c31936862a4d7fc1d',
+      key: process.env.CYPHERNODE_KEY ?? '7855ff4745631122f30def3ab6deb84dcbc2a17cb5a5e4dac40c41ba37fed0f7',
       // Id associated with the cyphernode key passed to veto
-      keyId: process.env.CYPHERNODE_KEY_ID ?? '003',
+      keyId: process.env.CYPHERNODE_KEY_ID ?? '000',
     },
   },
 } as Config
