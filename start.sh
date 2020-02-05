@@ -24,8 +24,22 @@ else
   # Start docker container
   echo 'Removing old Veto instance...'
   docker rm veto >> /dev/null
+
+
+  keyId='001'
+  # Get the key that correspond to the keyId
+  key=`cat ./cyphernode/keys.txt | grep "${keyId}=" | sed s/$keyId=//`
+  # Get creds
+  cert=`cat ./cyphernode/cacert.pem`
+
+
   echo 'Starting Veto...'
-  docker run --init -d -p 8080:8080 --name veto veto:${VERSION_NUMBER} && \
+  docker run --init -d \
+    -e="CYPHERNODE_KEY_ID=${keyId}" \
+    -e="CYPHERNODE_KEY=${key}" \
+    -e="CYPHERNODE_CERT=${cert}" \
+    -p 8080:8080 \
+    --name veto veto:${VERSION_NUMBER} && \
   echo 'Veto is now running, it is available at http://localhost'
 
   if [[ "${START_SCREEN}" == "true" ]]; then
