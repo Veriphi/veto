@@ -10,3 +10,7 @@ testfeatures.sh
 config.json
 keys.txt
 cacert.pem
+bitcoin
+gateway
+proxy
+traefik
