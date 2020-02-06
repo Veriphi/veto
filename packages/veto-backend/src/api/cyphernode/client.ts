@@ -20,7 +20,7 @@ const httpsAgent = new https.Agent({
  * TODO: Implement standard JWT signing when cyphernode updates this.
  */
 function getBearerToken(key: string, keyId: string): string {
-  const current = Math.round(new Date().getTime() / 1000) + 86000 // Token expiry set to ~24 hours. TODO: Regenerate new tokens frequently.
+  const current = Math.round(new Date().getTime() / 1000) + 10
   const h64 = Buffer.from('{"alg":"HS256","typ":"JWT"}').toString('base64')
   const payload = '{"id":"' + keyId + '","exp":' + current + '}'
   const p64 = Buffer.from(payload).toString('base64')
