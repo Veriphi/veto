@@ -7,4 +7,4 @@ install: skip
 jobs:
   include:
     - stage: install app
-      script: pwd && ls && cd veto-backend && yarn
+      script: cd packages/veto-backend && yarn
