@@ -7,5 +7,5 @@ install: skip
 jobs:
   include:
     - stage: install app
-      script: echo "hello 1"
+      script: cd veto-backend && yarn
       script: echo "hello 2"
