@@ -1,6 +1,11 @@
 language: node_js
 node_js:
 - "stable"
-cache:
-  directories:
-    - "node_modules" 
+cache: yarn
+# we skip install to use parallelized build stage
+install: skip
+jobs:
+  include:
+    - stage: install app
+      script: echo 1
+      scropt: echo 2
