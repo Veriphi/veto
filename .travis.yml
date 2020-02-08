@@ -1,10 +1,18 @@
 language: node_js
 node_js:
-- "stable"
+  - 'stable'
 cache: yarn
 # we skip install to use parallelized build stage
 install: skip
 jobs:
   include:
-    - stage: install app
+    - stage: install screen-app
+      script: cd packages/screen-app && yarn
+    - stage: install setup-app
+      script: cd packages/setup-app && yarn
+    - stage: install theme
+      script: cd packages/theme && yarn
+    - stage: install veto-backend
       script: cd packages/veto-backend && yarn
+    - stage: install veto-frontend
+      script: cd packages/veto-frontend && yarn
