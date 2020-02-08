@@ -8,4 +8,4 @@ jobs:
   include:
     - stage: install app
       script: echo "hello 1"
-      scropt: echo "hello 2"
+      script: echo "hello 2"
