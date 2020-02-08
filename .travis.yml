@@ -7,5 +7,5 @@ install: skip
 jobs:
   include:
     - stage: install app
-      script: echo 1
-      scropt: echo 2
+      script: echo "hello 1"
+      scropt: echo "hello 2"
