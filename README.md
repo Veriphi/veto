@@ -10,7 +10,6 @@
 - `bash`
 - `docker`
 
-
 ### Installation
 
 - Clone this repo
