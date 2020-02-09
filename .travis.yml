@@ -17,3 +17,4 @@ jobs:
       script: cd packages/veto-frontend && yarn
     - stage: lint  
       script: yarn lint
+      
