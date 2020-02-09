@@ -67,7 +67,7 @@ Options:
 | `SKIP_CYPHERNODE` | `"false"` | `"false" || "false"` | If `true`, cyphernode will not be built |
 | `VERSION_NUMBER` | `"latest"` | Any string | Version used to tag both `veto` & `veto-screen` docker image |
 
-To start the application run `./run.sh`
+To start the application run `./start.sh`
 This will start veto and cyphernode
 By default the application is exposed through port 80.
 | Name | Default | Values | Description |
