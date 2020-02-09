@@ -2,11 +2,13 @@ language: node_js
 node_js:
   - 'stable'
 cache: yarn
+# this is necessary to ensure we build every branch in repo, PR builds will still be triggered
 branches:
   only:
   - master
-# we skip install to use parallelized build stage
+# we skip auto install step to use parallelized build stage and install in packages
 install: skip
+# stages are sequencial and build will not continue if one fails
 jobs:
   include:
     - stage: install 
