@@ -6,15 +6,12 @@ cache: yarn
 branches:
   only:
   - master
-# we skip auto install step to use parallelized build stage and install in packages
+# we skip auto install step to override it with our own
 install: skip
 # stages are sequencial and build will not continue if one fails
 jobs:
   include:
     - stage: install 
-      script: yarn
-      script: cd packages/veto-backend && yarn
-      script: cd packages/veto-frontend && yarn
+      script: yarn install --frozen-lockfile
     - stage: lint  
       script: yarn lint
-      
