@@ -2,15 +2,15 @@ language: node_js
 node_js:
   - 'stable'
 cache: yarn
+branches:
+  only:
+  - master
 # we skip install to use parallelized build stage
 install: skip
 jobs:
   include:
     - stage: install 
       script: yarn
-      # script: cd packages/screen-app && yarn
-      # script: cd packages/setup-app && yarn
-      # script: cd packages/theme && yarn
       script: cd packages/veto-backend && yarn
       script: cd packages/veto-frontend && yarn
     - stage: lint  
