@@ -11,6 +11,7 @@
     "start:frontend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-frontend start",
     "start:backend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-backend start:watch",
     "start:screen": "NODE_ENV=${NODE_ENV:-dev} yarn workspace screen-app start",
+    "start:maintenance": "NODE_ENV=${NODE_ENV:-dev} yarn workspace maintenance-app start",
     "lint": "prettier -l '**/*.{ts,tsx,js,jsx,json}'",
     "lint-fix": "prettier --write '**/*.{ts,tsx,js,jsx,json}'"
   },
