@@ -5,13 +5,17 @@ cache: yarn
 # this is necessary to ensure we build every branch in repo, PR builds will still be triggered
 branches:
   only:
-  - master
+    - master
 # we skip auto install step to override it with our own
 install: skip
 # stages are sequencial and build will not continue if one fails
 jobs:
   include:
-    - stage: install 
+    - stage: install
       script: yarn install --frozen-lockfile
-    - stage: lint  
+    - stage: test-unit
+      script: yarn test:unit
+    - stage: test-integration
+      script: yarn test:integration
+    - stage: lint
       script: yarn lint
