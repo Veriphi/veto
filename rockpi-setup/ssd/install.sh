@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+echo 'WIP use at your own risk'
 
 # find the UUID of the M.2 SSD with the following command :
 lsblk -o NAME,MOUNTPOINT,UUID,FSTYPE,SIZE,LABEL,MODEL
