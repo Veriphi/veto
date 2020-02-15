@@ -9,6 +9,7 @@
     "start": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:backend' 'yarn start:frontend'",
     "cyphernode:start": "SKIP_VETO=true ./start.sh",
     "cyphernode:stop": "./stop.sh",
+    "cyphernode:setup": "cd cyphernode && CFG_PASSWORD=veriphirocks! ./setup.sh -irc && cd ..",
     "build": "yarn workspace veto-backend build && yarn workspace veto-frontend build && yarn workspace screen-app build",
     "start:frontend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-frontend start",
     "start:backend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-backend start:watch",

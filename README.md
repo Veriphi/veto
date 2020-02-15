@@ -17,6 +17,14 @@
 
 ### Start the application
 
+#### Running in dev mode
+
+If this is your first time running the project you will probably need to setup cyphernode if you are developing features that require communicating with it. See the Cyphernode setup section below.
+Once cyphernode is setup, you can run cyphernode, the backend, and the frontend with:
+`yarn dev`
+The backend will be accessible on `localhost:8080` and will serve the frontend at `/`
+The frontend will be accessible with hot module reloading on `localhost:3000`
+
 #### Veto
 
 Run this command at the root of the project to start both front-end and back-end,
@@ -38,23 +46,24 @@ Each variables can be found in the config file `./packages/veto-backend/src/util
 
 #### Cyphernode
 
+##### Setup cyphernode
+
+From the root of the project, run the following commands:
+
+- `yarn cyphernode:setup`
+
+##### Start cyphernode
+
+When the setup is completed, start cyphernode with the start script
+
+- `yarn cyphernode:start`
+
 ##### Credentials
 
 Cyphernode dev credentials are
 
 - Username: `veriphi-dev`
 - Password: `veriphirocks!`
-
-##### Run cyphernode
-
-From the root of the project, run the following commands:
-
-- `cd cyphernode`
-- `CFG_PASSWORD=veriphirocks! ./setup.sh -irc`
-
-When the setup is completed, start cyphernode with the start script
-
-- `./start.sh`
 
 ### Build the application
 
@@ -78,10 +87,6 @@ By default the application is exposed through port 80.
 
 You can now navigate to `localhost` in your web browser to use the app.
 The api is available at `localhost/api`
-
-### Starting the component library storybook
-
-`yarn workspace component-lib storybook`
 
 ### Rules
 
