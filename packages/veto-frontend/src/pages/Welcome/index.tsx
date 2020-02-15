@@ -3,6 +3,7 @@ import { useInput } from '../../hooks/useInput'
 import { mockPassword } from './tempdata.json'
 import { navigate } from '@reach/router'
 import axios from 'axios'
+import { Box, Flex } from '@veriphi/veto-ui'
 
 export default () => {
   const password = useInput('')
@@ -21,7 +22,7 @@ export default () => {
   }
 
   return (
-    <div>
+    <Flex sx={{ width: '100vw', height: '100vh' }} flexDirection="column" alignItems="center" justifyContent="center">
       <h1>Welcome Page</h1>
       <h3>Please log in with your veto password</h3>
       <form id="login" onSubmit={handleOnLogin}>
@@ -31,6 +32,6 @@ export default () => {
 
       <button onClick={getData}>Hit the API</button>
       {data && <div>{data}</div>}
-    </div>
+    </Flex>
   )
 }
