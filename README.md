@@ -25,6 +25,8 @@ Once cyphernode is setup, you can run cyphernode, the backend, and the frontend 
 The backend will be accessible on `localhost:8080` and will serve the frontend at `/`
 The frontend will be accessible with hot module reloading on `localhost:3000`
 
+Remember to run `yarn cyphernode:stop` when you are finished or the whole cyphernode suite of containers will continue running.
+
 #### Veto
 
 Run this command at the root of the project to start both front-end and back-end,
