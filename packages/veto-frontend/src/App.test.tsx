@@ -5,5 +5,5 @@ import App from './App'
 test('renders learn react link', () => {
   const { container } = render(<App />)
   const containderDiv = getByTestId(container, 'Router')
-  expect(containderDiv).toBeInTheDocument()
+  expect(containderDiv).toBeDefined()
 })
