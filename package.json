@@ -5,9 +5,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "nodemon",
-    "build": "yarn workspace veto-backend build && yarn workspace veto-frontend build && yarn workspace screen-app build",
+    "dev": "yarn cyphernode:start && yarn start",
     "start": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:backend' 'yarn start:frontend'",
+    "cyphernode:start": "SKIP_VETO=true ./start.sh",
+    "cyphernode:stop": "./stop.sh",
+    "build": "yarn workspace veto-backend build && yarn workspace veto-frontend build && yarn workspace screen-app build",
     "start:frontend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-frontend start",
     "start:backend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-backend start:watch",
     "start:screen": "NODE_ENV=${NODE_ENV:-dev} yarn workspace screen-app start",
