@@ -14,7 +14,7 @@ export default () => {
 
   const [data] = useState(null)
   async function getData() {
-    const data = await axios(`http://${window.location.host}/api/getmempoolinfo`)
+    const data = await axios(`http://${window?.location.host ?? 'localhost'}/api/getmempoolinfo`)
 
     console.log('\n%cresponse', 'color:orange;font-weight:bold;', data, '\n\n')
     // setData(await response.json())
