@@ -1828,6 +1828,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-modal@^3.10.4":
+  version "3.10.4"
+  resolved "https://registry.yarnpkg.com/@types/react-modal/-/react-modal-3.10.4.tgz#ab85b9e1e15c52364d4cbfc32d4d4500c84d88cf"
+  integrity sha512-Sd89N8z+UAzHtbPHW+zB97UgEhIVcYhQxscX21r3pxMLpZJwvjReGmH4omKxWYPv84vF8MQNZZEw+JkX91ZUzA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^16.9.0":
   version "16.9.19"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.19.tgz#c842aa83ea490007d29938146ff2e4d9e4360c40"
@@ -1933,17 +1940,19 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
-"@veriphi/veto-ui@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@veriphi/veto-ui/-/veto-ui-0.1.0.tgz#4cf1e788e41b744dbde41d13d8647d2d71863b32"
-  integrity sha512-Ixum1gCLLkUOv8UY1ZT8C7HKB1G2TxHuS0tQEtArDaH6VcTuAlLKQwKdAFSbyVpx1sIvrQoMYT3uWmw905Z+1g==
+"@veriphi/veto-ui@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@veriphi/veto-ui/-/veto-ui-0.2.0.tgz#816beb82fa0436bb4d79ce248f0f2799853abaa2"
+  integrity sha512-qya1NxhOCFzhPZKoakle0SMqKpvov+ZeHi0hC1Sb98QIGU03XU8EbkTDUJrcG88AQNGV3rANqxRcTz0uQy1wlA==
   dependencies:
     "@emotion/core" "^10.0.27"
     "@emotion/styled" "^10.0.27"
     "@styled-system/css" "^5.1.4"
     "@styled-system/should-forward-prop" "^5.1.4"
+    "@types/react-modal" "^3.10.4"
     "@types/styled-system" "^5.1.5"
     "@types/styled-system__css" "^5.0.4"
+    react-modal "^3.11.1"
     styled-system "^5.1.4"
 
 "@webassemblyjs/ast@1.8.5":
@@ -4768,6 +4777,11 @@ execa@^2.1.0:
     p-finally "^2.0.0"
     signal-exit "^3.0.2"
     strip-final-newline "^2.0.0"
+
+exenv@^1.2.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
 
 exit@^0.1.2:
   version "0.1.2"
@@ -9425,10 +9439,20 @@ react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-react-lifecycles-compat@^3.0.4:
+react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-modal@^3.11.1:
+  version "3.11.1"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.11.1.tgz#2a0d6877c9e98f123939ea92d2bb4ad7fa5a17f9"
+  integrity sha512-8uN744Yq0X2lbfSLxsEEc2UV3RjSRb4yDVxRQ1aGzPo86QjNOwhQSukDb8U8kR+636TRTvfMren10fgOjAy9eA==
+  dependencies:
+    exenv "^1.2.0"
+    prop-types "^15.5.10"
+    react-lifecycles-compat "^3.0.0"
+    warning "^4.0.3"
 
 react-scripts@3.3.0:
   version "3.3.0"
@@ -11367,6 +11391,13 @@ warning@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
   integrity sha1-MuU3fLVy3kqwR1O9+IIcAe1gW3w=
+  dependencies:
+    loose-envify "^1.0.0"
+
+warning@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
+  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
   dependencies:
     loose-envify "^1.0.0"
 
