@@ -1,0 +1,8 @@
+{
+  "name": "@veto/utils",
+  "version": "0.0.0",
+  "description": "Veto app software utils",
+  "author": "Veriphi",
+  "license": "PRIVATE",
+  "private": true
+}
