@@ -1,6 +1,12 @@
 {
   "name": "veto",
   "version": "0.0.0",
+  "description": "Veto software",
+  "main": "null",
+  "repository": "git@github.com:Veriphi/veto.git",
+  "author": "Veriphi",
+  "license": "PRIVATE",
+  "private": true,
   "workspaces": [
     "packages/*"
   ],
@@ -15,20 +21,20 @@
     "start:backend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-backend start:watch",
     "start:screen": "NODE_ENV=${NODE_ENV:-dev} yarn workspace screen-app start",
     "start:maintenance": "NODE_ENV=${NODE_ENV:-dev} yarn workspace maintenance-app start",
+    "test:unit": "jest --testPathIgnorePatterns='packages/component-lib/' --testPathIgnorePatterns='packages(/component-lib)?/.+/tests/integration/'",
+    "test:integration": "jest --testPathPattern='./packages/.+/tests/integration/'",
     "lint": "prettier -l '**/*.{ts,tsx,js,jsx,json}'",
     "lint-fix": "prettier --write '**/*.{ts,tsx,js,jsx,json}'"
   },
-  "description": "Veto software",
-  "main": "null",
-  "repository": "git@github.com:Veriphi/veto.git",
-  "author": "Veriphi",
-  "license": "PRIVATE",
-  "private": true,
   "devDependencies": {
-    "husky": "^4.0.6",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@types/jest": "^25.1.2",
     "concurrently": "^5.0.2",
+    "husky": "^4.0.6",
+    "jest": "^25.1.0",
     "prettier": "^1.18.2",
-    "pretty-quick": "^2.0.0"
+    "pretty-quick": "^2.0.0",
+    "ts-jest": "^25.2.0"
   },
   "husky": {
     "hooks": {
