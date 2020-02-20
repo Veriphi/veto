@@ -31,15 +31,32 @@ Each packages are located in the `packages/` folder.
 
 #### Running in dev mode
 
-If this is your first time running the project you will probably need to setup cyphernode if you are developing features that require communicating with it. See the Cyphernode setup section below.
-Once cyphernode is setup, you can run cyphernode, the backend, and the frontend with:
+##### If this is your first time running cyphernode + veto:
+
+From the root of the project:
+
+1. `yarn cyphernode:setup`
+   This will setup cyphernode using the default dev client.7z and config.7z
+
+2. `yarn dev`
+   This will start cyphernode along with veto-backend and veto-frontend.
+   The backend will be accessible on `localhost:8080` and will serve the frontend at `/`
+   The frontend will be accessible with hot module reloading on `localhost:3000`
+
+3. `yarn cyphernode:stop` When you are done devving (the cyphernode dockers consume a lot of ressources so)
+
+See the Cyphernode setup section below for more information.
+
+##### If you've already setup cyphernode:
+
 `yarn dev`
+This will start cyphernode along with veto-backend and veto-frontend.
 The backend will be accessible on `localhost:8080` and will serve the frontend at `/`
 The frontend will be accessible with hot module reloading on `localhost:3000`
 
-Remember to run `yarn cyphernode:stop` when you are finished or the whole cyphernode suite of containers will continue running.
+Remember to call `yarn cyphernode:stop` when you are finished or the whole cyphernode suite of containers will continue running.
 
-#### Veto
+#### Veto only scripts
 
 Run this command at the root of the project to start both front-end and back-end,
 `yarn start`

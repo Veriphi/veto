@@ -26,7 +26,9 @@ if [ "${SKIP_CYPHERNODE}" == "true" ]; then
 elif [ "${CFG_PASSWORD}" != "" ]; then
   echo 'Building Cyphernode' && \
   # Install cyphernode using premade config
-  CFG_PASSWORD=$CFG_PASSWORD ./cyphernode/setup.sh -irc
+  cd cyphernode/
+  CFG_PASSWORD=$CFG_PASSWORD ./setup.sh -irc
+  cd ../
 
   # Extract key & cert
   CFG_PASSWORD=$CFG_PASSWORD . ${CURRENT_DIR}/pre-start.sh
