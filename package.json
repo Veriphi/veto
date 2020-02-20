@@ -8,14 +8,16 @@
   "license": "PRIVATE",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/veto-*",
+    "packages/*-app",
+    "packages/shared/*"
   ],
   "scripts": {
     "dev": "yarn cyphernode:start && yarn start",
     "start": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:backend' 'yarn start:frontend'",
     "cyphernode:start": "SKIP_VETO=true ./start.sh",
-    "cyphernode:stop": "./stop.sh",
-    "cyphernode:setup": "cd cyphernode && CFG_PASSWORD=veriphirocks! ./setup.sh -irc && cd ..",
+    "cyphernode:stop": "SKIP_VETO=true ./stop.sh",
+    "cyphernode:setup": "SKIP_VETO=true ./setup.sh",
     "build": "yarn workspace veto-backend build && yarn workspace veto-frontend build && yarn workspace screen-app build",
     "start:frontend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-frontend start",
     "start:backend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-backend start:watch",
@@ -31,7 +33,6 @@
     "@types/jest": "^25.1.2",
     "concurrently": "^5.0.2",
     "husky": "^4.0.6",
-    "jest": "^25.1.0",
     "prettier": "^1.18.2",
     "pretty-quick": "^2.0.0",
     "ts-jest": "^25.2.0"

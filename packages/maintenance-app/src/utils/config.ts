@@ -1,19 +1,5 @@
-enum ENV {
-  dev = 'dev',
-  production = 'production',
-  qa = 'qa',
-}
+import { default as baseConfig, Config as BaseConfig } from '@veto/utils/config'
 
-export type Config = {
-  version: string
-  port: number
-  environment: ENV
-}
+export type Config = BaseConfig & {}
 
-export default {
-  // Veto version number
-  version: `0.0.0`,
-  // Veto's listening port
-  port: process.env.PORT ?? 8181,
-  environment: process.env.NODE_ENV ?? 'dev',
-} as Config
+export default { ...baseConfig, port: process.env.PORT ?? 8181 } as Config

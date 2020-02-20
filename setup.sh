@@ -34,4 +34,4 @@ else
   echo 'Skip building Cyphernode...'
 fi
 
-echo "Build completed"
+echo "Setup completed"
