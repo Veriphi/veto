@@ -1825,10 +1825,10 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
-"@veriphi/veto-ui@^0.1.0":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@veriphi/veto-ui/-/veto-ui-0.1.1.tgz#acdbeb08d53b6c53e7cb8c4aa5c19de8fae3074d"
-  integrity sha512-js53Tb+dG8aqzdLRr/wZtwdaIFNJqYr0EfHT33ZEO1U0kUbUlsgp8qNdhesMQImlljmOvb8M32iXJPvUU1YQAw==
+"@veriphi/veto-ui@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@veriphi/veto-ui/-/veto-ui-0.2.0.tgz#816beb82fa0436bb4d79ce248f0f2799853abaa2"
+  integrity sha512-qya1NxhOCFzhPZKoakle0SMqKpvov+ZeHi0hC1Sb98QIGU03XU8EbkTDUJrcG88AQNGV3rANqxRcTz0uQy1wlA==
   dependencies:
     "@emotion/core" "^10.0.27"
     "@emotion/styled" "^10.0.27"
@@ -7386,7 +7386,7 @@ mixin-object@^2.0.1:
     for-in "^0.1.3"
     is-extendable "^0.1.1"
 
-mkdirp@0.5.1, mkdirp@0.x, mkdirp@^0.5.1, mkdirp@~0.5.1:
+mkdirp@0.5.1, mkdirp@^0.5.1, mkdirp@~0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
