@@ -81,7 +81,7 @@ Cyphernode dev credentials are
 
 ### Build the application
 
-To build the application run `./setup.sh`
+To build the application run `./scripts/setup.sh`
 This will build veto's docker image and run cyphernode's setup script
 Options:
 | Name | Default | Values | Description |
@@ -90,7 +90,7 @@ Options:
 | `SKIP_CYPHERNODE` | `"false"` | `"false" || "false"` | If `true`, cyphernode will not be built |
 | `VERSION_NUMBER` | `"latest"` | Any string | Version used to tag both `veto` & `veto-screen` docker image |
 
-To start the application run `./start.sh`
+To start the application run `./scripts/start.sh`
 This will start veto and cyphernode
 By default the application is exposed through port 80.
 | Name | Default | Values | Description |

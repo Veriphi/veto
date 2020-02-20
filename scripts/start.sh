@@ -4,8 +4,9 @@ SKIP_VETO=${SKIP_VETO:-"false"}
 START_SCREEN=${START_SCREEN:-false}
 SKIP_CYPHERNODE=${SKIP_CYPHERNODE:-false}
 VERSION_NUMBER=${VERSION_NUMBER:-latest}
+CURRENT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-SKIP_CYPHERNODE="${SKIP_CYPHERNODE}" bash stop.sh
+SKIP_CYPHERNODE="${SKIP_CYPHERNODE}" bash "${CURRENT_DIR}/stop.sh"
 
 if [[ "${SKIP_CYPHERNODE}" == "true" ]]; then
   echo 'Skipping Cyphernode...'
