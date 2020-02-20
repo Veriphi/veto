@@ -1,20 +1,13 @@
 import getDockerVersion from '../getDockerVersion'
-import * as childProcess from 'child_process'
+import run from '../utils/run'
 
-jest.mock('child_process', () => ({
-  execFile: jest.fn(),
-}))
+jest.mock('../utils/run', () => jest.fn())
 
 describe('getDockerVersion', () => {
   it('return a Promise<string> on success', async () => {
     const expectedOutput = 'v0.0.0'
     // @ts-ignore
-    childProcess.execFile.mockImplementation((path, arg, callback) => {
-      const error = null
-      const stdout = expectedOutput
-      const stderr = ''
-      callback(error, stdout, stderr)
-    })
+    run.mockImplementation(async () => expectedOutput)
     const dockerVersion = await getDockerVersion()
     expect(dockerVersion).toBe(expectedOutput)
   })
@@ -22,11 +15,8 @@ describe('getDockerVersion', () => {
   it('should throw an error if the execFile provide and error', async () => {
     const expectedError = new Error('test error')
     // @ts-ignore
-    childProcess.execFile.mockImplementation((path, arg, callback) => {
-      const error = expectedError
-      const stdout = ''
-      const stderr = ''
-      callback(error, stdout, stderr)
+    run.mockImplementation(async () => {
+      throw expectedError
     })
 
     return expect(getDockerVersion()).rejects.toEqual(expectedError)

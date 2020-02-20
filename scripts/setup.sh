@@ -2,8 +2,9 @@
 
 SKIP_CYPHERNODE=${SKIP_CYPHERNODE:-"false"}
 SKIP_VETO=${SKIP_VETO:-"false"}
-CFG_PASSWORD=${CFG_PASSWORD:-""}
+CFG_PASSWORD=${CFG_PASSWORD:-"veriphirocks!"}
 VERSION_NUMBER=${VERSION_NUMBER:-"latest"}
+CURRENT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 #--------------------------------------#
 #-- Veto ------------------------------#
@@ -28,7 +29,7 @@ elif [ "${CFG_PASSWORD}" != "" ]; then
   CFG_PASSWORD=$CFG_PASSWORD ./cyphernode/setup.sh -irc
 
   # Extract key & cert
-  CFG_PASSWORD=$CFG_PASSWORD ./pre-start.sh
+  CFG_PASSWORD=$CFG_PASSWORD . ${CURRENT_DIR}/pre-start.sh
 else
   echo 'No cyphernode password provided (CFG_PASSWORD)'
   echo 'Skip building Cyphernode...'
