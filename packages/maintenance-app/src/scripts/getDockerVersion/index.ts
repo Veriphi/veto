@@ -6,6 +6,10 @@ export default function getDockerVersion(): Promise<string> {
 
   return new Promise((resolve, reject) => {
     execFile(pathToScript, null, (error, stdout, stderr) => {
+      if (stderr) {
+        console.error(stderr)
+      }
+
       if (error) {
         reject(error)
       }

@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "echo 'This script is not used anymore. Use the root test script instead'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -10,6 +10,18 @@
 - `bash`
 - `docker`
 
+### Structure
+
+We use yarn workspaces to split the codebase into packages.
+Each packages are located in the `packages/` folder.
+
+#### Convention
+
+- Packages under the `packages/shared/` folder are meant to be shared across application and library.
+- Packages matching `packages/*-app` are self contained applications and should not be shared across packages.
+- Packages matching `packages/veto-*` are part of the veto application and should not be shared across packages.
+  - _At some point we might move them to `packages/veto/*`_
+
 ### Installation
 
 - Clone this repo
@@ -69,7 +81,7 @@ Cyphernode dev credentials are
 
 ### Build the application
 
-To build the application run `./build.sh`
+To build the application run `./setup.sh`
 This will build veto's docker image and run cyphernode's setup script
 Options:
 | Name | Default | Values | Description |

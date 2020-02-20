@@ -1,3 +1,5 @@
+import { default as baseConfig, Config as BaseConfig } from '@veto/utils/config'
+
 const DEFAULT_DEV_CERT = `-----BEGIN CERTIFICATE-----
 MIIE7TCCAtWgAwIBAgIULqsKg3lxw+EG8gZgWMa7GaAsK7swDQYJKoZIhvcNAQEL
 BQAwFDESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIwMDExOTIwMzI1NloXDTMwMDEx
@@ -29,16 +31,7 @@ lVk64l0ca8NWEuIOFxFI1G0=
 -----END CERTIFICATE-----
 `
 
-enum ENV {
-  dev = 'dev',
-  production = 'production',
-  qa = 'qa',
-}
-
-export type Config = {
-  version: string
-  port: number
-  environment: ENV
+export type Config = BaseConfig & {
   cyphernode: {
     gatewayUrl: string
     user: string
@@ -52,11 +45,7 @@ export type Config = {
 }
 
 export default {
-  // Veto version number
-  version: `0.0.0`,
-  // Veto's listening port
-  port: process.env.PORT ?? 8080,
-  environment: process.env.NODE_ENV ?? 'dev',
+  ...baseConfig,
   cyphernode: {
     // Gateway url used to communicate with cyphernode's ecosystem
     gatewayUrl: 'https://localhost:2009/v0/',
