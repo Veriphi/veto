@@ -5,6 +5,8 @@ SKIP_VETO=${SKIP_VETO:-"false"}
 CFG_PASSWORD=${CFG_PASSWORD:-"veriphirocks!"}
 VERSION_NUMBER=${VERSION_NUMBER:-"latest"}
 CURRENT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+CYPHERNODE_DIR=${CYPHERNODE_DIR:-./cyphernode}
+ORIGINAL_DIR=$(pwd)
 
 #--------------------------------------#
 #-- Veto ------------------------------#
@@ -26,9 +28,10 @@ if [ "${SKIP_CYPHERNODE}" == "true" ]; then
 elif [ "${CFG_PASSWORD}" != "" ]; then
   echo 'Building Cyphernode' && \
   # Install cyphernode using premade config
-  cd cyphernode/
+  cd "${CYPHERNODE_DIR}" || exit
   CFG_PASSWORD=$CFG_PASSWORD ./setup.sh -irc
-  cd ../
+  cd "${ORIGINAL_DIR}" || exit
+
 
   # Extract key & cert
   CFG_PASSWORD=$CFG_PASSWORD . ${CURRENT_DIR}/pre-start.sh
