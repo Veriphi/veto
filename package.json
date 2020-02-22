@@ -23,7 +23,7 @@
     "start:backend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-backend start:watch",
     "start:screen": "NODE_ENV=${NODE_ENV:-dev} yarn workspace screen-app start",
     "start:maintenance": "NODE_ENV=${NODE_ENV:-dev} SCRIPT_LOCATION=${SCRIPT_LOCATION:-$(pwd)/scripts} yarn workspace maintenance-app start",
-    "test:unit": "jest --testPathIgnorePatterns='packages/component-lib/' --testPathIgnorePatterns='packages(/component-lib)?/.+/tests/integration/'",
+    "test:unit": "jest --testPathIgnorePatterns='packages/.+/tests/integration/'",
     "test:integration": "jest --testPathPattern='./packages/.+/tests/integration/'",
     "lint": "prettier -l '**/*.{ts,tsx,js,jsx,json}'",
     "lint-fix": "prettier --write '**/*.{ts,tsx,js,jsx,json}'"

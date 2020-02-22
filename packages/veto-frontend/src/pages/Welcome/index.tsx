@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useInput } from '../../hooks/useInput'
 import { navigate } from '@reach/router'
 import { Flex, Text, Input, Button } from '@veriphi/veto-ui'
 import { mockPassword } from './tempdata.json'
+import axios from 'axios'
 
 export default () => {
   const password = useInput('')
@@ -11,6 +12,13 @@ export default () => {
     if (password.value === mockPassword) {
       navigate('/dashboard')
     }
+  }
+
+  const [data] = useState(null)
+  async function getData() {
+    const data = await axios(`http://${window.location.host}/api/getmempoolinfo`)
+
+    console.log('\n%cresponse', 'color:orange;font-weight:bold;', data, '\n\n')
   }
 
   return (
@@ -38,6 +46,8 @@ export default () => {
           Login
         </Button>
       </Flex>
+      <button onClick={getData}>Hit the API</button>
+      {data && <div>{data}</div>}
     </Flex>
   )
 }
