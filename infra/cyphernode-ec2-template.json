@@ -39,7 +39,7 @@
                 "InstanceType": { "Ref": "InstanceType" },
                 "SecurityGroups": [{ "Ref": "InstanceSecurityGroup" }],
                 "KeyName": { "Ref": "KeyName" },
-                "ImageId": "ami-08bc77a2c7eb2b1da"
+                "ImageId": "ami-0400a1104d5b9caa1"
             }
         }
     },
