@@ -65,10 +65,10 @@ Screen app need to be started independently as it capture the whole terminal and
 `yarn start:screen`
 
 To run front end on its own
-`yarn start:frontend`
+`yarn start:veto:frontend`
 
 To run back end on its own
-`yarn start:backend`
+`yarn start:veto:backend`
 
 ##### Config
 

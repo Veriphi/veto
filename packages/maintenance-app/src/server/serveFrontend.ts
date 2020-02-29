@@ -8,9 +8,10 @@ export default function serveFrontend(config: Config): (app: Application) => Pro
 
     // Need to happen last
     if (config.environment === 'dev') {
+      // TODO: Will eventually conflict with veto-frontend dev, check how to change start-react-app default port (PORT env?)
       app.use('/', proxy('localhost:3000'))
     } else {
-      // Created in Dockerfile using veto-frontend package
+      // Created in Dockerfile using maintenance-frontend package
       app.use('/', express.static('frontend'))
     }
 
