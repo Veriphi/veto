@@ -21,6 +21,9 @@ EXPOSE 8080
 WORKDIR /veto
 
 # Install dependencies
+# Copy shared packages
+COPY --from=veto-builder /veto/packages/shared ./packages/shared
+
 # Copy generated frontend files
 COPY --from=veto-builder /veto/packages/screen-app ./packages/screen-app
 
@@ -38,6 +41,9 @@ EXPOSE 8080
 WORKDIR /veto
 
 # Install dependencies
+# Copy shared packages
+COPY --from=veto-builder /veto/packages/shared ./packages/shared
+
 # Copy backend project
 COPY --from=veto-builder /veto/packages/veto-backend ./packages/veto-backend
 
