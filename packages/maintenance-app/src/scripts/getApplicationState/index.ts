@@ -60,8 +60,13 @@ export default function getApplicationState(): Promise<ApplicationState> {
       .map((instanceName) => states[instanceName].Status) // get all instance state
 
     let cyphernodeState = State.UNKNOWN
-    // If one part of cyphernode is down, the whole thing is considered down
-    if (cyphernodeStates.includes(State.EXITED)) {
+
+    // If there is not cyphernode instance present, the state is unknown
+    if (cyphernodeStates.length === 0) {
+      cyphernodeState = State.UNKNOWN
+
+      // If one part of cyphernode is down, the whole thing is considered down
+    } else if (cyphernodeStates.includes(State.EXITED)) {
       cyphernodeState = State.EXITED
 
       // Cyphernode is compromised of 8 containers, if one is missing the installation is missing
