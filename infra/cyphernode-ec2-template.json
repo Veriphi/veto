@@ -7,10 +7,10 @@
             "Type": "AWS::EC2::KeyPair::KeyName",
             "ConstraintDescription": "Please use an existing keypair"
         },
-        "InstanecType": {
+        "InstanceType": {
             "Description": "This represents the size of the instance",
             "Type": "String",
-            "default": "a1.medium",
+            "Default": "a1.medium",
             "AllowedValues": [
                 "a1.medium",
                 "a1.large",
@@ -18,9 +18,9 @@
                 "a1.2xlarge",
                 "a1.4xlarge",
                 "a1.metal"
-            ]
-        },
-        "ConstraintDescription": "We can only launch arm instance types"
+            ],
+            "ConstraintDescription": "We can only launch arm instance types"
+        }
     },
     "Resources": {
         "InstanceSecurityGroup": {
@@ -37,7 +37,7 @@
             "Type": "AWS::EC2::Instance",
             "Properties": {
                 "InstanceType": { "Ref": "InstanceType" },
-                "SecurityGroup": { "Ref": "InstanceSecurityGroup" },
+                "SecurityGroups": [{ "Ref": "InstanceSecurityGroup" }],
                 "KeyName": { "Ref": "KeyName" },
                 "ImageId": "ami-08bc77a2c7eb2b1da"
             }
