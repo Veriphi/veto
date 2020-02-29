@@ -1,14 +1,32 @@
 import run from '../utils/run'
 
 export enum State {
-  RUNNING = 'running',
-  STOPPED = 'stopped',
   MISSING = 'missing',
-  INSTALLED = 'installed',
   UNKNOWN = 'unknown',
+  INSTALLED = 'created',
+  RESTARTING = 'restarting',
+  RUNNING = 'running',
+  PAUSED = 'paused',
+  EXITED = 'exited',
+}
+
+type DockerInstanceState = {
+  Status: State
+  Running: boolean
+  Paused: boolean
+  Restarting: boolean
+  OOMKilled: boolean
+  Dead: boolean
+  Pid: number
+  ExitCode: number
+  Error: string
+  StartedAt: string
+  FinishedAt: string
 }
 
 const STATE_VALUES = Object.values(State)
+
+type RawApplicationState = { [name: string]: DockerInstanceState }
 
 export type ApplicationState = {
   veto: State
@@ -24,14 +42,60 @@ function sanitize(potentialState: string | State): State {
 
 export default function getApplicationState(): Promise<ApplicationState> {
   return run('/info/get-application-state.sh').then((rawStates: string) => {
-    const states = rawStates.replace('\n', '').split(',')
-    console.log('STATE_VALUES', STATE_VALUES)
-    console.log('rawStates', rawStates)
-    console.log('states', states)
+    // Convert all `docker inspect -f '{{.State}}'` strings to js objects
+    const states = rawStates
+      .split('\n')
+      .filter((text) => !!text)
+      .map((rawJSON) => JSON.parse(rawJSON))
+      .reduce((acc, state) => {
+        return {
+          ...acc,
+          ...state,
+        }
+      }) as RawApplicationState
+
+    // Extract cyphernode state
+    const cyphernodeStates = Object.keys(states)
+      .filter((name) => name.indexOf('cyphernode') === 0) // find instance with name starting with cyphernode
+      .map((instanceName) => states[instanceName].Status) // get all instance state
+
+    let cyphernodeState = State.UNKNOWN
+    // If one part of cyphernode is down, the whole thing is considered down
+    if (cyphernodeStates.includes(State.EXITED)) {
+      cyphernodeState = State.EXITED
+
+      // Cyphernode is compromised of 8 containers, if one is missing the installation is missing
+    } else if (cyphernodeStates.length < 8) {
+      cyphernodeState = State.MISSING
+
+      // If all container are running at the same time, the application is considered running
+    } else if (
+      cyphernodeStates.join(',') ===
+      [
+        State.RUNNING,
+        State.RUNNING,
+        State.RUNNING,
+        State.RUNNING,
+        State.RUNNING,
+        State.RUNNING,
+        State.RUNNING,
+        State.RUNNING,
+      ].join(',')
+    ) {
+      cyphernodeState = State.RUNNING
+
+      // At this point, not all container are running, if we still have all 8 container we can safely state the application is installed regardless of its internal state
+    } else if (cyphernodeStates.length === 8) {
+      cyphernodeState = State.INSTALLED
+
+      // If all else fails, we don't know the state of the application, mark the state as unknown
+    } else {
+      cyphernodeState = State.UNKNOWN
+    }
 
     return {
-      veto: sanitize(states[0]),
-      cyphernode: sanitize(states[1]),
+      veto: sanitize(states['veto']?.Status),
+      cyphernode: sanitize(cyphernodeState),
     }
   })
 }
