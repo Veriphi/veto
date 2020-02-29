@@ -40,19 +40,26 @@ function sanitize(potentialState: string | State): State {
   return STATE_VALUES.includes(potentialState as State) ? (potentialState as State) : State.UNKNOWN
 }
 
+function toJson(rawJSON: string) {
+  try {
+    return JSON.parse(rawJSON)
+  } catch (error) {
+    console.error(error)
+    return {}
+  }
+}
+
 export default function getApplicationState(): Promise<ApplicationState> {
   return run('/info/get-application-state.sh').then((rawStates: string) => {
     // Convert all `docker inspect -f '{{.State}}'` strings to js objects
     const states = rawStates
       .split('\n')
       .filter((text) => !!text)
-      .map((rawJSON) => JSON.parse(rawJSON))
-      .reduce((acc, state) => {
-        return {
-          ...acc,
-          ...state,
-        }
-      }) as RawApplicationState
+      .map(toJson)
+      .reduce((acc, state) => ({
+        ...acc,
+        ...state,
+      })) as RawApplicationState
 
     // Extract cyphernode state
     const cyphernodeStates = Object.keys(states)
