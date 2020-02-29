@@ -1,0 +1,60 @@
+{
+"AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Template to deploy cyphernode on an ec2 instance",
+    "Parameters": {
+        "KeyName":{
+            "Description" : "The existing pem key to access the instance over ssh",
+            "Type": "AWS::EC2::KeyPair::KeyName",
+            "ConstraintDescription": "Please use an existing keypair"
+        },
+        "InstanecType": {
+            "Description": "This represents the size of the instance",
+            "Type": "String",
+            "default": "a1.medium",
+            "AllowedValues": [
+                "a1.medium",
+                "a1.large",
+                "a1.xlarge",
+                "a1.2xlarge",
+                "a1.4xlarge",
+                "a1.metal"
+            ]
+        },
+        "ConstraintDescription": "We can only launch arm instance types"
+    },
+    "Resources": {
+        "InstanceSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Enable ssh on 22 from anywhere",
+                "SecurityGroupIngress": 
+                { "IpProtocol" : "tcp", "FromPort" : "22", "ToPort" : "22", "CidrIp" : "0.0.0.0/0" }
+                
+            }
+
+        },
+        "EC2Instance": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "InstanceType": { "Ref": "InstanceType" },
+                "SecurityGroup": { "Ref": "InstanceSecurityGroup" },
+                "KeyName": { "Ref": "KeyName" },
+                "ImageId": "ami-08bc77a2c7eb2b1da"
+            }
+        }
+    },
+    "Outputs": {
+        "InstanceId": {
+            "Description": "The ID of the deployed ec2",
+            "Value":{ "Ref": "EC2Instance" }
+        },
+        "PublicDNS": {
+            "Description": "Public DNS of the deployed ec2",
+            "Value": { "Fn::GetAtt": [ "EC2Instance", "PublicDnsName"] }
+        },
+        "PublicIP": {
+            "Description": "Public IP of the deployed ec2",
+            "Value": { "Fn::GetAtt": [ "EC2Instance", "PublicIp"] }
+        }
+    }
+}
