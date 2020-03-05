@@ -55,4 +55,4 @@ This has the effect of making tests easy as routes do not depend on server.
     - `index.ts` Setup all middlewares in order
   - `serveFrontend.ts` (might be moved later) Serve static files. Used to serve veto-frontend
   - `index.ts` Brings all parts of the server together (middleware, api routes, serve frontend, etc)
-- `urils/` Holds all utils used in the whole app (ex: config & logging)
+- `utils/` Holds all utils used in the whole app (ex: config & logging)
