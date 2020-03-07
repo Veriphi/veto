@@ -39,13 +39,7 @@ export default function makeClient(): AxiosInstance {
   if (!client) {
     client = axios.create({
       httpsAgent,
-
-      // IF using local cyphernode
-      // baseURL: 'https://localhost:2009/v0/',
-
-      // IF using aws-hosted cyphernode
-      baseURL: 'https://ec2-54-145-103-133.compute-1.amazonaws.com:2009/v0/',
-
+      baseURL: config.cyphernode.gatewayUrl,
       timeout: 6000,
     })
 

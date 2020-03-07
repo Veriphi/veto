@@ -49,7 +49,7 @@ export default {
   cyphernode: {
     // Gateway url used to communicate with cyphernode's ecosystem
     // gatewayUrl: 'https://localhost:2009/v0/',
-    gatewayUrl: 'https://ec2-54-145-103-133.compute-1.amazonaws.com:2009/v0/',
+    gatewayUrl: process.env.CYPHERNODE_URL ?? 'https://ec2-54-145-103-133.compute-1.amazonaws.com:2009/v0/',
 
     // Gateway user provided during cyphernode setup process
     user: process.env.CYPHERNODE_USER ?? 'veriphi-dev',
