@@ -12,7 +12,7 @@ type Args = {
 export default function spend({ address, amount, eventMessage }: Args): Promise<AxiosResponse> {
   return cyphernode.post('/spend', {
     address,
-    amount,
+    amount: Number(amount),
     eventMessage,
   })
 }
