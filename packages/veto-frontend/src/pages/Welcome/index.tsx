@@ -16,6 +16,12 @@ export default () => {
 
   const [data] = useState(null)
   async function getData() {
+    // const data = await axios.post(`http://${window.location.host}/api/spend`, {
+    //   address: '2N85RsBzzLKqvfoNuVuQ9UR2zZiUkc3fAv9',
+    //   amount: 0.0001,
+    //   eventMessage: 'test',
+    // })
+    // const data = await axios(`http://${window.location.host}/api/getnewaddress`)
     const data = await axios(`http://${window.location.host}/api/getmempoolinfo`)
 
     console.log('\n%cresponse', 'color:orange;font-weight:bold;', data, '\n\n')
