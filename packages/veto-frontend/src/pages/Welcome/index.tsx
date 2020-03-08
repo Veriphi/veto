@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import { useInput } from '../../hooks/useInput'
 import { navigate } from '@reach/router'
 import { Flex, Text, Input, Button } from '@veriphi/veto-ui'
@@ -7,8 +7,8 @@ import { mockPassword } from './tempdata.json'
 export default () => {
   const password = useInput('')
 
-  const handleOnLogin = (e) => {
-    e.preventDefault()
+  const handleOnLogin = (event: SyntheticEvent) => {
+    event.preventDefault()
     if (password.value === mockPassword) {
       navigate('/dashboard')
     }
