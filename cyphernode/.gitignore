@@ -14,7 +14,6 @@ config.7z
 config.json
 keys.txt
 cacert.pem
-cyphernode/config.7z-0.2.2
 
 apps
 bitcoin
