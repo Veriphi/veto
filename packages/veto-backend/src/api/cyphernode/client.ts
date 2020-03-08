@@ -19,7 +19,7 @@ const httpsAgent = new https.Agent({
  * Cyphernode has a weird implementation of JWT at the moment.
  * TODO: Implement standard JWT signing when cyphernode updates this.
  */
-export function getBearerToken(key: string, keyId: string): string {
+function getBearerToken(key: string, keyId: string): string {
   const current = Math.round(new Date().getTime() / 1000) + 1000
   const h64 = Buffer.from('{"alg":"HS256","typ":"JWT"}').toString('base64')
   const payload = '{"id":"' + keyId + '","exp":' + current + '}'
