@@ -34,8 +34,8 @@ const SendBTC = () => {
       const response = await spend({ address: address.value, amount: amount.value, eventMessage: label.value })
       setSuccessData({ hash: response.hash, status: response.status })
       setStatus('successfulSend')
-    } catch (e) {
-      setError(e.message)
+    } catch (spendError) {
+      setError(spendError.message)
       setStatus('error')
     }
   }
