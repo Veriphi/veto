@@ -1,10 +1,11 @@
 import { Application, Request, Response } from 'express'
-import getMempoolInfo from '../api/cyphernode/getMempoolInfo'
+import spend from '../api/cyphernode/spend'
 
-export default function getMempoolInfoRoute(app: Application): Application {
-  app.get('/api/getmempoolinfo', async (request: Request, response: Response) => {
+export default function spendRoute(app: Application): Application {
+  app.post('/api/spend', async (request: Request, response: Response) => {
     try {
-      const result = await getMempoolInfo()
+      const { address, amount, eventMessage } = request.body
+      const result = await spend({ address, amount, eventMessage })
       response.send(result.data)
     } catch (error) {
       if (error.toJSON) {

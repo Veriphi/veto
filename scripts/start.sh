@@ -26,13 +26,14 @@ else
   echo 'Removing old Veto instance...'
   docker rm veto >> /dev/null
 
-
-  keyId='001'
+  # Choose key 003 which corresponds to "admin priviledges", can do stats, spender, watcher actions on cyphernode.
+  keyId='003'
   # Get the key that correspond to the keyId
   key=`cat ./cyphernode/keys.txt | grep "${keyId}=" | sed s/$keyId=//`
   # Get creds
   cert=`cat ./cyphernode/cacert.pem`
 
+  echo ${key}
 
   echo 'Starting Veto...'
   docker run --init -d \

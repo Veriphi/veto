@@ -48,17 +48,19 @@ export default {
   ...baseConfig,
   cyphernode: {
     // Gateway url used to communicate with cyphernode's ecosystem
-    gatewayUrl: 'https://localhost:2009/v0/',
+    gatewayUrl: process.env.CYPHERNODE_URL ?? 'https://ec2-54-145-103-133.compute-1.amazonaws.com:2009/v0/',
+    // gatewayUrl: 'https://localhost:2009/v0/', Use this one if running cyphernode locally instead of the aws hosted instance.
+
     // Gateway user provided during cyphernode setup process
     user: process.env.CYPHERNODE_USER ?? 'veriphi-dev',
     // Gateway password provided during cyphernode setup process
     password: process.env.CYPHERNODE_PSW ?? 'veriphirocks!',
     credentials: {
       cert: process.env.CYPHERNODE_CERT ?? DEFAULT_DEV_CERT,
-      // Key generated during cyphernode setup process (one of the three found in `./client.7z`)
-      key: process.env.CYPHERNODE_KEY ?? '7855ff4745631122f30def3ab6deb84dcbc2a17cb5a5e4dac40c41ba37fed0f7',
+      // Key generated during cyphernode setup process (key 003 with highest priviledge found in `./client.7z`)
+      key: process.env.CYPHERNODE_KEY ?? '4ac7ca763d62c89e76a2f37c53b9b61aedebfb07c5cc682c31936862a4d7fc1d',
       // Id associated with the cyphernode key passed to veto
-      keyId: process.env.CYPHERNODE_KEY_ID ?? '000',
+      keyId: process.env.CYPHERNODE_KEY_ID ?? '003',
     },
   },
 } as Config
