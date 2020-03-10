@@ -25,8 +25,8 @@ export default () => {
       const newAddress = await getNewAddress()
       setReceivingAddress(newAddress)
       setStatus('showReceivingAddress')
-    } catch (e) {
-      setError(e.message)
+    } catch (getNewAddressError) {
+      setError(getNewAddressError.message)
       setStatus('error')
     }
   }

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { getBalance } from 'api'
 
-const useBalance = (): [any, boolean, Error | null] => {
+const useBalance = (): [any, boolean, string] => {
   const [data, setData] = useState('')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     setLoading(true)
@@ -13,8 +13,8 @@ const useBalance = (): [any, boolean, Error | null] => {
       try {
         const balance = await getBalance()
         setData(balance)
-      } catch (e) {
-        setError(e)
+      } catch (err) {
+        setError(err.message)
       } finally {
         setLoading(false)
       }
