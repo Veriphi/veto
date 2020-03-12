@@ -35,4 +35,45 @@ Governments always end up printing too much money and devalue their currency. Th
 * Bitcoin is the superior form of money, it fixes the problems with the current monetary system but keeps the values that made the world switch from Gold to Fiat.
 * Bitcoin achieves this in a decentralized form, through cryptography and game theory mostly, described in a protocol of rules.
 
-![Bitcoin's Supply Schedule](https://github.com/Gfloresechaiz/veto/edit/master/wiki/images/supply.png)
+![Bitcoin's Supply Schedule](/wiki/images/supply.png)
+
+## How does Bitcoin work?
+
+### Overview
+* Bitcoin is a protocol of rules.
+* Bitcoin Core, the main software implementation of the protocol, is an open-source software that anyone can install on their computer.
+* Bitcoin is a Peer to Peer Network where those that run the software implementation can communicate and are compatible.
+* Anyone can create their own software implementation of the Bitcoin protocol and be fully compatible with the network if they respect the rules.
+
+### How to receive or send Bitcoin?
+* Once you're running the software and you want to receive Bitcoin, you generate a private key by selecting a 256 bit random number that's included in the Secp256k1 elliptic curve. There are basically no number that falls outside that range. Once you have that private key, you want to keep it private and safe. 
+* How can I receive Bitcoins, that can only be spent by the owner of my key, without transmitting my key? [Asymetric cryptography  or public key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) allows me to generate a public key to my private key, but if someone gets access to the public key, they can't generate the private key. It's a one-way function.
+* In Bitcoin's case, [Elliptic Curve Cryptography](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/crypto-1#/) is the function used to generate a public key. This isn't what I'll send my counterparty thought, I'll hash it with SHA256 + RIPEM160 functions to key the public key hash. Finally, to get the final format, the Bitcoin Address, I'll encode it with base58.
+* I now have the Bitcoin address, I'll send to my counterparty. How can he prove to the whole network that's the owner of the Bitcoin he wishes to send, without revealing his private key? He has to produce a digital signature that only the owner of the private key could be cryptographically able to produce. In Bitcoin, we use ECDSA ([Elliptic Curve Digital Signature Algorithm](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm)). This proof confirms that he's able to spend the Bitcoins in question and execute the transaction. 
+
+### If anyone can make a transaction, what prevents cheating?
+* The objective of the P2P Network is to establish consensus on the history of transactions and the account states. In other words, how can we achieve what a Bank does through a centralized database? How can we make sure that everyone is running the same database, thus the same history of transactions and that nobody is cheating / double spending (sending the same amount to two people at the same time).
+* A blockchain is the selected database for Bitcoin, but it doesn’t ensure consensus. A Blockchain is simply a chain of blocks, where each block contains the cryptographic hash of the previous block, to create a clear sequence.
+
+![Blockchain Illustration](/wiki/images/blockchain.png)
+
+* Each block, is an updated state of the accounts of the network (who has how much Bitcoin), it contains a set of transactions where folks have sent or received Bitcoins between themselves.
+* Let's say Bob has 2 Bitcoins and he sent to Alice 1 Bitcoin in block 100,000. It's now block 105,000, and he wishes to send Carol 1.5 Bitcoin. The network knows Bob is trying to cheat because he's trying to spend more Bitcoin that he has so his transaction is refused. 
+* This assumes that the network is following the same chain of blocks, the question comes back. How can we ensure everyone is running the same sequence of the database?
+
+## Mining and Proof of Work
+* Since Bitcoin is a decentralized and open network, anyone can propagate messages, either transactions or blocks. Transactions on their own don't affect the state of the network, it's the blocks that regroup them that affect the continued history of the network.
+* Individually, folks running the software, Nodes, agree on the validaty of the blocks they receive depending on what their local rules are. It means that Nodes are analyzing all the received information, what prevents someone from Sybil Attacking the network and spinning thousands of Nodes and dumping GBs of data a second onto other nodes to make a DDOS attack?
+* Proof of Work, or the mining algorithm, is the answer. Nodes say : "I will only read the content of your block, if your header contains the required proof-of-work?" The required proof of work is a hard to create, but easy to validate, mathematical question. 
+* Briefly, the mining algorithm, is a protocol rule of the network, that says : "To create the proof of work required for block 100 001, you need to find a random number, that multiplied with all the basic block information (the previous block hash, the current time, and a hash of the combination of all transactions included in this block), and hashed through SHA256 twice, emits a block hash that begins with this "00000000000".
+* Folks wanting to achieve this proof of work, have to hash the function, through trial and error, and at each trial they adapt the random number, until they fall on an answer that corresponds to the desired threshold. We call them Miners.
+* Hashing that function consumes lots of electricity and requires specialized hardware that go through 10 of TRILLIONS of hashes per second, per machine. Some miners have 10 000s of machines. 
+* Once a miner has reached the proof of work, he submits his block to the each network participant he's connected to, and since others can easily validate that it does contain the valid proof of work, they start analyzing the content, the individual transactions. If they're also valid and no cheating has occured, individually, they accept the block as valid on their local machine. They then propagate to their own peers, who follow through the same process and very rapidly, the whole Bitcoin network adapts a new block, machine by machine. 
+* What if a miner submits valid proof of work but includes a cheating transaction? Individually, Nodes refuse his block for trying to cheat and don't propagate his block, his block is quickly orphaned and becomes useless. He just wasted huge amounts of money and no one wants to be in situation, so miners aren't incentivized to cheating. 
+* To increase incentives, a miner that proposes a block, is allowed by the protocol rules and if he follows the emission schedule, to create Bitcoins and assign them to himself. Currently, on each block, a miner can create 12.5 Bitcoin, but that changes every few blocks, in May, it reduces in half. That process of reducing the reward happens around every 4 years. A 
+* A block has limited size, it can only be up to 2.4 MB. It means that the Bitcoin network has very limited throughput (around 7 transactions per second). Only a handful of transactions get included in a block, and if many people want to transact at the same time, they each offer a fee to the miner, to incentivize him to select their transaction instead of other's transactions. A miner also gets all the transaction fees included in his block, as a reward.
+* Blocks happen every 10 minutes on average and that is possible because of the difficulty adjustement. Basically, the difficulty to reach proof of work, depends on the miners activity. If there are 10 miners with each a power of 10 hashes/second, the whole network has a hashrate of 100h/s. If 20 extra miners add themselves with the same power, it goes up to 300h/s. This means that, on average, the network should take a third of the time to find a block. It would, but the proof of work of difficutly adjusts, it simply becomes 3 times harder to find the proof of work on average, so block time goes back to 10 minutes.
+
+## What about Bitcoin Wallets / Apps?
+
+
