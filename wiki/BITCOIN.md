@@ -35,3 +35,4 @@ Governments always end up printing too much money and devalue their currency. Th
 * Bitcoin is the superior form of money, it fixes the problems with the current monetary system but keeps the values that made the world switch from Gold to Fiat.
 * Bitcoin achieves this in a decentralized form, through cryptography and game theory mostly, described in a protocol of rules.
 
+![Bitcoin's Supply Schedule](https://github.com/Gfloresechaiz/veto/edit/master/wiki/images/supply.png)
