@@ -52,6 +52,8 @@ Governments always end up printing too much money and devalue their currency. Th
 * In Bitcoin's case, [Elliptic Curve Cryptography](https://gitpitch.com/tari-labs/tari-university/master?p=/src/cryptography/crypto-1#/) is the function used to generate a public key. This isn't what I'll send my counterparty thought, I'll hash it with SHA256 + RIPEM160 functions to key the public key hash. Finally, to get the final format, the Bitcoin Address, I'll encode it with base58.
 * I now have the Bitcoin address, I'll send to my counterparty. How can he prove to the whole network that's the owner of the Bitcoin he wishes to send, without revealing his private key? He has to produce a digital signature that only the owner of the private key could be cryptographically able to produce. In Bitcoin, we use ECDSA ([Elliptic Curve Digital Signature Algorithm](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm)). This proof confirms that he's able to spend the Bitcoins in question and execute the transaction. 
 
+![Keys Illustration](/wiki/images/keys.png)
+
 ### If anyone can make a transaction, what prevents cheating?
 * The objective of the P2P Network is to establish consensus on the history of transactions and the account states. In other words, how can we achieve what a Bank does through a centralized database? How can we make sure that everyone is running the same database, thus the same history of transactions and that nobody is cheating / double spending (sending the same amount to two people at the same time).
 * A blockchain is the selected database for Bitcoin, but it doesn’t ensure consensus. A Blockchain is simply a chain of blocks, where each block contains the cryptographic hash of the previous block, to create a clear sequence.
