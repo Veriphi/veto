@@ -34,6 +34,7 @@ Governments always end up printing too much money and devalue their currency. Th
   * It’s extremely easy to divide.
 * Bitcoin is the superior form of money, it fixes the problems with the current monetary system but keeps the values that made the world switch from Gold to Fiat.
 * Bitcoin achieves this in a decentralized form, through cryptography and game theory mostly, described in a protocol of rules.
+* Since Bitcoin is decentralized, no one can stop me from making a transaction, unlike a bank. Like when I have physical cash or gold, I'm fully in control of my property, but in a digital world. There's no other asset that works like this. I have censorship-resitance when using Bitcoin (if used correctly).
 
 ![Bitcoin's Supply Schedule](/wiki/images/supply.png)
 
@@ -74,6 +75,64 @@ Governments always end up printing too much money and devalue their currency. Th
 * A block has limited size, it can only be up to 2.4 MB. It means that the Bitcoin network has very limited throughput (around 7 transactions per second). Only a handful of transactions get included in a block, and if many people want to transact at the same time, they each offer a fee to the miner, to incentivize him to select their transaction instead of other's transactions. A miner also gets all the transaction fees included in his block, as a reward.
 * Blocks happen every 10 minutes on average and that is possible because of the difficulty adjustement. Basically, the difficulty to reach proof of work, depends on the miners activity. If there are 10 miners with each a power of 10 hashes/second, the whole network has a hashrate of 100h/s. If 20 extra miners add themselves with the same power, it goes up to 300h/s. This means that, on average, the network should take a third of the time to find a block. It would, but the proof of work of difficutly adjusts, it simply becomes 3 times harder to find the proof of work on average, so block time goes back to 10 minutes.
 
-## What about Bitcoin Wallets / Apps?
+# The Project : Cyphernode
 
+Back to reality, even that Nodes are the ultimate force behind the network, they remain complicated to deploy in all many types of situations. Developers have built their applications and entreprise systems using external public APIs like Bitpay and Blockchain.com for the past years, who provide a reliable service and allow for easy onboarding by abstracting some concepts. 
 
+In 2015, these companies realized their strength over the network, given that they powered basically all entreprise services and applications. They wanted to make their businesses more profitable and one of their costs by processing transactions on the accounts of their users, was the Bitcoin mining fees they were paying. Also, they wanted to process more transactions. 
+
+Thus, started the Block Size wars, where these companies pushed for protocol level changes to increase the Block Size. Obviously, they failed in November 2017 and have ever since abandonned plans to take over the network. Why is this so bad? If companies can change a protocol rule through a business agreement, Bitcoin isn't working. If block size increases, regular folks can't run nodes on raspberry pis or home laptops, they need more bandwidth, RAM, CPU Power and the network would slowly centralize around a couple servers only, and guess who would own them? Miners and the API companies. At that point, nothing would stop them to change any rule.
+
+Cyphernode aims to replace Bitpay / Blockchain.com as an open-source and self-hosted API Server that facilites developer onboarding in the development of Bitcoin applications or services. 
+
+On top of that, Cyphernode integrates complementary software, such as external libraries, Tor, Wasabi, C-lightning, and a few other components and make them all accessible through a single REST API Gateway. The purpose is to simplify the deployment, dockerization, configuration and communication with the Bitcoin Node Software and some related software, in a secure way.
+
+Communicating directly to Bitcoin Core for an application is extremely discouraged, since the only read/write interface is a JSON-RPC, which allows authentification but provides no encryption. No application should be communicating directly to it for security reasons. More here : https://github.com/bitcoin/bitcoin/blob/master/doc/JSON-RPC-interface.md
+
+Cyphernode will become more and more useful as we explore the additional components and make operations between the components, but that's a topic for another time. For now, we're focused on Bitcoin Core only. 
+
+## Veto in all this.
+### The Problem.
+Now that you understand the value proposition of Nodes, the collective power they have over the network, it's time to understand the individual power. 
+
+* If I'm using Bitcoin, there's always a Node that connects to me to the network. Usually, if I don't have one, I'm using a third party one, and I'm connecting to it through an API. This is the case for basically all mobile, desktop or web applications. This means that a third-party is analyzing all my transaction information, linking my addresses between themselves, linking them to my IP address, maybe even my email. Huge Privacy Risk. Company can get hacked, can sell data, and I can get targeted for having money. 
+* A third-party API can also decide to shut down my service if they don't like my activity. I will still own my keys, thus my Bitcoin, but I won't be able to verify incoming transactions or propagate outgoing ones. I won't have censorship-resistance, so why am I using Bitcoin? Sure, I could switch API Provider, but they're basically all regulated American or Chinese companies that can block all transactions that the respective governments enforce censorship on.
+* The biggest value out of using your own Node instead of a third-party API is that you verify all the blocks and all the transactions with your own local rules. When you receive a transaction, you know you've very well received it, since all cryptographic proofs of the whole Bitcoin history have been verified by your local rules, on your local machine. You can't get frauded. The third-party API could blatantly lie to you, since it's just a REST API, no cryptographic proofs involved. 
+
+Running a Node is the only way to use Bitcoin and get its full value proposition. 
+
+### Looking for the solution
+* Many realize the problems with third-party APIs and want to run a personal Node. They download Bitcoin Core but it consumes all ressources on their laptop. Then, they get a Raspberry Pi and install Bitcoin Core on it, but how to put in effective use now? 
+* Folks have hardware wallets to hold their keys, since an internet connected retail computer can't be trusted to hold confidential and valuable information, how to link the hardware wallet to the node?
+* How to run the Node through Tor?
+
+There are many efforts to do that can be automated, abstracted and a product can be offered to make life easier. Nodl have tried doing so and they haven't reach a good user experience. 
+
+Veto can be just what the market needs.
+
+## Ressources
+### Curriculums
+* https://github.com/chaincodelabs/bitcoin-curriculum 
+* https://github.com/chaincodelabs/lightning-curriculum  
+### Complete Intro
+* https://www.youtube.com/watch?v=IAFKJVLNVQA&feature=youtu.be 
+* https://bitcoin.org 
+* https://bitcoin.org/bitcoin.pdf 
+### alue Proposition
+* https://medium.com/@vijayboyapati/the-bullish-case-for-bitcoin-6ecc8bdecc1 
+### Understanding the Protocol / Concepts
+* http://learnmeabitcoin.com/ 
+* https://teachbitcoin.io/curriculum/ 
+* https://github.com/minium/Bitcoin-Spec/blob/master/Bitcoin.pdf
+### Advanced thoughts
+* https://www.gwern.net/Bitcoin-is-Worse-is-Better 
+### The Code
+* https://bitcoincore.org
+* https://github.com/SatoshiPortal/cyphernode 
+* https://github.com/bitcoin-studio/Bitcoin-Programming-with-BitcoinJS 
+* https://github.com/ChristopherA/Learning-Bitcoin-from-the-Command-Line 
+### Extra ressource pages
+* https://en.bitcoin.it/wiki/Main_Page 
+* https://www.lopp.net/bitcoin-information.html 
+* https://bitcoinrabbithole.org/ 
+* https://bitcointechweekly.com/ 
