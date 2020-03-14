@@ -25,7 +25,7 @@ export default () => {
   return (
     <Flex sx={{ width: '100vw', height: '100vh' }} flexDirection="column" alignItems="center" justifyContent="center">
       <Text m={3} variant="heading1">
-        Welcome Page
+        Maintenance App
       </Text>
       <Flex
         as="form"
