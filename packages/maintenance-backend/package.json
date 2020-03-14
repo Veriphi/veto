@@ -1,5 +1,5 @@
 {
-  "name": "maintenance-app",
+  "name": "maintenance-backend",
   "version": "0.0.0",
   "description": "Veto maintenance application",
   "private": true,
