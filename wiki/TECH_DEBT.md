@@ -11,3 +11,7 @@ Things we will have to address in the future
   - Do not wait too long as each change to client.7z and config.7z has to be taken out of git's history by hand.
 - [ ] Create a layer of indirection between routes & express - Doing so will make routes easy to tests and change to another web server library if needed.
       [ ] Clean without root access - Currently cyphernode cleanup can only be done with root since the folders are created with this user - Check if the user parameter in cyphernode setup can be used to change the user/group of
+- [ ] create-react-app do not compile typescript libraries automatically. This causes problems when trying to use shared code in front-end packages
+  - Adding a build:watch script to shared packages would easily fix the issue but at the cost of an extra process running to change the code on the fly (might not work with hot-reloading)
+  - It work properly on the backend because of ts-node, maybe it can be used to the same effect (highly doubt that but its worth looking into if all else fails)
+  - Fool proof solution: build the library after each changes + yarn install if needed
