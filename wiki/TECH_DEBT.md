@@ -2,6 +2,9 @@
 
 Things we will have to address in the future
 
+- [ ] We miss smoke tests on all apps
+  - Something like cypress could be useful and easy to setup for this purpose
+  - All we need is an element of the ui that is structurally "final" and depend on the backend
 - [ ] Two ways of using Veto in dev (FE localhost:3000 & BE localhost:8080)
   - Both works the same but
     - localhost:3000 has hotreloading for the front-end

@@ -8,9 +8,8 @@
   "license": "PRIVATE",
   "private": true,
   "workspaces": [
-    "packages/veto-*",
     "packages/maintenance-*",
-    "packages/*-app",
+    "packages/*-app/*",
     "packages/shared/*"
   ],
   "scripts": {
