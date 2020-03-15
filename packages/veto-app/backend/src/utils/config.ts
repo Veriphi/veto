@@ -33,6 +33,7 @@ lVk64l0ca8NWEuIOFxFI1G0=
 
 export type Config = BaseConfig & {
   appName: string
+  pathToStaticFiles: string
   cyphernode: {
     gatewayUrl: string
     user: string
@@ -48,6 +49,7 @@ export type Config = BaseConfig & {
 export default {
   ...baseConfig,
   appName: 'Veto',
+  pathToStaticFiles: process.env.PATH_TO_STATIC_FILES ?? './frontend',
   cyphernode: {
     // Gateway url used to communicate with cyphernode's ecosystem
     gatewayUrl: process.env.CYPHERNODE_URL ?? 'https://ec2-54-145-103-133.compute-1.amazonaws.com:2009/v0/',
