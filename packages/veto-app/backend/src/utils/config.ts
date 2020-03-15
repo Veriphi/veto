@@ -1,4 +1,4 @@
-import { default as baseConfig, Config as BaseConfig } from '@veto/utils'
+import { default as baseConfig, Config as BaseConfig } from '@veto/config'
 
 const DEFAULT_DEV_CERT = `-----BEGIN CERTIFICATE-----
 MIIE7TCCAtWgAwIBAgIULqsKg3lxw+EG8gZgWMa7GaAsK7swDQYJKoZIhvcNAQEL

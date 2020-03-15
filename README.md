@@ -163,7 +163,7 @@ The api is available at `localhost/api`
 
 - Application packages are suffixed with `-app` and are located at the root of `packages/`
 - Shared packages are located in `packages/shares/*`
-  - `@veto/utils` => `packages/shares/utils`
+  - `@veto/config` => `packages/shares/utils`
 - Packages that belong to an application and should not be shared with others are located in the application's folder
   - `veto-backend` => `packages/veto-app/backend`
   - `veto-frontend` => `packages/veto-app/frontend`

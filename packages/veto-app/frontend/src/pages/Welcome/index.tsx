@@ -3,7 +3,7 @@ import { useInput } from '../../hooks/useInput'
 import { navigate } from '@reach/router'
 import { Flex, Text, Input, Button } from '@veriphi/veto-ui'
 import { mockPassword } from './tempdata.json'
-import config from '@veto/utils'
+import config from '@veto/config'
 
 export default () => {
   const password = useInput('')

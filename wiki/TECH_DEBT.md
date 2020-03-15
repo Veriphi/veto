@@ -18,5 +18,5 @@ Things we will have to address in the future
   - Adding a build:watch script to shared packages would easily fix the issue but at the cost of an extra process running to change the code on the fly (might not work with hot-reloading)
   - It work properly on the backend because of ts-node, maybe it can be used to the same effect (highly doubt that but its worth looking into if all else fails)
   - Fool proof solution: build the library after each changes + yarn install if needed
-- [ ] After compiling Veto backend, is not able to load @veto/utils (fail to lookup the files)
+- [ ] After compiling Veto backend, is not able to load @veto/config (fail to lookup the files)
   - Project reference seems to be an elegant solution to the monorepo build problem https://www.typescriptlang.org/docs/handbook/project-references.html

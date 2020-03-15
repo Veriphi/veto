@@ -9,7 +9,7 @@
     "start": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@veto/utils": "0.0.0",
+    "@veto/config": "0.0.0",
     "axios": "^0.19.1",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.0"
