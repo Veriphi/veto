@@ -1,4 +1,4 @@
-import { default as baseConfig, Config as BaseConfig } from '@veto/utils/config'
+import { default as baseConfig, Config as BaseConfig } from '@veto/utils'
 
 export type Config = BaseConfig & {
   appName: string

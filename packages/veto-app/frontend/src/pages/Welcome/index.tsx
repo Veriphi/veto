@@ -3,6 +3,7 @@ import { useInput } from '../../hooks/useInput'
 import { navigate } from '@reach/router'
 import { Flex, Text, Input, Button } from '@veriphi/veto-ui'
 import { mockPassword } from './tempdata.json'
+import config from '@veto/utils'
 
 export default () => {
   const password = useInput('')
@@ -19,6 +20,7 @@ export default () => {
       <Text m={3} variant="heading1">
         Welcome Page
       </Text>
+      {config.version}
       <Flex
         as="form"
         id="login"

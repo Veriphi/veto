@@ -4,5 +4,10 @@
   "description": "Veto app software utils",
   "author": "Veriphi",
   "license": "PRIVATE",
-  "private": true
+  "private": true,
+  "main": "out/index.js",
+  "type": "out/index.d.ts",
+  "scripts": {
+    "start": "tsc -p . --outDir out"
+  }
 }
