@@ -6,8 +6,8 @@ export default () => (
     <h3> Application state </h3>
     <div>
       Actions
-      <button value="Install" />
-      <button value="Factory Reset" />
+      <button>Install </button>
+      <button>Factory Reset</button>
     </div>
   </div>
 )

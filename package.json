@@ -9,8 +9,8 @@
   "private": true,
   "workspaces": [
     "packages/maintenance-*",
-    "packages/screen-app",
     "packages/*-app/*",
+    "packages/*-app",
     "packages/shared/*"
   ],
   "scripts": {
