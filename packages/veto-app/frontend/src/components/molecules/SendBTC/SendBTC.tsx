@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Input, Label, Text, Box, Select, Button, Flex } from '@veriphi/veto-ui'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft'
-import { useInput } from 'hooks/useInput'
-import { spend } from 'api'
+import { useInput } from '../../../hooks/useInput'
+import { spend } from '../../../api'
 
 type Status = 'constructTx' | 'reviewTx' | 'sending' | 'successfulSend' | 'error'
 

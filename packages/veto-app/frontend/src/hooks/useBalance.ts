@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getBalance } from 'api'
+import { getBalance } from '../api'
 
 const useBalance = (): [any, boolean, string] => {
   const [data, setData] = useState('')
