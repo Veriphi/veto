@@ -9,36 +9,36 @@ import Monitoring from '../../pages/Monitoring'
 import SideMenu from 'components/molecules/SideMenu'
 
 export type MainLayoutLabel = 'Dashboard' | 'Wallets' | 'History' | 'Explorer' | 'Monitoring'
-export type MainLayoutRoute = '/dashboard' | '/wallets' | '/history' |'/explorer' | '/monitoring'
+export type MainLayoutRoute = '/dashboard' | '/wallets' | '/history' | '/explorer' | '/monitoring'
 
 type Props = {
-    path: string
+  path: string
 }
 
-const getActiveMenu = () : MainLayoutRoute => {
-    const currentPathName : string = window.location.pathname
-    if(currentPathName !== '/dashboard' || '/wallets' || '/history' || '/explorer' || '/monitoring') {
-        return '/dashboard'
-    } else {
-        return currentPathName
-    }
+const getActiveMenu = (): MainLayoutRoute => {
+  const currentPathName: string = window.location.pathname
+  if (currentPathName !== '/dashboard' || '/wallets' || '/history' || '/explorer' || '/monitoring') {
+    return '/dashboard'
+  } else {
+    return currentPathName
+  }
 }
 
-const MainLayout : FunctionComponent<Props> = ({ path }: Props) : JSX.Element => {
-    const [activeMenu] = useState<MainLayoutRoute>(getActiveMenu())
+const MainLayout: FunctionComponent<Props> = ({ path }: Props): JSX.Element => {
+  const [activeMenu] = useState<MainLayoutRoute>(getActiveMenu())
 
-    return (
+  return (
     <Flex>
-        <SideMenu currentActiveMenu={activeMenu} />
-        <Router>
-            <Dashboard path='/dashboard' />
-            <Wallets path='/wallets' />
-            <History path='/history' />
-            <Explorer path='/explorer' />
-            <Monitoring path='/monitoring' />
-        </Router>
-    </Flex >
-    )
+      <SideMenu currentActiveMenu={activeMenu} />
+      <Router>
+        <Dashboard path="/dashboard" />
+        <Wallets path="/wallets" />
+        <History path="/history" />
+        <Explorer path="/explorer" />
+        <Monitoring path="/monitoring" />
+      </Router>
+    </Flex>
+  )
 }
 
 export default MainLayout

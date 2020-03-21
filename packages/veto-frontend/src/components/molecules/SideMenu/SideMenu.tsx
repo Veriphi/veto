@@ -4,54 +4,55 @@ import { MainLayoutLabel, MainLayoutRoute } from '../../../layouts/MainLayout/Ma
 import { navigate } from '@reach/router'
 
 type MenuItemProps = {
-    label: MainLayoutLabel
-    route: MainLayoutRoute
+  label: MainLayoutLabel
+  route: MainLayoutRoute
 }
 
-const MenuItem : FunctionComponent<MenuItemProps> = ({ label, route } : MenuItemProps)  => {
-    const handleNavigate: VoidFunction = () : void => navigate(route)
-    return (
-    <div onClick={handleNavigate}>{label}</div>
-)} 
+const MenuItem: FunctionComponent<MenuItemProps> = ({ label, route }: MenuItemProps) => {
+  const handleNavigate: VoidFunction = (): void => navigate(route)
+  return <div onClick={handleNavigate}>{label}</div>
+}
 
 type MenuConfigItem = {
-    label: MainLayoutLabel
-    route: MainLayoutRoute
+  label: MainLayoutLabel
+  route: MainLayoutRoute
 }
 
-const menuConfig : MenuConfigItem[] = [
-    { 
-        label: 'Dashboard',
-        route: '/dashboard'
-    },
-    {
-        label: 'Wallets',
-        route: '/wallets'
-    },
-    {
-        label: 'History',
-        route: '/history'
-    },
-    {
-        label: 'Explorer',
-        route: '/explorer'
-    },
-    {
-        label: 'Monitoring',
-        route: '/monitoring'
-    }
+const menuConfig: MenuConfigItem[] = [
+  {
+    label: 'Dashboard',
+    route: '/dashboard',
+  },
+  {
+    label: 'Wallets',
+    route: '/wallets',
+  },
+  {
+    label: 'History',
+    route: '/history',
+  },
+  {
+    label: 'Explorer',
+    route: '/explorer',
+  },
+  {
+    label: 'Monitoring',
+    route: '/monitoring',
+  },
 ]
 
 type Props = {
-    currentActiveMenu: MainLayoutRoute
+  currentActiveMenu: MainLayoutRoute
 }
 
-const SideMenu : FunctionComponent<Props> = ({ currentActiveMenu } : Props) : JSX.Element  => {
-    return (
-        <Flex flexDirection="column" marginRight="25px">
-        {menuConfig.map((menuItemProps : MenuConfigItem) => <MenuItem {...menuItemProps} />)}
-        </Flex>
-    )
-} 
+const SideMenu: FunctionComponent<Props> = ({ currentActiveMenu }: Props): JSX.Element => {
+  return (
+    <Flex flexDirection="column" marginRight="25px">
+      {menuConfig.map((menuItemProps: MenuConfigItem) => (
+        <MenuItem {...menuItemProps} />
+      ))}
+    </Flex>
+  )
+}
 
 export default SideMenu

@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps } from '@reach/router'
 
-const History : FunctionComponent<RouteComponentProps> = () : JSX.Element => {
-    return <div>History</div>
+const History: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
+  return <div>History</div>
 }
 
 export default History

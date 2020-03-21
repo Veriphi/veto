@@ -1,11 +1,11 @@
 import React, { SyntheticEvent, FunctionComponent } from 'react'
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps } from '@reach/router'
 import { useInput } from '../../hooks/useInput'
 import { navigate } from '@reach/router'
 import { Flex, Text, Input, Button } from '@veriphi/veto-ui'
 import { mockPassword } from './tempdata.json'
 
-const Welcome : FunctionComponent<RouteComponentProps> = () : JSX.Element => {
+const Welcome: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
   const password = useInput('')
 
   const handleOnLogin = (event: SyntheticEvent) => {
