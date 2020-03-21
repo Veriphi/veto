@@ -32,18 +32,21 @@
     "start:veto": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:veto:backend' 'yarn start:veto:frontend' 'yarn start:shared'",
     "start:veto:backend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-backend start:watch",
     "start:veto:frontend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-frontend start",
-    "start:shared": "yarn workspace @veto/config start --watch >> /dev/null",
+    "start:shared": "yarn workspace @veto/config start >> /dev/null",
+    "build:shared": "yarn workspace @veto/config build",
     "test:integration": "jest --testPathPattern='./packages/.+/tests/integration/'",
+    "pretest:unit": "yarn build:shared",
     "test:unit": "jest --testPathIgnorePatterns='packages/.+/tests/integration/'"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.1.1",
-    "@types/jest": "^25.1.2",
+    "@types/jest": "^25.1.4",
     "concurrently": "^5.0.2",
     "husky": "^4.0.6",
     "prettier": "^1.18.2",
     "pretty-quick": "^2.0.0",
-    "ts-jest": "^25.2.0"
+    "typescript": "^3.8.3",
+    "ts-jest": "^25.2.1"
   },
   "husky": {
     "hooks": {
