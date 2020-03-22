@@ -13,7 +13,7 @@ RUN yarn install
 # TODO: Cleanup some more
 # SKIP_PREFLIGHT_CHECK to tell react-scripts to not warn about storybook's webpack version
 RUN SKIP_PREFLIGHT_CHECK=true yarn build && \
-    rm -fr packages/veto-frontend/node_modules
+    rm -fr packages/veto-app/frontend/node_modules
 
 FROM node:12.14.1-alpine3.9 AS screen-app
 RUN mkdir /veto
@@ -45,10 +45,10 @@ WORKDIR /veto
 COPY --from=veto-builder /veto/packages/shared ./packages/shared
 
 # Copy backend project
-COPY --from=veto-builder /veto/packages/veto-backend ./packages/veto-backend
+COPY --from=veto-builder /veto/packages/veto-app/backend ./packages/veto-app/backend
 
 # Copy generated frontend files
-COPY --from=veto-builder /veto/packages/veto-frontend/build ./frontend
+COPY --from=veto-builder /veto/packages/veto-app/frontend/build ./packages/veto-app/frontend/build
 
 # Copy dependnecies
 COPY --from=veto-builder /veto/package.json ./package.json
@@ -56,4 +56,4 @@ COPY --from=veto-builder /veto/yarn.lock ./yarn.lock
 
 RUN yarn install --production --frozen-lockfile
 
-ENTRYPOINT NODE_ENV=production node ./packages/veto-backend/out/index.js
+ENTRYPOINT NODE_ENV=production PATH_TO_STATIC_FILES=/veto/packages/veto-app/frontend/build node ./packages/veto-app/backend/out/index.js

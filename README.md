@@ -29,9 +29,16 @@ Each packages are located in the `packages/` folder.
 
 ### Start the application
 
-#### Running in dev mode
+#### Setup a dev environment
 
 ##### If this is your first time running cyphernode + veto:
+
+```Note
+We currently provide a remote cyphernode dev server to make it easier for newcomers to get started.
+If you want to use the remote server, skip this section (head to `Veto only scripts`)
+
+Continue reading if you want a local cyphernode dev server
+```
 
 From the root of the project:
 
@@ -56,7 +63,7 @@ The frontend will be accessible with hot module reloading on `localhost:3000`
 
 Remember to call `yarn cyphernode:stop` when you are finished or the whole cyphernode suite of containers will continue running.
 
-#### Veto only scripts
+#### Veto-app
 
 Run this command at the root of the project to start both front-end and back-end,
 `yarn start`
@@ -65,15 +72,43 @@ Screen app need to be started independently as it capture the whole terminal and
 `yarn start:screen`
 
 To run front end on its own
-`yarn start:frontend`
+`yarn start:veto:frontend`
 
 To run back end on its own
-`yarn start:backend`
+`yarn start:veto:backend`
 
 ##### Config
 
 Configuration is provided through environment variables.
-Each variables can be found in the config file `./packages/veto-backend/src/utils/config.ts`
+Each variables can be found in the config file `./packages/veto-app/backend/src/utils/config.ts`
+
+##### Credentials
+
+Dev login
+
+- Password: `veto`
+
+#### Maintenance-app
+
+Run this command at the root of the project to start both front-end and back-end,
+`yarn start:maintenance`
+
+To run front end on its own
+`yarn start:maintenance:frontend`
+
+To run back end on its own
+`yarn start:maintenance:backend`
+
+##### Config
+
+Configuration is provided through environment variables.
+Each variables can be found in the config file `./packages/maintenance-app/backend/src/utils/config.ts`
+
+##### Credentials
+
+Dev login
+
+- Password: `veto`
 
 #### Cyphernode
 
@@ -103,7 +138,7 @@ This will build veto's docker image and run cyphernode's setup script
 Options:
 | Name | Default | Values | Description |
 | --- | --- | --- | --- |
-| `CFG_PASSWORD` | `""` | Any string | Password used to seal Cypherdone's config.7z file |
+| `CFG_PASSWORD` | `""` | Any string | Password used to seal Cyphernode's config.7z file |
 | `SKIP_CYPHERNODE` | `"false"` | `"false" || "false"` | If `true`, cyphernode will not be built |
 | `VERSION_NUMBER` | `"latest"` | Any string | Version used to tag both `veto` & `veto-screen` docker image |
 
@@ -123,3 +158,14 @@ The api is available at `localhost/api`
 
 - API urls in `veto-backend` always start with `api/` to separate them from the static files which are on `/`
 - Static file path (frontend files) can't start with `api/`, this is to prevent route resolution problems with `veto-backend`.
+
+#### Package structure
+
+- Application packages are suffixed with `-app` and are located at the root of `packages/`
+- Shared packages are located in `packages/shares/*`
+  - `@veto/config` => `packages/shares/utils`
+- Packages that belong to an application and should not be shared with others are located in the application's folder
+  - `veto-backend` => `packages/veto-app/backend`
+  - `veto-frontend` => `packages/veto-app/frontend`
+  - `maintenance-backend` => `packages/maintenance-app/backend`
+  - `maintenance-frontend` => `packages/maintenance-app/frontend`
