@@ -5,6 +5,7 @@ import getMempoolInfo from './getMempoolInfo'
 import getNewAddress from './getNewAddress'
 import getBalance from './getBalance'
 import spend from './spend'
+import bumpFee from './bumpFee'
 
 // Setup all available routes from FE
 export default function setupRoutes(app: Application): Application {
@@ -16,6 +17,7 @@ export default function setupRoutes(app: Application): Application {
   getVersion(app)
   spend(app)
   getBalance(app)
+  bumpFee(app)
 
   return app
 }
