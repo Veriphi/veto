@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { Flex } from '@veriphi/veto-ui'
-import { MainLayoutLabel, MainLayoutRoute } from '../../../layouts/MainLayout/MainLayout'
+import { MainLayoutLabel, MainLayoutRoute } from 'layouts/MainLayout/MainLayout'
 import { navigate } from '@reach/router'
 
 type MenuItemProps = {
