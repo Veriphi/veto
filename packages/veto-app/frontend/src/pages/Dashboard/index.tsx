@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
-import ReceiveBTC from '../../components/molecules/ReceiveBTC'
+import React, { useState, FunctionComponent } from 'react'
+import { RouteComponentProps } from '@reach/router'
+import ReceiveBTC from 'components/molecules/ReceiveBTC'
 import { Button, Modal, Text, Flex } from '@veriphi/veto-ui'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons/faPaperPlane'
 import { faWaveSquare } from '@fortawesome/free-solid-svg-icons/faWaveSquare'
-import { getNewAddress } from '../../api'
-import useBalance from '../../hooks/useBalance'
-import SendBTC from '../../components/molecules/SendBTC'
+import { getNewAddress } from 'api'
+import useBalance from 'hooks/useBalance'
+import SendBTC from 'components/molecules/SendBTC'
 
 type Status = 'idle' | 'fetchReceivingAddress' | 'showReceivingAddress' | 'constructSendingTx' | 'sending' | 'error'
 
-export default () => {
+const Dashboard: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
   // General Page State
   const [status, setStatus] = useState<Status>('idle')
   const [error, setError] = useState('')
@@ -63,3 +64,5 @@ export default () => {
     </div>
   )
 }
+
+export default Dashboard
