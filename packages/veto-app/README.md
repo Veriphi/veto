@@ -54,7 +54,7 @@ User facing application that communicate to veto-app backend to provider feature
     - `molecules/`
       - `*/` UI components containing business logic
   - `hooks/`
-    - `*.ts` Reach hooks
+    - `*.ts` React hooks
   - `pages/`
     - `*/` Contains pages of the application
   - `utils/`
