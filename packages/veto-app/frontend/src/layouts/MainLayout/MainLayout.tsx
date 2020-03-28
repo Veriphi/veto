@@ -15,17 +15,17 @@ type Props = {
   path: string
 }
 
-const getActiveMenu = (): MainLayoutRoute => {
-  const currentPathName: string = window.location.pathname
-  if (currentPathName !== '/dashboard' || '/wallets' || '/history' || '/explorer' || '/monitoring') {
-    return '/dashboard'
-  } else {
+const getActiveMenu = (currentPathName: MainLayoutRoute | string): MainLayoutRoute => {
+  const isMainLayoutRoute = (route: MainLayoutRoute | string): route is MainLayoutRoute =>
+    ['/dashboard', '/wallets', '/history', '/explorer', '/monitoring'].includes(route)
+  if (isMainLayoutRoute(currentPathName)) {
     return currentPathName
   }
+  return '/dashboard'
 }
 
 const MainLayout: FunctionComponent<Props> = ({ path }: Props): JSX.Element => {
-  const [activeMenu] = useState<MainLayoutRoute>(getActiveMenu())
+  const [activeMenu] = useState<MainLayoutRoute>(getActiveMenu(window.location.pathname))
 
   return (
     <Flex>
