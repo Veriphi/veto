@@ -16,6 +16,7 @@ type Props = {
 }
 
 const getActiveMenu = (currentPathName: MainLayoutRoute | string): MainLayoutRoute => {
+  // https://www.typescriptlang.org/docs/handbook/advanced-types.html#using-type-predicates
   const isMainLayoutRoute = (route: MainLayoutRoute | string): route is MainLayoutRoute =>
     ['/dashboard', '/wallets', '/history', '/explorer', '/monitoring'].includes(route)
   if (isMainLayoutRoute(currentPathName)) {
