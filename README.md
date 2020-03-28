@@ -1,5 +1,12 @@
 # Veto
 
+## Wiki
+
+- [Architecture overview](wiki/ARCH.md)
+- [Bitcoin knowledge base](wiki/BITCOIN.md)
+- [Design Guidelines](wiki/DESIGN.md)
+- [Code style and guides](wiki/GUIDE.md)
+
 ## Development
 
 ### Requirements
