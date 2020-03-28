@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReceiveBTC from '../../components/molecules/ReceiveBTC'
 import { Button, Modal, Text, Flex } from '@veriphi/veto-ui'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons/faPaperPlane'
 import { faWaveSquare } from '@fortawesome/free-solid-svg-icons/faWaveSquare'
 import { getNewAddress } from '../../api'
 import useBalance from '../../hooks/useBalance'
+import useSettings from '../../hooks/useSettings'
 import SendBTC from '../../components/molecules/SendBTC'
 
 type Status = 'idle' | 'fetchReceivingAddress' | 'showReceivingAddress' | 'constructSendingTx' | 'sending' | 'error'
@@ -14,6 +15,15 @@ export default () => {
   const [status, setStatus] = useState<Status>('idle')
   const [error, setError] = useState('')
   const [balance, balanceLoading, balanceFetchError] = useBalance()
+  const [settings, setSettings] = useSettings()
+
+  const toggleDarkMode = () => {
+    setSettings({ darkmode: !settings.darkmode })
+  }
+
+  useEffect(() => {
+    document.body.style.backgroundColor = settings.darkmode ? '#000' : '#fff'
+  }, [settings])
 
   // State for Receiving
   const [receivingAddress, setReceivingAddress] = useState('')
@@ -60,6 +70,9 @@ export default () => {
       <Modal isOpen={status === 'constructSendingTx'} onClickCloseButton={() => setStatus('idle')}>
         <SendBTC />
       </Modal>
+      <Button variant="primary" onClick={toggleDarkMode}>
+        {settings.darkmode ? 'Light Mode' : 'Dark Mode'}
+      </Button>
     </div>
   )
 }

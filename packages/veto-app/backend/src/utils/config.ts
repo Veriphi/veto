@@ -44,6 +44,9 @@ export type Config = BaseConfig & {
       keyId: string
     }
   }
+  db: {
+    file: string
+  }
 }
 
 export default {
@@ -66,5 +69,8 @@ export default {
       // Id associated with the cyphernode key passed to veto
       keyId: process.env.CYPHERNODE_KEY_ID ?? '003',
     },
+  },
+  db: {
+    file: process.env.VETO_DB_PATH ?? '.db-data',
   },
 } as Config
