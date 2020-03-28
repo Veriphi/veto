@@ -2,8 +2,8 @@ import React from 'react'
 import { Router, RouteComponentProps } from '@reach/router'
 import { ThemeProvider } from 'emotion-theming'
 import { lightTheme, GlobalStyles } from '@veriphi/veto-ui'
-import MainLayout from 'layouts/MainLayout'
-import Welcome from 'pages/Welcome'
+import MainLayout from './layouts/MainLayout'
+import Welcome from './pages/Welcome'
 import { Global, css } from '@emotion/core'
 
 const App = () => (

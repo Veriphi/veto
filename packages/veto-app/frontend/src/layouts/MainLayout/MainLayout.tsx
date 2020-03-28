@@ -6,7 +6,7 @@ import Wallets from 'pages/Wallets'
 import History from 'pages/History'
 import Explorer from 'pages/Explorer'
 import Monitoring from 'pages/Monitoring'
-import SideMenu from 'components/molecules/SideMenu'
+import SideMenu from '../../components/molecules/SideMenu'
 
 export type MainLayoutLabel = 'Dashboard' | 'Wallets' | 'History' | 'Explorer' | 'Monitoring'
 export type MainLayoutRoute = '/dashboard' | '/wallets' | '/history' | '/explorer' | '/monitoring'
