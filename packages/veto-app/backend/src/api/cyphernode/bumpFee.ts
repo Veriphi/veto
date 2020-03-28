@@ -4,13 +4,13 @@ import cyphernodeClient from './client'
 const cyphernode: AxiosInstance = cyphernodeClient()
 
 type Args = {
-  txid: string
+  txId: string
   confTarget: number
 }
 
-export default function spend({ txid, confTarget }: Args): Promise<AxiosResponse> {
+export default function spend({ txId, confTarget }: Args): Promise<AxiosResponse> {
   return cyphernode.post('/bumpfee', {
-    txid,
-    confTarget: Number(confTarget),
+    txid: txId,
+    confTarget,
   })
 }
