@@ -1,23 +1,23 @@
 import { Application } from 'express'
 import getActiveWatchesRoute from './getActiveWatches'
-import getVersion from './getVersion'
-import getMempoolInfo from './getMempoolInfo'
-import getNewAddress from './getNewAddress'
-import getBalance from './getBalance'
-import spend from './spend'
-import bumpFee from './bumpFee'
+import getVersionRoute from './getVersion'
+import getMempoolInfoRoute from './getMempoolInfo'
+import getNewAddressRoute from './getNewAddress'
+import getBalanceRoute from './getBalance'
+import spendRoute from './spend'
+import bumpFeeRoute from './bumpFee'
 
 // Setup all available routes from FE
 export default function setupRoutes(app: Application): Application {
   console.log('Bootstrapping routes...')
 
-  getMempoolInfo(app)
-  getNewAddress(app)
+  getMempoolInfoRoute(app)
+  getNewAddressRoute(app)
   getActiveWatchesRoute(app)
-  getVersion(app)
-  spend(app)
-  getBalance(app)
-  bumpFee(app)
+  getVersionRoute(app)
+  spendRoute(app)
+  getBalanceRoute(app)
+  bumpFeeRoute(app)
 
   return app
 }
