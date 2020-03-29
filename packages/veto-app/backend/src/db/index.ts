@@ -5,7 +5,7 @@ import config from '../utils/config'
 
 let instance: IGunChainReference
 
-const getInstance: Function = (): IGunChainReference => {
+const getInstance = (): IGunChainReference => {
   if (!instance) {
     throw new Error('Gun instance not initialized. Please call init() before.')
   }
@@ -13,13 +13,13 @@ const getInstance: Function = (): IGunChainReference => {
   return instance
 }
 
-const init: Function = (server: Server): IGunChainReference => {
+const init = (server: Server): Server => {
   instance = Gun({
     web: server,
-    file: config.db.file,
+    file: config.db.filePath,
   })
 
-  return instance
+  return server
 }
 
 export default {

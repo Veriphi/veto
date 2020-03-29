@@ -11,6 +11,7 @@ export default (): [Settings, Function] => {
   const [settings, setSettings] = useState<Settings>({})
 
   useEffect(() => {
+    // see Gun API: https://gun.eco/docs/API#-a-name-map-a-gun-map-callback-
     db.map().on((value, key) => {
       setSettings((settings) => ({
         ...settings,
@@ -25,6 +26,7 @@ export default (): [Settings, Function] => {
 
   const saveSettings: Function = (settings: Settings) => {
     Object.entries(settings).forEach(([key, value]: [string, any]) => {
+      // see Gun API: https://gun.eco/docs/API#-a-name-put-a-gun-put-data-callback-
       db.get(key).put(value as never)
     })
   }

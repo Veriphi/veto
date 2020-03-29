@@ -45,7 +45,7 @@ export type Config = BaseConfig & {
     }
   }
   db: {
-    file: string
+    filePath: string
   }
 }
 
@@ -71,6 +71,6 @@ export default {
     },
   },
   db: {
-    file: process.env.VETO_DB_PATH ?? '.db-data',
+    filePath: process.env.VETO_DB_PATH ?? '.db-data',
   },
 } as Config
