@@ -4,6 +4,12 @@ yarn-error.log
 build/
 out/
 
+# DB data
+.db-data/
+
 # IDE
 .idea/
 .vscode
+
+# Mac
+.DS_Store
