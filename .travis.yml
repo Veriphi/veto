@@ -19,3 +19,6 @@ jobs:
       script: yarn test:integration
     - stage: lint
       script: yarn lint
+    # All package should be able to build successfully
+    - stage: build
+      script: yarn workspaces build
