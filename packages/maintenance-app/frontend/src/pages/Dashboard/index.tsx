@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
+// import { ApplicationState, State } from "@maintenance-app/types/src";
 
-export default () => (
-  <div>
-    <h1>Veto Maintenance</h1>
-    <h3> Application state </h3>
+function install() {
+  console.log('install')
+}
+
+function factoryReset() {
+  console.log('factoryReset')
+}
+
+export default () => {
+  const [applicationState] = useState('running')
+
+  return (
     <div>
-      Actions
-      <button>Install </button>
-      <button>Factory Reset</button>
+      <h1>Veto Maintenance</h1>
+      <h3> Application state: {applicationState ?? 'running'}</h3>
+      <div>
+        Actions
+        <button onClick={install}>Install</button>
+        <button onClick={factoryReset}>Factory Reset</button>
+      </div>
     </div>
-  </div>
-)
+  )
+}

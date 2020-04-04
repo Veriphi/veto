@@ -1,14 +1,7 @@
 import run from '../utils/run'
+import { ApplicationState, State } from '@maintenance-app/types/src'
 
-export enum State {
-  MISSING = 'missing',
-  UNKNOWN = 'unknown',
-  INSTALLED = 'created',
-  RESTARTING = 'restarting',
-  RUNNING = 'running',
-  PAUSED = 'paused',
-  EXITED = 'exited',
-}
+const STATE_VALUES = Object.values(State)
 
 type DockerInstanceState = {
   Status: State
@@ -23,15 +16,7 @@ type DockerInstanceState = {
   StartedAt: string
   FinishedAt: string
 }
-
-const STATE_VALUES = Object.values(State)
-
 type RawApplicationState = { [name: string]: DockerInstanceState }
-
-export type ApplicationState = {
-  veto: State
-  cyphernode: State
-}
 
 /**
  * Validate potentialState is a valid State, if not, return State.UNKNOWN

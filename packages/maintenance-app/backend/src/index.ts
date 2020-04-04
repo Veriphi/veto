@@ -1,8 +1,9 @@
 import express, { Request, Response, Application } from 'express'
 import config from './utils/config'
 import serverSetup from './server'
-import getApplicationState, { ApplicationState, State } from './scripts/getApplicationState'
+import getApplicationState from './scripts/getApplicationState'
 import getDockerVersion from './scripts/getDockerVersion'
+import { ApplicationState, State } from '@maintenance-app/types/src'
 
 const app = express()
 
