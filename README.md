@@ -119,6 +119,8 @@ Dev login
 
 #### Cyphernode
 
+[Latest cyphernode API swagger spec](https://editor.swagger.io/#/?import=https://raw.githubusercontent.com/SatoshiPortal/cyphernode/dev/doc/openapi/v0/cyphernode-api.yaml)
+
 ##### Setup cyphernode
 
 From the root of the project, run the following commands:
