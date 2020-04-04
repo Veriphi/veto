@@ -16,7 +16,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-    "@veriphi/veto-ui": "^0.2.0",
+    "@veriphi/veto-ui": "^0.3.0",
     "@veto/config": "0.0.0",
     "axios": "^0.19.2",
     "emotion-theming": "^10.0.27",

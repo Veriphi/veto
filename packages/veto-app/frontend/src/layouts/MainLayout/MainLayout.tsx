@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
 import { Flex } from '@veriphi/veto-ui'
 import { Router } from '@reach/router'
 import Dashboard from '../../pages/Dashboard'
@@ -27,7 +27,10 @@ const getActiveMenu = (currentPathName: MainLayoutRoute | string): MainLayoutRou
 }
 
 const MainLayout: FunctionComponent<Props> = ({ path }: Props): JSX.Element => {
-  const [activeMenu] = useState<MainLayoutRoute>(getActiveMenu(window.location.pathname))
+  const [activeMenu, setActiveMenu] = useState<MainLayoutRoute>(getActiveMenu(window.location.pathname))
+  const updateActiveMenu: VoidFunction = () : void => setActiveMenu(getActiveMenu(window.location.pathname))
+  
+  useEffect(updateActiveMenu, [window.location.pathname])
 
   return (
     <Flex>
