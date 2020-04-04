@@ -28,8 +28,8 @@ const getActiveMenu = (currentPathName: MainLayoutRoute | string): MainLayoutRou
 
 const MainLayout: FunctionComponent<Props> = ({ path }: Props): JSX.Element => {
   const [activeMenu, setActiveMenu] = useState<MainLayoutRoute>(getActiveMenu(window.location.pathname))
-  const updateActiveMenu: VoidFunction = () : void => setActiveMenu(getActiveMenu(window.location.pathname))
-  
+  const updateActiveMenu: VoidFunction = (): void => setActiveMenu(getActiveMenu(window.location.pathname))
+
   useEffect(updateActiveMenu, [window.location.pathname])
 
   return (

@@ -1,8 +1,5 @@
-import * as React from 'react';
+import * as React from 'react'
 import { Box, Flex } from '@veriphi/veto-ui'
-
-
-
 
 /*
     todo import from @veriphi/veto-ui and get rid of this
@@ -12,78 +9,77 @@ import { Box, Flex } from '@veriphi/veto-ui'
     https://btc.atlassian.net/browse/VN-117
 */
 export type NavigationElementProps = {
-    title: string
-    icon: React.ReactNode
-    isSelected?: boolean
-    isExpanded?: boolean
-    handleNavigate: (...args: any[]) => void
-  }
-  const NavigationElement: React.FC<NavigationElementProps> = ({
-    title,
-    icon,
-    handleNavigate,
-    isSelected = false,
-    isExpanded = false,
-    ...restProps
-  }) => {
-  
-    return (
-      <Flex
-        onClick={handleNavigate}
+  title: string
+  icon: React.ReactNode
+  isSelected?: boolean
+  isExpanded?: boolean
+  handleNavigate: (...args: any[]) => void
+}
+const NavigationElement: React.FC<NavigationElementProps> = ({
+  title,
+  icon,
+  handleNavigate,
+  isSelected = false,
+  isExpanded = false,
+  ...restProps
+}) => {
+  return (
+    <Flex
+      onClick={handleNavigate}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        minHeight: '52px',
+        width: '270px',
+        mt: 3,
+        pr: 2,
+        pl: '32px',
+        position: 'relative',
+        bg: isSelected ? '#F8F6FA' : 'white',
+        cursor: 'pointer',
+        color: 'text',
+        textDecoration: 'none',
+        '&:hover': {
+          bg: isSelected ? '#F8F6FA' : '#FAFAFA',
+        },
+      }}
+      {...restProps}
+    >
+      <Box
+        as="span"
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          minHeight: '52px',
-          width: '270px',
-          mt: 3,
-          pr: 2,
-          pl: '32px',
-          position: 'relative',
-          bg: isSelected ? '#F8F6FA' : 'white',
-          cursor: 'pointer',
-          color: 'text',
-          textDecoration: 'none',
-          '&:hover': {
-            bg: isSelected ? '#F8F6FA' : '#FAFAFA',
-          },
+          fontSize: '24px',
+          minWidth: '64px',
+          color: isSelected ? 'primary' : 'text',
         }}
-        {...restProps}
       >
+        {icon}
+      </Box>{' '}
+      <Box
+        as="span"
+        sx={{
+          display: isExpanded ? 'initial' : 'initial',
+          fontSize: 'large',
+        }}
+      >
+        {title}
+      </Box>
+      {isSelected && (
         <Box
-          as="span"
           sx={{
-            fontSize: '24px',
-            minWidth: '64px',
-            color: isSelected ? 'primary' : 'text',
+            position: 'absolute',
+            width: '10px',
+            bg: 'primary',
+            height: '100%',
+            transform: isExpanded ? 'translateX(228px)' : 'translateX(42px)',
+            transition: 'transform ease-in-out 200ms',
+            borderTopLeftRadius: 'radius-2',
+            borderBottomLeftRadius: 'radius-2',
           }}
-        >
-          {icon}
-        </Box>{' '}
-        <Box
-          as="span"
-          sx={{
-            display: isExpanded ? 'initial' : 'initial',
-            fontSize: 'large',
-          }}
-        >
-          {title}
-        </Box>
-        {isSelected && (
-          <Box
-            sx={{
-              position: 'absolute',
-              width: '10px',
-              bg: 'primary',
-              height: '100%',
-              transform: isExpanded ? 'translateX(228px)' : 'translateX(42px)',
-              transition: 'transform ease-in-out 200ms',
-              borderTopLeftRadius: 'radius-2',
-              borderBottomLeftRadius: 'radius-2',
-            }}
-          />
-        )}
-      </Flex>
-    );
-  };
-  
+        />
+      )}
+    </Flex>
+  )
+}
+
 export default NavigationElement
