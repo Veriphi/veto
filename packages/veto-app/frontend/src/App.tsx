@@ -2,8 +2,8 @@ import React from 'react'
 import { Router, RouteComponentProps } from '@reach/router'
 import { ThemeProvider } from 'emotion-theming'
 import { lightTheme, GlobalStyles } from '@veriphi/veto-ui'
+import MainLayout from './layouts/MainLayout'
 import Welcome from './pages/Welcome'
-import Dashboard from './pages/Dashboard'
 import { Global, css } from '@emotion/core'
 
 const App = () => (
@@ -20,7 +20,6 @@ const App = () => (
           padding: 0;
           margin: 0;
         }
-
         *,
         *:before,
         *:after {
@@ -30,7 +29,7 @@ const App = () => (
     />
     <Router data-testid="Router">
       <RouterPage path="/" pageComponent={<Welcome />} />
-      <RouterPage path="/dashboard" pageComponent={<Dashboard />} />
+      <MainLayout path="/*" />
     </Router>
   </ThemeProvider>
 )

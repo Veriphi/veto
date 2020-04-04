@@ -1,11 +1,11 @@
-import React, { SyntheticEvent } from 'react'
+import React, { SyntheticEvent, FunctionComponent } from 'react'
+import { RouteComponentProps } from '@reach/router'
 import { useInput } from '../../hooks/useInput'
 import { navigate } from '@reach/router'
 import { Flex, Text, Input, Button } from '@veriphi/veto-ui'
 import { mockPassword } from './tempdata.json'
-import config from '@veto/config'
 
-export default () => {
+const Welcome: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
   const password = useInput('')
 
   const handleOnLogin = (event: SyntheticEvent) => {
@@ -20,7 +20,6 @@ export default () => {
       <Text m={3} variant="heading1">
         Welcome Page
       </Text>
-      {config.version}
       <Flex
         as="form"
         id="login"
@@ -44,3 +43,5 @@ export default () => {
     </Flex>
   )
 }
+
+export default Welcome
