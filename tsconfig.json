@@ -13,8 +13,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noImplicitAny": false,
-    "jsx": "react",
-    "baseUrl": "./packages/"
+    "jsx": "react"
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx"]
