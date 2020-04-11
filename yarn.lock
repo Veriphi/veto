@@ -1940,6 +1940,22 @@
     react-modal "^3.11.1"
     styled-system "^5.1.4"
 
+"@veriphi/veto-ui@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@veriphi/veto-ui/-/veto-ui-0.4.0.tgz#1e177fa67473e1237e38d18f95cc620be90aad23"
+  integrity sha512-1UVr/wjEzXq8iTlbIy+jbB+J1hXxOXdYmpmJE+znXXao42EYK/9wQWW0A4E2g9gGf0zjrEtq/A8Hsog8djqI2A==
+  dependencies:
+    "@emotion/core" "^10.0.27"
+    "@emotion/styled" "^10.0.27"
+    "@popperjs/core" "^2.0.6"
+    "@styled-system/css" "^5.1.4"
+    "@styled-system/should-forward-prop" "^5.1.4"
+    "@types/react-modal" "^3.10.4"
+    "@types/styled-system" "^5.1.5"
+    "@types/styled-system__css" "^5.0.4"
+    react-modal "^3.11.1"
+    styled-system "^5.1.4"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"

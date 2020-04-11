@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactElement } from 'react'
-import { Flex, MainNav } from '@veriphi/veto-ui'
+import { Flex, MainNav, NavigationElement } from '@veriphi/veto-ui'
 import { navigate } from '@reach/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBorderAll } from '@fortawesome/free-solid-svg-icons/faBorderAll'
@@ -7,9 +7,7 @@ import { faWallet } from '@fortawesome/free-solid-svg-icons/faWallet'
 import { faHistory } from '@fortawesome/free-solid-svg-icons/faHistory'
 import { faCube } from '@fortawesome/free-solid-svg-icons/faCube'
 import { faServer } from '@fortawesome/free-solid-svg-icons/faServer'
-
 import { MainLayoutLabel, MainLayoutRoute } from '../../../layouts/MainLayout/MainLayout'
-import NavigationElement, { NavigationElementProps } from './NavigationElement'
 
 type MenuItemProps = {
   label: MainLayoutLabel
@@ -18,18 +16,26 @@ type MenuItemProps = {
   isSelected: boolean
 }
 
+type NavigationElementProps = {
+  title: string
+  icon: React.ReactNode
+  isSelected?: boolean
+  onClick: (...args: any[]) => void
+}
+
 const MenuItem: FunctionComponent<MenuItemProps> = ({
   label,
   route,
   icon,
   isSelected,
 }: MenuItemProps): ReactElement => {
-  const handleNavigate: VoidFunction = (): void => navigate(route)
+  const onClick = () => navigate(route)
+
   const navigationElementProps: NavigationElementProps = {
     title: label,
-    handleNavigate,
     icon,
     isSelected,
+    onClick,
   }
 
   return <NavigationElement {...navigationElementProps} />
