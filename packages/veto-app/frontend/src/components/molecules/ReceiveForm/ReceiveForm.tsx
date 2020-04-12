@@ -1,11 +1,11 @@
 import React from 'react'
 import { Input, Label, Text, Box, Select, Flex, Button } from '@veriphi/veto-ui'
+import useNewAddress from '../../../hooks/useNewAddress'
+import ErrorMessage from 'components/atoms/ErrorMessage'
 
-type Props = {
-  address: string
-}
+const ReceiveBTC = () => {
+  const { address, addressError, isValidating } = useNewAddress()
 
-const ReceiveBTC = ({ address }: Props) => {
   return (
     <Box>
       <Text variant="heading2">Receive BTC</Text>
@@ -20,8 +20,16 @@ const ReceiveBTC = ({ address }: Props) => {
       <Label>Address</Label>
 
       <Flex>
-        <Text>{address}</Text>
-        <Button>copy to clipboard</Button>
+        {addressError ? (
+          <ErrorMessage>{addressError}</ErrorMessage>
+        ) : isValidating ? (
+          '...Fetching new address...'
+        ) : (
+          <>
+            <Text>{address}</Text>
+            <Button>copy to clipboard</Button>
+          </>
+        )}
       </Flex>
     </Box>
   )

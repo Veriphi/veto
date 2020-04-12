@@ -1,11 +1,7 @@
 import axios from 'axios'
 
-export const getNewAddress = async (): Promise<string> => {
-  const { data }: { data: { address: string } } = await axios(`http://${window.location.host}/api/getnewaddress`)
-  return data.address
-}
-
 export const getBalanceUrl = `http://${window.location.host}/api/getbalance`
+export const getNewAddressUrl = `http://${window.location.host}/api/getnewaddress`
 
 type spendResponse = {
   status: 'string'
