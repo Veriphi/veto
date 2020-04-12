@@ -5,10 +5,7 @@ export const getNewAddress = async (): Promise<string> => {
   return data.address
 }
 
-export const getBalance = async (): Promise<string> => {
-  const { data }: { data: { balance: string } } = await axios(`http://${window.location.host}/api/getbalance`)
-  return data.balance
-}
+export const getBalanceUrl = `http://${window.location.host}/api/getbalance`
 
 type spendResponse = {
   status: 'string'

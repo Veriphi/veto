@@ -1,29 +1,13 @@
-import { useState, useEffect } from 'react'
-import { getBalance } from '../api'
+import { getBalanceUrl } from '../api'
+import useRequest from './useRequest'
 
-const useBalance = (): [any, boolean, string] => {
-  const [data, setData] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+const useBalance = (): { balance: string | undefined; balanceError: string | undefined } => {
+  const { data, error } = useRequest({ url: getBalanceUrl })
 
-  useEffect(() => {
-    setLoading(true)
-
-    const fetchData = async () => {
-      try {
-        const balance = await getBalance()
-        setData(balance)
-      } catch (err) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchData()
-  }, [])
-
-  return [data, loading, error]
+  return {
+    balance: data && data.balance,
+    balanceError: error && error.message,
+  }
 }
 
 export default useBalance
