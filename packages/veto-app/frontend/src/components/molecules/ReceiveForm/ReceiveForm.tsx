@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input, Label, Text, Box, Select, Flex, Button } from '@veriphi/veto-ui'
 import useNewAddress from '../../../hooks/useNewAddress'
-import ErrorMessage from 'components/atoms/ErrorMessage'
+import ErrorMessage from '../../atoms/ErrorMessage'
 
 const ReceiveBTC = () => {
   const { address, addressError, isValidating } = useNewAddress()
