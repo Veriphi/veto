@@ -14,6 +14,7 @@
     "packages/shared/*"
   ],
   "scripts": {
+    "prebuild": "yarn workspace @veto/config build && yarn workspace @maintenance-app/types build",
     "build": "yarn workspace veto-backend build && yarn build:veto:frontend && yarn workspace screen-app build",
     "build:veto:frontend": "yarn workspace veto-frontend build",
     "cyphernode:setup": "SKIP_VETO=true ./scripts/setup.sh",
@@ -22,6 +23,7 @@
     "dev": "yarn cyphernode:start && yarn start",
     "lint": "prettier -l '**/*.{ts,tsx,js,jsx,json}'",
     "lint:fix": "prettier --write '**/*.{ts,tsx,js,jsx,json}'",
+    "prestart": "yarn workspace @veto/config build && yarn workspace @maintenance-app/types build",
     "start": "yarn start:veto",
     "start:backend": "yarn start:veto:backend",
     "start:frontend": "yarn start:veto:frontend",
@@ -36,7 +38,7 @@
     "build:shared": "yarn workspace @veto/config build",
     "test:integration": "jest --testPathPattern='./packages/.+/tests/integration/'",
     "pretest:unit": "yarn build:shared",
-    "test:unit": "jest --testPathIgnorePatterns='packages/.+/tests/integration/'",
+    "test:unit": "jest --testPathIgnorePatterns='packages/.+(/out|/tests/integration/)'",
     "test:unit:fe": "jest --testPathPattern=packages/veto-app/frontend"
   },
   "devDependencies": {

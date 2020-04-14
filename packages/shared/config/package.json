@@ -10,6 +10,7 @@
   "scripts": {
     "postinstall": "tsc -p . --outDir out",
     "start": "tsc -p . --outDir out --watch",
+    "prebuild": "rm -fr out/*",
     "build": "tsc -p . --outDir out"
   }
 }
