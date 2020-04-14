@@ -1,12 +1,12 @@
 import { getBalanceUrl } from '../api'
 import useRequest from './useRequest'
 
-const useBalance = (): { balance: string | undefined; balanceError: string | undefined } => {
-  const { data, error } = useRequest({ url: getBalanceUrl })
+const useBalance = (): { balance?: string; balanceError?: string } => {
+  const { data, error } = useRequest<{ balance?: string }>({ url: getBalanceUrl })
 
   return {
-    balance: data && data.balance,
-    balanceError: error && error.message,
+    balance: data?.balance,
+    balanceError: error?.message,
   }
 }
 

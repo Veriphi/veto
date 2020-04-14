@@ -14,11 +14,11 @@ export interface Config<Data = unknown, Error = unknown>
   initialData?: Data
 }
 
-export default function useRequest<Data = any, Error = any>(
+export default function useRequest<Data, E extends Error = Error>(
   request: GetRequest,
-  { initialData, ...config }: Config<Data, Error> = {},
-): Return<Data, Error> {
-  const { data: response, error, isValidating, revalidate } = useSWR<AxiosResponse<Data>, AxiosError<Error>>(
+  { initialData, ...config }: Config<Data, E> = {},
+): Return<Data, E> {
+  const { data: response, error, isValidating, revalidate } = useSWR<AxiosResponse<Data>, AxiosError<E>>(
     request && JSON.stringify(request),
     () => axios(request),
     {
@@ -34,7 +34,7 @@ export default function useRequest<Data = any, Error = any>(
   )
 
   return {
-    data: response && response.data,
+    data: response?.data,
     response,
     error,
     isValidating,

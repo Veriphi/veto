@@ -2,15 +2,15 @@ import { getNewAddressUrl } from '../api'
 import useRequest from './useRequest'
 
 const useNewAddress = (): {
-  address: string | undefined
-  addressError: string | undefined
+  address?: string
+  addressError?: string
   isValidating: boolean
 } => {
-  const { data, error, isValidating } = useRequest({ url: getNewAddressUrl })
+  const { data, error, isValidating } = useRequest<{ address?: string }>({ url: getNewAddressUrl })
 
   return {
-    address: data && data.address,
-    addressError: error && error.message,
+    address: data?.address,
+    addressError: error?.message,
     isValidating,
   }
 }
