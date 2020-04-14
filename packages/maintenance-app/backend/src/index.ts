@@ -26,6 +26,10 @@ serverSetup(app, config, (app: Application) => {
     const applicationState = await getApplicationState()
     const dockerVersion = await getDockerVersion()
 
+    console.log('==', new Date().getTime())
+    console.log('applicationState', applicationState)
+    console.log('dockerVersion', dockerVersion)
+
     response.send({
       info: {
         docker: dockerVersion,

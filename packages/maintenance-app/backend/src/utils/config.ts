@@ -8,6 +8,6 @@ export type Config = BaseConfig & {
 export default {
   ...baseConfig,
   appName: 'Maintenance App',
-  port: process.env.PORT ?? 8181,
+  port: process.env.MAINTENANCE_PORT ?? 8181,
   scriptLocation: process.env.SCRIPT_LOCATION,
 } as Config

@@ -13,7 +13,5 @@ export type Config = {
 export default {
   // Veto version number
   version: `0.0.0`,
-  // Veto's listening port
-  port: process.env.PORT ?? 8080,
   environment: process.env.NODE_ENV ?? 'dev',
 } as Config
