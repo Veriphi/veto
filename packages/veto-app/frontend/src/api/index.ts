@@ -1,8 +1,10 @@
 import axios from 'axios'
 
-export const getBalanceUrl = `http://${window.location.host}/api/getbalance`
-export const getNewAddressUrl = `http://${window.location.host}/api/getnewaddress`
+// URL endpoints (mainly for use by useRequest hook)
+export const balanceUrl = `http://${window.location.host}/api/getbalance`
+export const newAddressUrl = `http://${window.location.host}/api/getnewaddress`
 
+// Calls
 type spendResponse = {
   status: 'string'
   hash: 'string'

@@ -1,4 +1,4 @@
-import { getNewAddressUrl } from '../api'
+import { newAddressUrl } from '../api'
 import useRequest from './useRequest'
 
 const useNewAddress = (): {
@@ -6,7 +6,7 @@ const useNewAddress = (): {
   addressError?: string
   isValidating: boolean
 } => {
-  const { data, error, isValidating } = useRequest<{ address?: string }>({ url: getNewAddressUrl })
+  const { data, error, isValidating } = useRequest<{ address?: string }>({ url: newAddressUrl })
 
   return {
     address: data?.address,

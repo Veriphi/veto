@@ -1,8 +1,8 @@
-import { getBalanceUrl } from '../api'
+import { balanceUrl } from '../api'
 import useRequest from './useRequest'
 
 const useBalance = (): { balance?: string; balanceError?: string } => {
-  const { data, error } = useRequest<{ balance?: string }>({ url: getBalanceUrl })
+  const { data, error } = useRequest<{ balance?: string }>({ url: balanceUrl })
 
   return {
     balance: data?.balance,

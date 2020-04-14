@@ -3,6 +3,20 @@ import { Input, Label, Text, Box, Select, Flex, Button } from '@veriphi/veto-ui'
 import useNewAddress from '../../../hooks/useNewAddress'
 import ErrorMessage from '../../atoms/ErrorMessage'
 
+function renderAddress(isValidating: boolean, error?: string, address?: string) {
+  if (error) {
+    return <ErrorMessage>{error}</ErrorMessage>
+  } else if (isValidating) {
+    return '...Fetching new address...'
+  }
+
+  return (
+    <>
+      <Text>{address}</Text>
+      <Button>copy to clipboard</Button>
+    </>
+  )
+}
 const ReceiveBTC = () => {
   const { address, addressError, isValidating } = useNewAddress()
 
@@ -19,18 +33,7 @@ const ReceiveBTC = () => {
 
       <Label>Address</Label>
 
-      <Flex>
-        {addressError ? (
-          <ErrorMessage>{addressError}</ErrorMessage>
-        ) : isValidating ? (
-          '...Fetching new address...'
-        ) : (
-          <>
-            <Text>{address}</Text>
-            <Button>copy to clipboard</Button>
-          </>
-        )}
-      </Flex>
+      <Flex>{renderAddress(isValidating, addressError, address)}</Flex>
     </Box>
   )
 }
