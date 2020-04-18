@@ -36,11 +36,12 @@
     "build:shared": "yarn workspace @veto/config build",
     "test:integration": "jest --testPathPattern='./packages/.+/tests/integration/'",
     "pretest:unit": "yarn build:shared",
-    "test:unit": "jest --testPathIgnorePatterns='packages/.+/tests/integration/'"
+    "test:unit": "jest --testPathIgnorePatterns='packages/.+/tests/integration/'",
+    "test:unit:fe": "jest --testPathPattern=packages/veto-app/frontend"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.1.1",
-    "@types/jest": "^25.1.4",
+    "@types/jest": "^25.2.1",
     "concurrently": "^5.0.2",
     "husky": "^4.0.6",
     "prettier": "^1.18.2",

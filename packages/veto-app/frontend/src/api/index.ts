@@ -1,15 +1,10 @@
 import axios from 'axios'
 
-export const getNewAddress = async (): Promise<string> => {
-  const { data }: { data: { address: string } } = await axios(`http://${window.location.host}/api/getnewaddress`)
-  return data.address
-}
+// URL endpoints (mainly for use by useRequest hook)
+export const balanceUrl = `http://${window.location.host}/api/getbalance`
+export const newAddressUrl = `http://${window.location.host}/api/getnewaddress`
 
-export const getBalance = async (): Promise<string> => {
-  const { data }: { data: { balance: string } } = await axios(`http://${window.location.host}/api/getbalance`)
-  return data.balance
-}
-
+// Calls
 type spendResponse = {
   status: 'string'
   hash: 'string'
