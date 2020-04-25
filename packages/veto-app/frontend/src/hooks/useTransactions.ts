@@ -42,7 +42,7 @@ export type TransactionReceive = Transaction & {
 
 export default (onlyStatusUpdate?: boolean) => {
   const db = gun.get('transactions')
-  const [transactions, setTransactions] = useState({})
+  const [transactions, setTransactions] = useState<{ [key: string]: Transaction }>({})
 
   const createTransaction = ({ type, ...others }) => {
     const id = nanoid()

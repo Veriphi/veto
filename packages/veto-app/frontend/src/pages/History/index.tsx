@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import useTransactions from '../../hooks/useTransactions'
+import useTransactions, { Transaction } from '../../hooks/useTransactions'
 
 const History: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
   const [transactions] = useTransactions()
@@ -8,8 +8,8 @@ const History: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
   return (
     <>
       <div>History</div>
-      {Object.values(transactions).map((transaction) => (
-        <pre>{JSON.stringify(transaction, null, 2)}</pre>
+      {Object.values(transactions).map((transaction: Transaction) => (
+        <pre key={transaction.id}>{JSON.stringify(transaction, null, 2)}</pre>
       ))}
     </>
   )
