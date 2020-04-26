@@ -3,7 +3,7 @@ import setupMiddlewares from './middlewares'
 import { Application } from 'express'
 import { Server } from 'http'
 import { Config } from '../utils/config'
-import db from '../db'
+import { default as gunServer } from '@veto/db'
 
 export default async function serverSetup(
   app: Application,
@@ -19,6 +19,6 @@ export default async function serverSetup(
       .then((app: Application) =>
         app.listen(config.port, () => console.log(`${config.appName} is now listening on port ${config.port}!`)),
       )
-      .then(db.init)
+      .then((server) => gunServer.init(server, config.db.filePath))
   )
 }

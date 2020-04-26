@@ -1,34 +1,23 @@
 import { useState, useEffect } from 'react'
-import gun from '../api/gun'
-
-export type Settings = {
-  darkmode?: boolean
-  passwordConfirm?: boolean
-}
+import { default as gun, settingsDb, Settings } from '@veto/db'
 
 export default (): [Settings, Function] => {
-  const db = gun.get('settings')
+  const instance = gun.get('settings')
   const [settings, setSettings] = useState<Settings>({})
 
   useEffect(() => {
-    // see Gun API: https://gun.eco/docs/API#-a-name-map-a-gun-map-callback-
-    db.map().on((value, key) => {
+    settingsDb.on(instance, (key, value) => {
       setSettings((settings) => ({
         ...settings,
         [key]: value,
       }))
     })
 
-    return () => {
-      db.map().off()
-    }
-  }, [db])
+    return () => settingsDb.off(instance)
+  }, [instance])
 
-  const saveSettings: Function = (settings: Settings) => {
-    Object.entries(settings).forEach(([key, value]: [string, any]) => {
-      // see Gun API: https://gun.eco/docs/API#-a-name-put-a-gun-put-data-callback-
-      db.get(key).put(value as never)
-    })
+  const saveSettings = (settings: Settings) => {
+    settingsDb.set(instance, settings)
   }
 
   return [settings, saveSettings]

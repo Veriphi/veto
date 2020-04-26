@@ -1,0 +1,19 @@
+{
+  "name": "@veto/db",
+  "version": "0.0.0",
+  "description": "Veto app Gun database",
+  "author": "Veriphi",
+  "license": "PRIVATE",
+  "private": true,
+  "main": "out/index.js",
+  "type": "out/index.d.ts",
+  "scripts": {
+    "postinstall": "tsc -p . --outDir out",
+    "start": "tsc -p . --outDir out --watch",
+    "build": "tsc -p . --outDir out"
+  },
+  "dependencies": {
+    "@veto/config": "0.0.0",
+    "gun": "^0.2020.421"
+  }
+}

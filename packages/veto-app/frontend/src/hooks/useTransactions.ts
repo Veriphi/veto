@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { nanoid } from 'nanoid'
-import gun from '../api/gun'
+// import { gun } from '@veto/db'
 
 export enum TransactionType {
   SEND = 'SEND',
@@ -29,6 +29,7 @@ export type Transaction = {
   address: string
   history: [TransactionHistory]
   label?: string
+  hash?: string
 }
 
 export type TransactionSend = Transaction & {
@@ -41,7 +42,7 @@ export type TransactionReceive = Transaction & {
 }
 
 export default (onlyStatusUpdate?: boolean) => {
-  const db = gun.get('transactions')
+  /*const db = gun.get('transactions')
   const [transactions, setTransactions] = useState<{ [key: string]: Transaction }>({})
 
   const createTransaction = ({ type, ...others }) => {
@@ -124,4 +125,6 @@ export default (onlyStatusUpdate?: boolean) => {
   }, [db, onlyStatusUpdate])
 
   return [transactions, send, receive]
+  */
+  return []
 }
