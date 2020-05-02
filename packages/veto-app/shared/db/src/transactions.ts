@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import { IGunChainReference } from 'gun/types/chain'
 
 export enum TransactionType {
@@ -19,6 +20,7 @@ export type TransactionHistory = {
 }
 
 export type Transaction = {
+  id: string
   address: string
   amount?: number
   networkFees?: number
@@ -32,10 +34,12 @@ export type Transaction = {
 }
 
 const createTransaction = (gun: IGunChainReference<any>, params: Transaction) => {
+  const id = nanoid()
   const now = new Date()
   const { address, type, ...others } = params
 
   const transaction = {
+    id,
     address,
     status: TransactionStatus.CREATED,
     createdAt: now,
@@ -49,7 +53,7 @@ const createTransaction = (gun: IGunChainReference<any>, params: Transaction) =>
     ...others,
   }
 
-  gun.get(address).put(transaction as never)
+  gun.get(id).put(transaction as never)
 
   return transaction
 }

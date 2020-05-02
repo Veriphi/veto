@@ -11,7 +11,7 @@ export default (onlyStatusUpdate?: boolean) => {
       (transaction: Transaction) => {
         setTransactions((transactions) => ({
           ...transactions,
-          [transaction.address]: transaction,
+          [transaction.id]: transaction,
         }))
       },
       onlyStatusUpdate ? 'status' : undefined,
