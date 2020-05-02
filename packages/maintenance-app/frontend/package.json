@@ -19,9 +19,9 @@
     "@veriphi/veto-ui": "^0.2.0",
     "axios": "^0.19.2",
     "emotion-theming": "^10.0.27",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "^3.4.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
