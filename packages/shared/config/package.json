@@ -8,8 +8,9 @@
   "main": "out/index.js",
   "type": "out/index.d.ts",
   "scripts": {
-    "postinstall": "tsc -p . --outDir out",
-    "start": "tsc -p . --outDir out --watch",
-    "build": "tsc -p . --outDir out"
+    "postinstall": "yarn tsc -p . --outDir out",
+    "start": "yarn tsc -p . --outDir out --watch",
+    "build": "yarn tsc -p . --outDir out",
+    "tsc": "tsc"
   }
 }

@@ -7,8 +7,9 @@
   "license": "UNLICENCED",
   "private": true,
   "scripts": {
-    "build": "tsc -p ./tsconfig.json --outDir ./out",
-    "start": "ts-node src/index.ts"
+    "build": "yarn tsc -p ./tsconfig.json --outDir ./out",
+    "start": "ts-node src/index.ts",
+    "tsc": "tsc"
   },
   "dependencies": {
     "blessed": "^0.1.81",
