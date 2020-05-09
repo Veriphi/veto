@@ -12,5 +12,8 @@
     "start": "yarn tsc -p . --outDir out --watch",
     "build": "yarn tsc -p . --outDir out",
     "tsc": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.4"
   }
 }
