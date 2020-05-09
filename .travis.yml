@@ -13,12 +13,12 @@ jobs:
   include:
     - stage: install
       script: yarn install --frozen-lockfile
+    - stage: lint
+      script: yarn lint
     - stage: test-unit
       script: yarn test:unit
     - stage: test-integration
       script: yarn test:integration
-    - stage: lint
-      script: yarn lint
     # All package should be able to build successfully
-    - stage: build
-      script: yarn workspaces build
+    - stage: test-build
+      script: yarn install && yarn build

@@ -25,12 +25,14 @@
       "last 1 safari version"
     ]
   },
+  "resolutions": {
+    "@babel/preset-env": "^7.8.7"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@reach/router": "^1.2.1",
-    "@rehooks/local-storage": "^2.1.1",
     "@veriphi/veto-ui": "^0.2.0",
     "@veto/config": "0.0.0",
     "axios": "^0.19.2",
@@ -38,7 +40,7 @@
     "gun": "^0.2020.116",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "^3.4.0",
+    "react-scripts": "^3.4.1",
     "swr": "^0.2.0",
     "typescript": "^3.7.4"
   },
