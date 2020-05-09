@@ -11,14 +11,14 @@
 # Default to "unknown"
 veto_container_state='{ "Status": "unknown" }'
 
-is_veto_installed=$(docker images -q veto)
+is_veto_installed=$(docker images --quiet veto)
 if [[ ! -z "${is_veto_installed}" ]]; then
   veto_container_state='{ "Status": "created" }'
 fi
 
-is_veto_started=$(docker ps -q -f name=veto)
+is_veto_started=$(docker ps --quiet --filter name=veto)
 if [[ ! -z "${is_veto_started}" ]]; then
-  veto_container_state=$( docker inspect --type=container -f '{{json .State}}' veto )
+  veto_container_state=$( docker inspect --type=container --format '{{json .State}}' veto )
 fi
 
 echo "{ \"veto\": ${veto_container_state} }"
@@ -29,7 +29,7 @@ cyphernode_instances=$(docker ps --format '{{.Names}}' | grep cyphernode_)
 for instance in $cyphernode_instances
 do
   # Cyphernote state detection
-  cyphernode_state=$(docker inspect --type=container -f '{{json .State}}' "${instance}")
+  cyphernode_state=$(docker inspect --type=container --format '{{json .State}}' "${instance}")
 
   # Default to "unknown"
   if [[ -z "${cyphernode_state}" ]]; then
