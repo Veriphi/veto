@@ -56,4 +56,5 @@ COPY --from=veto-builder /veto/yarn.lock ./yarn.lock
 
 RUN yarn install --production --frozen-lockfile
 
-ENTRYPOINT NODE_ENV=production PATH_TO_STATIC_FILES=/veto/packages/veto-app/frontend/build node ./packages/veto-app/backend/out/index.js
+# ENTRYPOINT NODE_ENV=production PATH_TO_STATIC_FILES=/veto/packages/veto-app/frontend/build node ./packages/veto-app/backend/out/index.js
+CMD yarn start
