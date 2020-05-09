@@ -10,6 +10,7 @@
   "scripts": {
     "start": "yarn tsc -p . --outDir out --watch",
     "build": "yarn tsc -p . --outDir out",
+    "prebuild": "rm -fr out/*",
     "tsc": "tsc"
   },
   "devDependencies": {
