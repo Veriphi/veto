@@ -8,7 +8,7 @@
   "main": "out/index.js",
   "type": "out/index.d.ts",
   "scripts": {
-    "postinstall": "yarn tsc -p . --outDir out",
+    "postinstall": "npx tsc -p . --outDir out",
     "start": "yarn tsc -p . --outDir out --watch",
     "build": "yarn tsc -p . --outDir out",
     "tsc": "tsc"
