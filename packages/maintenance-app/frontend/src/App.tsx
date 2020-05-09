@@ -7,7 +7,6 @@ import Dashboard from './pages/Dashboard'
 import { Global, css } from '@emotion/core'
 
 const App = () => {
-  console.log('== App')
   return (
     <ThemeProvider theme={lightTheme}>
       {/* Veto-ui necessary globals */}
