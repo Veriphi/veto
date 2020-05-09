@@ -14,6 +14,7 @@
     "packages/shared/*"
   ],
   "scripts": {
+    "prebuild": "yarn workspace @veto/config build && yarn workspace @maintenance-app/types build",
     "build": "yarn workspace veto-backend build && yarn build:veto:frontend && yarn workspace screen-app build",
     "build:veto:frontend": "yarn workspace veto-frontend build",
     "cyphernode:setup": "SKIP_VETO=true ./scripts/setup.sh",
