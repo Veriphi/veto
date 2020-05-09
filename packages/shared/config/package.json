@@ -8,9 +8,9 @@
   "main": "out/index.js",
   "type": "out/index.d.ts",
   "scripts": {
+    "postinstall": "npx tsc -p . --outDir out",
     "start": "yarn tsc -p . --outDir out --watch",
     "build": "yarn tsc -p . --outDir out",
-    "prebuild": "rm -fr out/*",
     "tsc": "tsc"
   },
   "devDependencies": {
