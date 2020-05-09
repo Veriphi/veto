@@ -1,23 +1,21 @@
-import express, { Request, Response, Application } from 'express'
+import express, { Application, Request, Response } from 'express'
 import config from './utils/config'
 import serverSetup from './server'
 import getApplicationState from './scripts/getApplicationState'
+import appStart from './scripts/start'
 import getDockerVersion from './scripts/getDockerVersion'
-import { ApplicationState, State } from '@maintenance-app/types/src'
+import { State } from '@maintenance-app/types/src'
+import setup from './scripts/setup'
 
 const app = express()
 
 // TODO: Move to ./utils
-function isInstalled(applicationState: ApplicationState): boolean {
-  if ([State.UNKNOWN, State.MISSING].includes(applicationState.cyphernode)) {
-    return false
-  }
+function isInstalled(state: State): boolean {
+  return ![State.UNKNOWN, State.MISSING].includes(state)
+}
 
-  if ([State.UNKNOWN, State.MISSING].includes(applicationState.veto)) {
-    return false
-  }
-
-  return true
+function shouldInstall(state: State): boolean {
+  return state === State.MISSING || state !== State.INSTALLED
 }
 
 serverSetup(app, config, (app: Application) => {
@@ -25,10 +23,6 @@ serverSetup(app, config, (app: Application) => {
   app.get('/api/get-info', async (request: Request, response: Response) => {
     const applicationState = await getApplicationState()
     const dockerVersion = await getDockerVersion()
-
-    console.log('==', new Date().getTime())
-    console.log('applicationState', applicationState)
-    console.log('dockerVersion', dockerVersion)
 
     response.send({
       info: {
@@ -38,18 +32,22 @@ serverSetup(app, config, (app: Application) => {
     })
   })
 
-  app.post('/api/factory-reset', async (request: Request, response: Response) => {
-    const applicationState = await getApplicationState()
-    if (isInstalled(applicationState)) {
-      response.send('FACTORY RESET')
-    }
-  })
-
   app.post('/api/install', async (request: Request, response: Response) => {
     const applicationState = await getApplicationState()
-    if (!isInstalled(applicationState)) {
-      response.send('INSTALL')
+
+    if (shouldInstall(applicationState.veto)) {
+      await setup()
     }
+
+    /*
+    if !isRunning
+    */
+    if (isInstalled(applicationState.veto)) {
+      await appStart()
+    }
+
+    response.status(204)
+    response.end()
   })
 
   return app

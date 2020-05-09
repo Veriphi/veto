@@ -1,82 +1,110 @@
 import React, { useEffect, useState } from 'react'
 import { ApplicationState, State } from '@maintenance-app/types'
 import axios from 'axios'
+import config from '../../utils/config'
+import { throttle } from 'lodash'
 
-function install() {
-  console.log('install')
-}
-
-function factoryReset() {
-  console.log('factoryReset')
-}
+const install = throttle(async () => {
+  await axios.post(`http://${config.maintenanceBackendUrl}/api/install`)
+}, 1500)
 
 async function getApplicationState(): Promise<ApplicationState> {
   const { data }: { data: { state: ApplicationState } } = await axios(`http://${window.location.host}/api/get-info`)
-  console.log('applicationState', data.state)
   return data.state
+}
+
+type ButtonProps = {
+  state: State
+  action: () => void
+}
+
+/*
+State & button chart
+| State      | Start   | Install | Reset  |
+| ---        | ---     | ---     | ---    |
+| MISSING    |         | install |        |
+| UNKNOWN    |         | install | reset? |
+| INSTALLED  |         |         | reset  |
+| RESTARTING |         |         | reset  |
+| RUNNING    |         |         | reset  |
+| PAUSED     | start   |         | reset  |
+| EXITED     | start   |         | reset  |
+*/
+
+const INSTALLABLE = [State.MISSING, State.UNKNOWN]
+const InstallButton = (props: ButtonProps) => {
+  if (INSTALLABLE.includes(props.state)) {
+    return (
+      <button type="button" onClick={props.action}>
+        Install
+      </button>
+    )
+  }
+
+  return (
+    <button type="button" disabled>
+      Install
+    </button>
+  )
 }
 
 type DashboardState = {
   applicationState: ApplicationState
 }
 
+type ApplicationControlProps = {
+  start?: () => void
+  install: () => void
+  factoryReset?: () => void
+  applicationState: ApplicationState
+}
+const ApplicationControls = (props: ApplicationControlProps) => {
+  return (
+    <div>
+      <h3>Application Controls:</h3>
+      <InstallButton action={props.install} state={props.applicationState.veto} />
+    </div>
+  )
+}
+
 export default () => {
-  const [incrementA, setIncrementA] = useState<number>(0)
-  const [incrementB, setIncrementB] = useState<number>(0)
+  const [shouldCheck, setCheck] = useState<boolean>(true)
 
   useEffect(() => {
-    console.log('incrementA', incrementA)
+    // Toggle the refresh flag every X ms to trigger a call to maintenance-app backend
+    const flagToggleIntervalId = setInterval(() => {
+      setCheck(!shouldCheck)
+    }, config.stateLookupRate)
 
-    setIncrementA(incrementA + 1)
-  }, [incrementA])
+    // Stop refreshing when the component unmount
+    return () => {
+      clearInterval(flagToggleIntervalId)
+    }
+  })
 
-  // console.log("== Dashboard component");
-  //
-  // const [shouldCheck, setCheck] = useState<boolean>(true);
-  //
-  // useEffect(() => {
-  //   const id = setInterval(() => {
-  //     setCheck(!shouldCheck);
-  //   }, 3000);
-  //
-  //   return () => {
-  //     clearInterval(id);
-  //   };
-  // });
-  //
-  //
-  const state = {
+  const [state, setState] = useState<DashboardState>({
     applicationState: {
       veto: State.UNKNOWN,
       cyphernode: State.UNKNOWN,
     },
-  }
-  // const [state, setState] = useState<DashboardState>({
-  //   applicationState: {
-  //     veto: State.UNKNOWN,
-  //     cyphernode: State.UNKNOWN
-  //   }
-  // });
-  //
-  // useEffect(() => {
-  //   console.log("Using effect");
-  //   getApplicationState()
-  //     .then((data) => setState(oldState => {
-  //       return {
-  //         ...oldState,
-  //         applicationState: {
-  //           ...oldState.applicationState,
-  //           ...data
-  //         }
-  //       };
-  //     }));
-  //   // });
-  // }, [shouldCheck]);
+  })
+
+  useEffect(() => {
+    getApplicationState().then((data) =>
+      setState((oldState) => {
+        return {
+          ...oldState,
+          applicationState: {
+            ...oldState.applicationState,
+            ...data,
+          },
+        }
+      }),
+    )
+  }, [shouldCheck])
 
   return (
     <div>
-      <button onClick={() => setIncrementA(incrementA + 1)}>INCREMENT A</button>
-      <button onClick={() => setIncrementB(incrementB + 1)}>INCREMENT B</button>
       <h1>Veto Maintenance</h1>
       <h3> Application state: </h3>
       <div>
@@ -84,11 +112,8 @@ export default () => {
         <br />
         Cyphernode: {state.applicationState.cyphernode}
       </div>
-      <div>
-        Actions
-        <button onClick={() => install()}>Install</button>
-        <button onClick={factoryReset}>Factory Reset</button>
-      </div>
+
+      <ApplicationControls applicationState={state.applicationState} install={install} />
     </div>
   )
 }

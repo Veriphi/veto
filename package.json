@@ -28,7 +28,7 @@
     "start:backend": "yarn start:veto:backend",
     "start:frontend": "yarn start:veto:frontend",
     "start:maintenance": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:maintenance:backend' 'yarn start:maintenance:frontend'",
-    "start:maintenance:backend": "NODE_ENV=${NODE_ENV:-dev} SCRIPT_LOCATION=${SCRIPT_LOCATION:-$(pwd)/scripts} yarn workspace maintenance-backend start",
+    "start:maintenance:backend": "DOCKER_SOURCE_DIR=$(pwd) NODE_ENV=${NODE_ENV:-dev} SCRIPT_LOCATION=${SCRIPT_LOCATION:-$(pwd)/scripts} yarn workspace maintenance-backend start",
     "start:maintenance:frontend": "NODE_ENV=${NODE_ENV:-dev} SCRIPT_LOCATION=${SCRIPT_LOCATION:-$(pwd)/scripts} yarn workspace maintenance-frontend start",
     "start:screen": "NODE_ENV=${NODE_ENV:-dev} yarn workspace screen-app start",
     "start:veto": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:veto:backend' 'yarn start:veto:frontend' 'yarn start:shared'",

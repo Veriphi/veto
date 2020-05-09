@@ -5,38 +5,38 @@
 # Some kind of health check might be better suited for this feature but would take more time to write properly 
 # For now this is the best I can come up with 
 
-echo "{ \"veto\": $(docker inspect -f '{{json .State}}' veto)}"
+
+# Veto state detection
+
+# Default to "unknown"
+veto_container_state='{ "Status": "unknown" }'
+
+is_veto_installed=$(docker images -q veto)
+if [[ ! -z "${is_veto_installed}" ]]; then
+  veto_container_state='{ "Status": "created" }'
+fi
+
+is_veto_started=$(docker ps -q -f name=veto)
+if [[ ! -z "${is_veto_started}" ]]; then
+  veto_container_state=$( docker inspect --type=container -f '{{json .State}}' veto )
+fi
+
+echo "{ \"veto\": ${veto_container_state} }"
+
+# Get the list of all cyphernode instance
 cyphernode_instances=$(docker ps --format '{{.Names}}' | grep cyphernode_)
-  for instance in $cyphernode_instances
-  do
-    echo "{ \"${instance}\": $(docker inspect -f '{{json .State}}' ${instance})}"
-  done
+
+for instance in $cyphernode_instances
+do
+  # Cyphernote state detection
+  cyphernode_state=$(docker inspect --type=container -f '{{json .State}}' "${instance}")
+
+  # Default to "unknown"
+  if [[ -z "${cyphernode_state}" ]]; then
+    cyphernode_state='{ "Status": "unknown" }'
+  fi
+
+  echo "{ \"${instance}\": \"${cyphernode_state}\""
+done
 
 exit 0
-
-cyphernode_instances=$(docker ps --format '{{.Names}}' | grep cyphernode_)
-veto_instances=$(docker ps --format '{{.Names}}' | grep veto)
-
-output="{"
-# Output veto state
-if [[ -z $cyphernode_instances ]]; then
-  output+="  \"veto\": [],"
-else
-  output+="  \"veto\": $( docker inspect -f '{{json .State}}' veto ),"
-fi
-
-# Output cyphernode state
-if [[ -z $cyphernode_instances ]]; then
-  output+="  \"cyphernode\": []"
-else
-  output+="  \"cyphernode\": ["
-  for instance in $cyphernode_instances
-  do
-    output+="$( docker inspect -f '{{json .State}}' ${instance} ),"
-  done
-  output+="]"
-fi
-
-output+="}"
-
-echo $output

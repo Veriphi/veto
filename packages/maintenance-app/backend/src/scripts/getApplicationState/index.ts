@@ -36,7 +36,8 @@ function toJson(rawJSON: string) {
 
 export default function getApplicationState(): Promise<ApplicationState> {
   return run('/info/get-application-state.sh').then((rawStates: string) => {
-    // Convert all `docker inspect -f '{{.State}}'` strings to js objects
+    // Convert all json strings to js objects and flatten
+    // them into one object with all states
     const states = rawStates
       .split('\n')
       .filter((text) => !!text)
