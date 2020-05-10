@@ -1,5 +1,8 @@
-import { nanoid } from 'nanoid'
 import { IGunChainReference } from 'gun/types/chain'
+import { nanoid } from 'nanoid'
+const gun = require('./gun')
+
+export const STORE = 'transactions'
 
 export enum TransactionType {
   SEND = 'SEND',
@@ -33,70 +36,57 @@ export type Transaction = {
   hash?: string
 }
 
-const createTransaction = (gun: IGunChainReference<any>, params: Transaction) => {
-  const id = nanoid()
-  const now = new Date()
-  const { address, type, ...others } = params
+class StoreTransactions {
+  private gunInstance: IGunChainReference<any>
 
-  const transaction = {
-    id,
-    address,
-    status: TransactionStatus.CREATED,
-    createdAt: now,
-    type,
-    history: [
-      {
-        status: TransactionStatus.CREATED,
-        timestamp: now,
-      },
-    ],
-    ...others,
+  constructor() {
+    this.gunInstance = gun.get(STORE)
   }
 
-  gun.get(id).put(transaction as never)
+  private createTransaction(params: Transaction) {
+    const id = nanoid()
+    const now = new Date()
 
-  return transaction
-}
-
-const send = (gun: IGunChainReference<any>, transaction: Transaction) =>
-  createTransaction(gun, {
-    ...transaction,
-    networkFees: transaction.networkFees || 1,
-    type: TransactionType.SEND,
-  })
-
-const receive = (gun: IGunChainReference<any>, transaction: Transaction) =>
-  createTransaction(gun, {
-    ...transaction,
-    type: TransactionType.RECEIVE,
-  })
-
-const on = (
-  gun: IGunChainReference<any>,
-  callback: (transaction: Transaction) => void,
-  keyChange?: keyof Transaction,
-) => {
-  if (!keyChange) {
-    return gun.map().on((transaction) => callback(transaction as Transaction))
-  }
-
-  return gun.map().on((transaction: any, id) => {
-    const { _, ...data } = transaction
-    const dataChanges = Object.keys(data)
-
-    if (dataChanges.length === 1 && data[keyChange]) {
-      gun.get(id).once((transaction) => {
-        transaction && callback(transaction as Transaction)
-      })
+    const transaction = {
+      id,
+      status: TransactionStatus.CREATED,
+      createdAt: now,
+      history: [
+        {
+          status: TransactionStatus.CREATED,
+          timestamp: now,
+        },
+      ],
+      ...params,
     }
-  }, true)
+
+    gun.get(id).put(transaction as never)
+
+    return transaction
+  }
+
+  send(transaction: Transaction) {
+    return this.createTransaction({
+      ...transaction,
+      networkFees: transaction.networkFees || 1,
+      type: TransactionType.SEND,
+    })
+  }
+
+  receive(transaction: Transaction) {
+    return this.createTransaction({
+      ...transaction,
+      type: TransactionType.RECEIVE,
+    })
+  }
+
+  on(callback: (transaction: Transaction) => void) {
+    this.gunInstance.map().on((transaction) => callback(transaction as Transaction))
+  }
+
+  off() {
+    this.gunInstance.map().off()
+  }
 }
 
-const off = (gun: IGunChainReference<any>) => gun.map().off()
-
-export default {
-  send,
-  receive,
-  on,
-  off,
-}
+export default StoreTransactions

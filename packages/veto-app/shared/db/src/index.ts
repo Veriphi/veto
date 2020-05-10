@@ -1,8 +1,9 @@
 const gun = require('./gun')
 
-export { default as settingsDb, Settings } from './settings'
+export { default as StoreSettings, Settings } from './settings'
+export { default as StoreNotifications, Notification } from './notifications'
 export {
-  default as transactionsDb,
+  default as StoreTransactions,
   TransactionType,
   TransactionStatus,
   TransactionHistory,

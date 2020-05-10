@@ -1,27 +1,27 @@
-import { useState, useEffect } from 'react'
-import { default as gun, transactionsDb, Transaction } from '@veto/db'
+import { useState, useRef, useEffect } from 'react'
+import { StoreTransactions, Transaction } from '@veto/db'
 
-export default (onlyStatusUpdate?: boolean) => {
-  const instance = gun.get('transactions')
+export default () => {
+  const store = useRef<StoreTransactions | null>(null)
   const [transactions, setTransactions] = useState<{ [key: string]: Transaction }>({})
 
   useEffect(() => {
-    transactionsDb.on(
-      instance,
-      (transaction: Transaction) => {
-        setTransactions((transactions) => ({
-          ...transactions,
-          [transaction.id]: transaction,
-        }))
-      },
-      onlyStatusUpdate ? 'status' : undefined,
-    )
+    store.current = new StoreTransactions()
 
-    return () => transactionsDb.off(instance)
-  }, [instance, onlyStatusUpdate])
+    store.current.on((transaction) => {
+      setTransactions((transactions) => ({
+        ...transactions,
+        [transaction.id]: transaction,
+      }))
+    })
 
-  const send = (transaction: Transaction) => transactionsDb.send(instance, transaction)
-  const receive = (transaction: Transaction) => transactionsDb.receive(instance, transaction)
+    return () => {
+      store.current && store.current.off()
+    }
+  }, [])
+
+  const send = (transaction: Transaction) => store.current && store.current.send(transaction)
+  const receive = (transaction: Transaction) => store.current && store.current.receive(transaction)
 
   return [transactions, send, receive]
 }

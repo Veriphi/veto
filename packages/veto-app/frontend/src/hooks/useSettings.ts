@@ -1,23 +1,27 @@
-import { useState, useEffect } from 'react'
-import { default as gun, settingsDb, Settings } from '@veto/db'
+import { useState, useRef, useEffect } from 'react'
+import { StoreSettings, Settings } from '@veto/db'
 
 export default (): [Settings, Function] => {
-  const instance = gun.get('settings')
+  const store = useRef<StoreSettings | null>(null)
   const [settings, setSettings] = useState<Settings>({})
 
   useEffect(() => {
-    settingsDb.on(instance, (key, value) => {
+    store.current = new StoreSettings()
+
+    store.current.on((key, value) => {
       setSettings((settings) => ({
         ...settings,
         [key]: value,
       }))
     })
 
-    return () => settingsDb.off(instance)
-  }, [instance])
+    return () => {
+      store.current && store.current.off()
+    }
+  }, [])
 
   const saveSettings = (settings: Settings) => {
-    settingsDb.set(instance, settings)
+    store.current && store.current.set(settings)
   }
 
   return [settings, saveSettings]
