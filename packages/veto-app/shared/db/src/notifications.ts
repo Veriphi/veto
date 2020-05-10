@@ -1,45 +1,46 @@
 import { nanoid } from 'nanoid'
 import { IGunChainReference } from 'gun/types/chain'
+import { Transaction } from './transactions'
 const gun = require('./gun')
 
 export const STORE = 'notifications'
 
 export type Notification = {
   id: string
-  createdAt: Date
-  message: string
+  createdAt: string
+  transaction: Transaction
 }
 
 class StoreNotifications {
-  private gunInstance: IGunChainReference<any>
+  private gun: IGunChainReference<any>
 
   constructor() {
-    this.gunInstance = gun.get(STORE)
+    this.gun = gun.get(STORE)
   }
 
-  add(message: string) {
+  add(transaction: Transaction) {
     const id = nanoid()
     const now = new Date()
 
     const notification = {
       id,
-      createdAt: now,
-      message,
+      createdAt: now.toISOString(),
+      transaction,
     }
 
-    this.gunInstance.get(id).put(notification as never)
+    this.gun.get(id).put(notification as never)
   }
 
   clear(id: string) {
-    this.gunInstance.get(id).put(null as never)
+    this.gun.get(id).put(null as never)
   }
 
   on(callback: (notification: Notification) => void) {
-    this.gunInstance.map().on((notification) => callback(notification as Notification))
+    this.gun.map().on((notification) => callback(notification as Notification))
   }
 
   off() {
-    this.gunInstance.map().off()
+    this.gun.map().off()
   }
 }
 

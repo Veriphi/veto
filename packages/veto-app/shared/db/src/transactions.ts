@@ -29,7 +29,7 @@ export type Transaction = {
   networkFees?: number
   type: TransactionType
   status: TransactionStatus
-  createdAt: Date
+  createdAt: string
   wallet: string
   history: [TransactionHistory]
   label?: string
@@ -37,10 +37,10 @@ export type Transaction = {
 }
 
 class StoreTransactions {
-  private gunInstance: IGunChainReference<any>
+  private gun: IGunChainReference<any>
 
   constructor() {
-    this.gunInstance = gun.get(STORE)
+    this.gun = gun.get(STORE)
   }
 
   private createTransaction(params: Transaction) {
@@ -50,7 +50,7 @@ class StoreTransactions {
     const transaction = {
       id,
       status: TransactionStatus.CREATED,
-      createdAt: now,
+      createdAt: now.toISOString(),
       history: [
         {
           status: TransactionStatus.CREATED,
@@ -60,7 +60,7 @@ class StoreTransactions {
       ...params,
     }
 
-    gun.get(id).put(transaction as never)
+    this.gun.get(id).put(transaction as never)
 
     return transaction
   }
@@ -81,11 +81,11 @@ class StoreTransactions {
   }
 
   on(callback: (transaction: Transaction) => void) {
-    this.gunInstance.map().on((transaction) => callback(transaction as Transaction))
+    this.gun.map().on((transaction) => callback(transaction as Transaction))
   }
 
   off() {
-    this.gunInstance.map().off()
+    this.gun.map().off()
   }
 }
 

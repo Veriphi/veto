@@ -16,13 +16,11 @@ export default (): [Settings, Function] => {
     })
 
     return () => {
-      store.current && store.current.off()
+      store.current?.off()
     }
   }, [])
 
-  const saveSettings = (settings: Settings) => {
-    store.current && store.current.set(settings)
-  }
+  const saveSettings = (settings: Settings) => store.current?.set(settings)
 
   return [settings, saveSettings]
 }

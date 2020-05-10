@@ -1,7 +1,13 @@
 import { useState, useRef, useEffect } from 'react'
-import { StoreNotifications, Notification } from '@veto/db'
+import { StoreNotifications, Notification, Transaction } from '@veto/db'
 
-export default () => {
+type NotificationsHook = () => [
+  { [key: string]: Notification },
+  (transaction: Transaction) => void,
+  (id: string) => void,
+]
+
+const useNotifications: NotificationsHook = () => {
   const store = useRef<StoreNotifications | null>(null)
   const [notifications, setNotifications] = useState<{ [key: string]: Notification }>({})
 
@@ -16,12 +22,19 @@ export default () => {
     })
 
     return () => {
-      store.current && store.current.off()
+      store.current?.off()
     }
   }, [])
 
-  const add = (message: string) => store.current && store.current.add(message)
-  const clear = (id: string) => store.current && store.current.clear(id)
+  const add = (transaction: Transaction) => {
+    store.current?.add(transaction)
+  }
+
+  const clear = (id: string) => {
+    store.current?.clear(id)
+  }
 
   return [notifications, add, clear]
 }
+
+export default useNotifications

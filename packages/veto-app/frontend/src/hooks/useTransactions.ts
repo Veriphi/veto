@@ -1,7 +1,13 @@
 import { useState, useRef, useEffect } from 'react'
 import { StoreTransactions, Transaction } from '@veto/db'
 
-export default () => {
+type TransactionsHook = () => [
+  { [key: string]: Transaction },
+  (transaction: Transaction) => void,
+  (transaction: Transaction) => void,
+]
+
+const useTransactions: TransactionsHook = () => {
   const store = useRef<StoreTransactions | null>(null)
   const [transactions, setTransactions] = useState<{ [key: string]: Transaction }>({})
 
@@ -16,12 +22,19 @@ export default () => {
     })
 
     return () => {
-      store.current && store.current.off()
+      store.current?.off()
     }
   }, [])
 
-  const send = (transaction: Transaction) => store.current && store.current.send(transaction)
-  const receive = (transaction: Transaction) => store.current && store.current.receive(transaction)
+  const send = (transaction: Transaction) => {
+    store.current?.send(transaction)
+  }
+
+  const receive = (transaction: Transaction) => {
+    store.current?.receive(transaction)
+  }
 
   return [transactions, send, receive]
 }
+
+export default useTransactions
