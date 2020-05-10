@@ -37,7 +37,7 @@ export type Transaction = {
 }
 
 class StoreTransactions {
-  private gun: IGunChainReference<any>
+  private gun: IGunChainReference<Transaction>
 
   constructor() {
     this.gun = gun.get(STORE)
@@ -60,7 +60,7 @@ class StoreTransactions {
       ...params,
     }
 
-    this.gun.get(id).put(transaction as never)
+    this.gun.get(id as keyof Transaction).put(transaction as never)
 
     return transaction
   }
@@ -81,7 +81,7 @@ class StoreTransactions {
   }
 
   on(callback: (transaction: Transaction) => void) {
-    this.gun.map().on((transaction) => callback(transaction as Transaction))
+    this.gun.map().on((transaction) => callback(transaction))
   }
 
   off() {

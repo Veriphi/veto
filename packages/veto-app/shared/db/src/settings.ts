@@ -9,7 +9,7 @@ export type Settings = {
 }
 
 class StoreSettings {
-  private gun: IGunChainReference<any>
+  private gun: IGunChainReference<Settings>
 
   constructor() {
     this.gun = gun.get(STORE)
@@ -17,14 +17,14 @@ class StoreSettings {
 
   on(callback: (key: string, value: any) => void) {
     this.gun.map().on((value, key) => {
-      callback(key as any, value)
+      callback(key, value)
     })
   }
 
   set(settings: Settings) {
     Object.entries(settings).forEach(([key, value]: [string, any]) => {
       // see Gun API: https://gun.eco/docs/API#-a-name-put-a-gun-put-data-callback-
-      this.gun.get(key).put(value as never)
+      this.gun.get(key as keyof Settings).put(value)
     })
   }
 

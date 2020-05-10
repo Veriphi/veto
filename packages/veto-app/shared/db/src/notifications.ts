@@ -12,7 +12,7 @@ export type Notification = {
 }
 
 class StoreNotifications {
-  private gun: IGunChainReference<any>
+  private gun: IGunChainReference<Notification>
 
   constructor() {
     this.gun = gun.get(STORE)
@@ -28,15 +28,15 @@ class StoreNotifications {
       transaction,
     }
 
-    this.gun.get(id).put(notification as never)
+    this.gun.get(id as keyof Notification).put(notification)
   }
 
   clear(id: string) {
-    this.gun.get(id).put(null as never)
+    this.gun.get(id as keyof Notification).put(null as never)
   }
 
   on(callback: (notification: Notification) => void) {
-    this.gun.map().on((notification) => callback(notification as Notification))
+    this.gun.map().on((notification) => callback(notification))
   }
 
   off() {
