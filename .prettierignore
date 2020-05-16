@@ -13,3 +13,7 @@ yarn.lock/
 
 # templates
 *.tpl
+
+# Prevent problems with path ('./' => '.' & '.' => ' ')
+package.json
+tsconfig.json

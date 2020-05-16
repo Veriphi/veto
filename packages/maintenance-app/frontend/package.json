@@ -9,20 +9,24 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@reach/router": "^1.2.1",
     "@rehooks/local-storage": "^2.1.1",
+    "@veriphi/veto-ui": "^0.2.0",
+    "axios": "^0.19.2",
+    "emotion-theming": "^10.0.27",
+    "lodash": "^4.17.15",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "^3.4.1",
+    "typescript": "~3.7.2"
+  },
+  "devDependencies": {
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.2",
     "@testing-library/user-event": "^10.0.1",
     "@types/jest": "^25.1.3",
+    "@types/lodash": "^4.14.150",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "@veriphi/veto-ui": "^0.2.0",
-    "axios": "^0.19.2",
-    "emotion-theming": "^10.0.27",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "^3.4.0",
-    "typescript": "~3.7.2"
+    "@types/react-dom": "^16.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "@babel/preset-env": "^7.8.7"
   }
 }

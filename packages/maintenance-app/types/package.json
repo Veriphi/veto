@@ -1,7 +1,7 @@
 {
-  "name": "@veto/config",
+  "name": "@maintenance-app/types",
   "version": "0.0.0",
-  "description": "Veto app software utils",
+  "description": "Veto app shared types",
   "author": "Veriphi",
   "license": "PRIVATE",
   "private": true,
