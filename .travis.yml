@@ -19,6 +19,3 @@ jobs:
       script: yarn test:unit
     - stage: test-integration
       script: yarn test:integration
-    # All package should be able to build successfully
-    - stage: test-build
-      script: yarn install && yarn build
