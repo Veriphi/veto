@@ -1,14 +1,11 @@
 language: node_js
 node_js:
-  - 'stable'
+  - stable
 cache: yarn
-# this is necessary to ensure we build every branch in repo, PR builds will still be triggered
 branches:
   only:
     - master
-# we skip auto install step to override it with our own
 install: skip
-# stages are sequencial and build will not continue if one fails
 jobs:
   include:
     - stage: install
@@ -19,3 +16,7 @@ jobs:
       script: yarn test:integration
     - stage: lint
       script: yarn lint
+deploy:
+  provider: heroku
+  api_key:
+    secure: Sm7QlNqz+M7RG1m5zfdKaDZ5cpUQI5ccGU5VUETHGyZRsdDi9AXZc7b/HMeB/Aivyn6seaWreHP1/u2Ri6CEs1rcougUSdQmbaQI24lISrLMrbdnTypE8AKbqDv4WK9A2xKbatBK5ZbNOYLc7EKsnCQSK5xfenAgx4wUemNa/T8eFZ7HC9GCj+HgbQpvpgEQ0s2f3H9BYa2qYxQ2D2xZQHj5IWEoj7flVUhTElDhrAtQbtUQfOGvCmgzes4QzsxvtrDOoDRtoThG/ab5VfDaLM3navMbZ4N0I/ET4BFmyMnyrUiZZLkDgzy4V3xSBJ/BbSrEfjDdgwJD1PPPxE8QiSAHWnCdv6nRE/RxQj9m32JLtqiY8jRdTaaFOVUjnQNp7J0ecyNQPTJ3xvlfPTZOyGxfprXs/2b/mX63mYQcZcu2bUU06r8mFKkzyPj3OsaETec7WAYukKOFSqg0ZnOIOO3FuY1Sd+Qj4bPgaW0uDt2je1m5FaEAXInTYiRvFHn8HgiADfITLwpLNjUgWSy5YTdHf7QDpCmqV0sQJC6XOabgV+VTid9FUB0ZgoWigI7kMmMbRGu/tdJMDPbkWrQ5blMRcBAego11GoZX9aDwiSRe3rGVMxlEHQVaRLBky5af94kH5mjWk/1JYjPF87l5vKBNKg1T5anY2o8hVSou6Ow=
