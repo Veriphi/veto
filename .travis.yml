@@ -19,8 +19,6 @@ jobs:
       script: yarn test:unit
     - stage: test-integration
       script: yarn test:integration
-    - stage: lint
-      script: yarn lint
 deploy:
   provider: heroku
   api_key:
