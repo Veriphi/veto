@@ -5,9 +5,8 @@
   "private": true,
   "scripts": {
     "start:watch": "nodemon",
-    "build": "yarn tsc -p ./tsconfig.json --outDir ./out",
-    "start": "ts-node src/index.ts",
-    "tsc": "tsc"
+    "build": "tsc -p ./tsconfig.json --outDir ./out",
+    "start": "ts-node src/index.ts"
   },
   "dependencies": {
     "@veto/config": "0.0.0",
