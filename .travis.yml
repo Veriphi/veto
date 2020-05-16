@@ -13,6 +13,8 @@ jobs:
   include:
     - stage: install
       script: yarn install --frozen-lockfile
+    - stage: lint
+      script: yarn lint
     - stage: test-unit
       script: yarn test:unit
     - stage: test-integration

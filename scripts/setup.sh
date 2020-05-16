@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 SKIP_CYPHERNODE=${SKIP_CYPHERNODE:-"false"}
 SKIP_VETO=${SKIP_VETO:-"false"}
@@ -7,6 +7,7 @@ VERSION_NUMBER=${VERSION_NUMBER:-"latest"}
 CURRENT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 CYPHERNODE_DIR=${CYPHERNODE_DIR:-./cyphernode}
 ORIGINAL_DIR=$(pwd)
+DOCKER_SOURCE_DIR=${DOCKER_SOURCE_DIR:-$CURRENT_DIR }
 
 #--------------------------------------#
 #-- Veto ------------------------------#
@@ -15,9 +16,11 @@ if [ "${SKIP_VETO}" == "true" ]; then
   echo 'Skip building Veto...'
 else
   echo "Building Veto docker image..." && \
+  cd "${DOCKER_SOURCE_DIR}" || exit
   docker build . --target veto-app -t "veto:${VERSION_NUMBER}" && \
   echo "Building Veto's screen-app docker image..." && \
   docker build . --target screen-app -t "veto-screen:${VERSION_NUMBER}"
+  cd "${ORIGINAL_DIR}" || exit
 fi
 
 #--------------------------------------#
