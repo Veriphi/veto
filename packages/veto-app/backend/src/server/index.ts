@@ -3,7 +3,7 @@ import setupMiddlewares from './middlewares'
 import { Application } from 'express'
 import { Server } from 'http'
 import { Config } from '../utils/config'
-import { default as gunServer } from '@veto/db'
+import gunServer from './gun'
 
 export default async function serverSetup(
   app: Application,

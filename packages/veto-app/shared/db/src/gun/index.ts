@@ -4,5 +4,5 @@ declare const __webpack_require__: void
 if (typeof __webpack_require__ === 'function') {
   module.exports = require('./client').default
 } else {
-  module.exports = require('./server').default
+  module.exports = require('veto-backend/src/server/gun').default
 }

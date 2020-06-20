@@ -1,7 +1,7 @@
 import { IGunChainReference } from 'gun/types/chain'
-const gun = require('./gun')
+import gunClient from './index'
 
-export const STORE = 'settings'
+export const SETTINGS_STORE_NAME = 'settings'
 
 export type Settings = {
   darkmode?: boolean
@@ -12,7 +12,7 @@ class StoreSettings {
   private gun: IGunChainReference<Settings>
 
   constructor() {
-    this.gun = gun.get(STORE)
+    this.gun = gunClient.get(SETTINGS_STORE_NAME)
   }
 
   on(callback: (key: string, value: any) => void) {

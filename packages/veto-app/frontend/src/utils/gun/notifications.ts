@@ -1,9 +1,9 @@
 import { nanoid } from 'nanoid'
 import { IGunChainReference } from 'gun/types/chain'
 import { Transaction } from './transactions'
-const gun = require('./gun')
+import gunClient from './index'
 
-export const STORE = 'notifications'
+export const NOTIFICATION_STORE_NAME = 'notifications'
 
 export type Notification = {
   id: string
@@ -15,7 +15,7 @@ class StoreNotifications {
   private gun: IGunChainReference<Notification>
 
   constructor() {
-    this.gun = gun.get(STORE)
+    this.gun = gunClient.get(NOTIFICATION_STORE_NAME)
   }
 
   add(transaction: Transaction) {

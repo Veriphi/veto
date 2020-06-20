@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { Transaction } from '@veto/db'
+import { Transaction } from '../../utils/gun/transactions'
 import useTransactions from '../../hooks/useTransactions'
 
 const History: FunctionComponent<RouteComponentProps> = (): JSX.Element => {

@@ -9,7 +9,7 @@
     "test": "echo 'This script is not used anymore. Use the root test script instead'",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "http://localhost:8181",
   "eslintConfig": {
     "extends": "react-app"
   },

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { StoreTransactions, Transaction } from '@veto/db'
+import StoreTransactions, { Transaction } from '../utils/gun/transactions'
 
 type TransactionsHook = () => [
   { [key: string]: Transaction },

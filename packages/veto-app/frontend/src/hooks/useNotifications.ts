@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
-import { StoreNotifications, Notification, Transaction } from '@veto/db'
+import StoreNotifications, { Notification } from '../utils/gun/notifications'
+import { Transaction } from '../utils/gun/transactions'
 
 type NotificationsHook = () => [
   { [key: string]: Notification },

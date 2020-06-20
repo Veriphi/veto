@@ -1,8 +1,8 @@
 import { IGunChainReference } from 'gun/types/chain'
 import { nanoid } from 'nanoid'
-const gun = require('./gun')
+import gunClient from './index'
 
-export const STORE = 'transactions'
+export const TRANSACTION_STORE_NAME = 'transactions'
 
 export enum TransactionType {
   SEND = 'SEND',
@@ -40,10 +40,10 @@ class StoreTransactions {
   private gun: IGunChainReference<Transaction>
 
   constructor() {
-    this.gun = gun.get(STORE)
+    this.gun = gunClient.get(TRANSACTION_STORE_NAME)
   }
 
-  private createTransaction(params: Transaction) {
+  private createTransaction(params: Partial<Transaction>) {
     const id = nanoid()
     const now = new Date()
 

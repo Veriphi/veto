@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { StoreSettings, Settings } from '@veto/db'
+import StoreSettings, { Settings } from '../utils/gun/settings'
 
 export default (): [Settings, Function] => {
   const store = useRef<StoreSettings | null>(null)
