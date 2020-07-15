@@ -1,18 +1,14 @@
-import { useState, useEffect } from 'react'
-import gun from '../api/gun'
-
-export type Settings = {
-  darkmode?: boolean
-  passwordConfirm?: boolean
-}
+import { useState, useRef, useEffect } from 'react'
+import StoreSettings, { Settings } from '../utils/gun/settings'
 
 export default (): [Settings, Function] => {
-  const db = gun.get('settings')
+  const store = useRef<StoreSettings | null>(null)
   const [settings, setSettings] = useState<Settings>({})
 
   useEffect(() => {
-    // see Gun API: https://gun.eco/docs/API#-a-name-map-a-gun-map-callback-
-    db.map().on((value, key) => {
+    store.current = new StoreSettings()
+
+    store.current.on((key, value) => {
       setSettings((settings) => ({
         ...settings,
         [key]: value,
@@ -20,16 +16,11 @@ export default (): [Settings, Function] => {
     })
 
     return () => {
-      db.map().off()
+      store.current?.off()
     }
-  }, [db])
+  }, [])
 
-  const saveSettings: Function = (settings: Settings) => {
-    Object.entries(settings).forEach(([key, value]: [string, any]) => {
-      // see Gun API: https://gun.eco/docs/API#-a-name-put-a-gun-put-data-callback-
-      db.get(key).put(value as never)
-    })
-  }
+  const saveSettings = (settings: Settings) => store.current?.set(settings)
 
   return [settings, saveSettings]
 }

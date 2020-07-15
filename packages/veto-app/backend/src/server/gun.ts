@@ -1,7 +1,6 @@
 import Gun from 'gun'
 import { IGunChainReference } from 'gun/types/chain'
 import { Server } from 'http'
-import config from '../utils/config'
 
 let instance: IGunChainReference
 
@@ -13,10 +12,10 @@ const getInstance = (): IGunChainReference => {
   return instance
 }
 
-const init = (server: Server): Server => {
+const init = (server: Server, filePath: string): Server => {
   instance = Gun({
     web: server,
-    file: config.db.filePath,
+    file: filePath,
   })
 
   return server
