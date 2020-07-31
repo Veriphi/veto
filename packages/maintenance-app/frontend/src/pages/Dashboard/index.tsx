@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, FunctionComponent } from 'react'
+import { RouteComponentProps } from '@reach/router'
 import { ApplicationState, State } from '@maintenance-app/types'
+import { Button, Text } from '@veriphi/veto-ui'
 import axios from 'axios'
 import config from '../../utils/config'
+import useSettings from '../../hooks/useSettings'
 import { throttle } from 'lodash'
 
 const install = throttle(async () => {
@@ -67,8 +70,18 @@ const ApplicationControls = (props: ApplicationControlProps) => {
   )
 }
 
-export default () => {
+const Dashboard: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
+  const [settings, setSettings] = useSettings()
+
+  const toggleDarkMode = () => {
+    setSettings({ darkmode: !settings.darkmode })
+  }
+
   const [shouldCheck, setCheck] = useState<boolean>(true)
+
+  useEffect(() => {
+    document.body.style.backgroundColor = settings.darkmode ? '#000' : '#fff'
+  }, [settings])
 
   useEffect(() => {
     // Toggle the refresh flag every X ms to trigger a call to maintenance-app backend
@@ -105,7 +118,7 @@ export default () => {
 
   return (
     <div>
-      <h1>Veto Maintenance</h1>
+      <Text variant="heading1">Veto Dashboard</Text>
       <h3> Application state: </h3>
       <div>
         Veto: {state.applicationState.veto}
@@ -114,6 +127,11 @@ export default () => {
       </div>
 
       <ApplicationControls applicationState={state.applicationState} install={install} />
+      <Button variant="primary" onClick={toggleDarkMode}>
+        {settings.darkmode ? 'Light Mode' : 'Dark Mode'}
+      </Button>
     </div>
   )
 }
+
+export default Dashboard
