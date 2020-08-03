@@ -6,6 +6,7 @@ import appStart from './scripts/start'
 import getDockerVersion from './scripts/getDockerVersion'
 import { State } from '@maintenance-app/types/src'
 import setup from './scripts/setup'
+import setupRoutes from './routes/index'
 
 const app = express()
 
@@ -20,6 +21,7 @@ function shouldInstall(state: State): boolean {
 
 serverSetup(app, config, (app: Application) => {
   // TODO: Move all routes to their own folder
+  setupRoutes(app)
   app.get('/api/get-info', async (request: Request, response: Response) => {
     const applicationState = await getApplicationState()
     const dockerVersion = await getDockerVersion()

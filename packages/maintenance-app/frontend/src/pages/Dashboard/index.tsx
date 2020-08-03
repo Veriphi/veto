@@ -6,6 +6,7 @@ import axios from 'axios'
 import config from '../../utils/config'
 import useSettings from '../../hooks/useSettings'
 import { throttle } from 'lodash'
+import BitcoinOnionButton from '../../components/molecules/BitcoinOnionButton'
 
 const install = throttle(async () => {
   await axios.post(`http://${config.maintenanceBackendUrl}/api/install`)
@@ -130,6 +131,10 @@ const Dashboard: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
       <Button variant="primary" onClick={toggleDarkMode}>
         {settings.darkmode ? 'Light Mode' : 'Dark Mode'}
       </Button>
+      <Button variant="primary" onClick={(event) => (window.location.href = '/sparkwallet/#/')}>
+        {'Spark Wallet'}
+      </Button>
+      <BitcoinOnionButton></BitcoinOnionButton>
     </div>
   )
 }

@@ -6,6 +6,7 @@ const protocol = window.location.host.includes('localhost') ? 'http:' : 'https:'
 // URL endpoints (mainly for use by useRequest hook)
 export const balanceUrl = `${protocol}//${window.location.host}/api/getbalance`
 export const newAddressUrl = `${protocol}//${window.location.host}/api/getnewaddress`
+export const bitcoinOnionAddr = `${protocol}//${window.location.host}/api/getOnionRoute`
 
 // Calls
 type spendResponse = {
