@@ -9,7 +9,6 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@reach/router": "^1.2.1",
     "@rehooks/local-storage": "^2.1.1",
-    "@types/reach__router": "^1.3.5",
     "@veriphi/veto-ui": "^0.2.0",
     "@veto/config": "0.0.0",
     "@veto/db": "0.0.0",
