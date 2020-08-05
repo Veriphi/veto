@@ -110,7 +110,7 @@ sudo_if_required() {
 }
 
 modify_permissions() {
-  local directories=("installer" "gatekeeper" "lightning" "bitcoin" "docker-compose.yaml" "traefik" "tor" "$BITCOIN_DATAPATH" "$LIGHTNING_DATAPATH" "$PROXY_DATAPATH" "$GATEKEEPER_DATAPATH" "$OTSCLIENT_DATAPATH" "$TRAEFIK_DATAPATH" "$TOR_DATAPATH")
+  local directories=("installer" "gatekeeper" "lightning" "bitcoin" "docker-compose.yaml" "traefik" "tor" "$BITCOIN_DATAPATH" "$LIGHTNING_DATAPATH" "$PROXY_DATAPATH" "$GATEKEEPER_DATAPATH" "$OTSCLIENT_DATAPATH" "$TRAEFIK_DATAPATH" "$TOR_DATAPATH" "$WASABI_DATAPATH")
   for d in "${directories[@]}"
   do
     if [[ -e $d ]]; then
@@ -122,7 +122,7 @@ modify_permissions() {
 }
 
 modify_owner() {
-  local directories=("$BITCOIN_DATAPATH" "$LIGHTNING_DATAPATH" "$PROXY_DATAPATH" "$GATEKEEPER_DATAPATH" "$OTSCLIENT_DATAPATH" "$TRAEFIK_DATAPATH" "$TOR_DATAPATH")
+  local directories=("$BITCOIN_DATAPATH" "$LIGHTNING_DATAPATH" "$PROXY_DATAPATH" "$GATEKEEPER_DATAPATH" "$OTSCLIENT_DATAPATH" "$TRAEFIK_DATAPATH" "$TOR_DATAPATH" "$WASABI_DATAPATH")
   local user=$(id -u $RUN_AS_USER):$(id -g $RUN_AS_USER)
   for d in "${directories[@]}"
   do
@@ -196,6 +196,7 @@ configure() {
              -e BITCOIN_VERSION=$BITCOIN_VERSION \
              -e LIGHTNING_VERSION=$LIGHTNING_VERSION \
              -e CONF_VERSION=$CONF_VERSION \
+             -e WASABI_VERSION=$WASABI_VERSION \
              -e SETUP_VERSION=$SETUP_VERSION \
              --log-driver=none$pw_env \
              --network none \
@@ -341,11 +342,6 @@ compare_bitcoinconf() {
   if [[ $new_txindex == 1 && $old_txindex == 0 ]]; then
     # warn about reindexing
     status='reindex'
-  fi
-
-  if [[ ! $new_testnet == $old_testnet || ! $new_regtest == $old_regtest ]]; then
-    # warn about reindexing
-    status='incompatible'
   fi
 
   echo $status
@@ -534,6 +530,28 @@ install_docker() {
     fi
   fi
 
+  if [[ $FEATURE_WASABI == true ]]; then
+    for ((i=0;i<$WASABI_INSTANCE_COUNT;i++));
+    do
+      if [ ! -d $WASABI_DATAPATH/$i ]; then
+        step "   [32mcreate[0m $WASABI_DATAPATH/$i"
+        sudo_if_required mkdir -p $WASABI_DATAPATH/$i
+        next
+      fi
+      copy_file "$cyphernodeconf_filepath/wasabi/Config.json" "$WASABI_DATAPATH/$i/Config.json" 1 $SUDO_REQUIRED
+    done
+
+    if [[ $NETWORK == "regtest" ]]; then
+      if [ ! -d "$WASABI_DATAPATH/backend" ]; then
+        step "   [32mcreate[0m $WASABI_DATAPATH/backend"
+        sudo_if_required mkdir -p $WASABI_DATAPATH/backend
+        next
+      fi
+      copy_file "$cyphernodeconf_filepath/wasabi/backend/Config.json" "$WASABI_DATAPATH/backend/Config.json" 1 $SUDO_REQUIRED
+      copy_file "$cyphernodeconf_filepath/wasabi/backend/CcjRoundConfig.json" "$WASABI_DATAPATH/backend/CcjRoundConfig.json" 1 $SUDO_REQUIRED
+    fi
+  fi
+
   docker swarm join-token worker > /dev/null 2>&1
   local noSwarm=$?;
 
@@ -628,7 +646,7 @@ install_docker() {
 
 check_directory_owner() {
   # if one directory does not have access rights for $RUN_AS_USER, we echo 1, else we echo 0
-  local directories=("$BITCOIN_DATAPATH" "$LIGHTNING_DATAPATH" "$PROXY_DATAPATH" "$GATEKEEPER_DATAPATH" "$TRAEFIK_DATAPATH" "$TOR_DATAPATH")
+  local directories=("$BITCOIN_DATAPATH" "$LIGHTNING_DATAPATH" "$PROXY_DATAPATH" "$GATEKEEPER_DATAPATH" "$TRAEFIK_DATAPATH" "$TOR_DATAPATH" "$WASABI_DATAPATH")
   local status=0
   for d in "${directories[@]}"
   do
@@ -732,7 +750,7 @@ sanity_checks_pre_install() {
       if [[ $sudo_reason == 'directories' ]]; then
         echo "          [31mor check your data volumes if they have the right owner.[0m"
         echo "          [31mThe owner of the following folders should be '$RUN_AS_USER':[0m"
-        local directories=("$BITCOIN_DATAPATH" "$LIGHTNING_DATAPATH" "$PROXY_DATAPATH" "$GATEKEEPER_DATAPATH" "$TRAEFIK_DATAPATH" "$TOR_DATAPATH")
+        local directories=("$BITCOIN_DATAPATH" "$LIGHTNING_DATAPATH" "$PROXY_DATAPATH" "$GATEKEEPER_DATAPATH" "$TRAEFIK_DATAPATH" "$TOR_DATAPATH" "$WASABI_DATAPATH")
           local status=0
           for d in "${directories[@]}"
           do
@@ -777,21 +795,22 @@ ALWAYSYES=0
 SUDO_REQUIRED=0
 AUTOSTART=0
 
-# CYPHERNODE VERSION "v0.3.1"
-SETUP_VERSION="v0.3.1"
-CONF_VERSION="v0.3.1"
-GATEKEEPER_VERSION="v0.3.1"
-TOR_VERSION="v0.3.1"
-PROXY_VERSION="v0.3.1"
-NOTIFIER_VERSION="v0.3.1"
-PROXYCRON_VERSION="v0.3.1"
-OTSCLIENT_VERSION="v0.3.1"
-PYCOIN_VERSION="v0.3.1"
+# CYPHERNODE VERSION "v0.3.2"
+SETUP_VERSION="v0.3.2"
+CONF_VERSION="v0.3.2"
+GATEKEEPER_VERSION="v0.3.2"
+TOR_VERSION="v0.3.2"
+PROXY_VERSION="v0.3.2"
+NOTIFIER_VERSION="v0.3.2"
+PROXYCRON_VERSION="v0.3.2"
+OTSCLIENT_VERSION="v0.3.2"
+PYCOIN_VERSION="v0.3.2"
 CYPHERAPPS_VERSION="v0.3.0"
-BITCOIN_VERSION="v0.19.0.1"
-LIGHTNING_VERSION="v0.8.0"
+BITCOIN_VERSION="v0.19.1"
+LIGHTNING_VERSION="v0.8.2"
 TRAEFIK_VERSION="v1.7.9-alpine"
 MOSQUITTO_VERSION="1.6"
+WASABI_VERSION="v0.3.1"
 
 SETUP_DIR=$(dirname $(realpath $0))
 
@@ -850,6 +869,7 @@ if [[ $nbbuiltimgs -gt 1 ]]; then
     PROXYCRON_VERSION="$PROXYCRON_VERSION-local"
     OTSCLIENT_VERSION="$OTSCLIENT_VERSION-local"
     PYCOIN_VERSION="$PYCOIN_VERSION-local"
+    WASABI_VERSION="$WASABI_VERSION-local"
   fi
 fi
 
