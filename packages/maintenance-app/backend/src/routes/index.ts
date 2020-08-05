@@ -7,6 +7,7 @@ import getBalanceRoute from './getBalance'
 import spendRoute from './spend'
 import bumpFeeRoute from './bumpFee'
 import getBitcoinOnionRoute from './getBitcoinOnion'
+import getSparkOnionRoute from './getSparkOnion'
 
 // Setup all available routes from FE
 export default function setupRoutes(app: Application): Application {
@@ -22,6 +23,7 @@ export default function setupRoutes(app: Application): Application {
   getBalanceRoute(app)
   bumpFeeRoute(app)
   getBitcoinOnionRoute(app)
+  getSparkOnionRoute(app)
 
   return app
 }
