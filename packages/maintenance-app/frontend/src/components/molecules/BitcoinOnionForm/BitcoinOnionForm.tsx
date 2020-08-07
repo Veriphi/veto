@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Label, Text, Box, Select, Flex, Button } from '@veriphi/veto-ui'
+import { Label, Text, Box, Flex, Button } from '@veriphi/veto-ui'
 import useBitcoinOnion from '../../../hooks/useBitcoinOnion'
 import ErrorMessage from '../../atoms/ErrorMessage'
 

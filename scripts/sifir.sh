@@ -8,10 +8,10 @@ cd cyphernode-app && ./build.sh
 
 ## PLACE KEYS AND CERT
 ########## PASSWORD CAN'T BE STATIC
-7z e ~/veto/cyphernode/client.7z -pveriphirocks!
+7z e ~/veriphidev/veto/cyphernode/client.7z -pveriphirocks!
 
 KEY=$(sed -n 's/^.*003=//p' keys.txt)
-ADDRESS=$(cat ~/veto/cyphernode/dist/.cyphernodeconf/tor/traefik/hidden_service/hostname)
+ADDRESS=$(cat ~/veriphidev/veto/cyphernode/dist/.cyphernodeconf/tor/traefik/hidden_service/hostname)
 
 touch .env
 
@@ -24,5 +24,5 @@ EOT
 rm -r keys.txt 
 
 # RUN 
-
+echo 'success on Sifir'
 ./run.sh

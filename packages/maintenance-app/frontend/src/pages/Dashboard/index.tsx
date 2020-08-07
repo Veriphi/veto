@@ -7,6 +7,7 @@ import config from '../../utils/config'
 import useSettings from '../../hooks/useSettings'
 import { throttle } from 'lodash'
 import BitcoinOnionButton from '../../components/molecules/BitcoinOnionButton'
+import { setupSifir } from '../../api'
 
 const install = throttle(async () => {
   await axios.post(`http://${config.maintenanceBackendUrl}/api/install`)
@@ -44,7 +45,6 @@ const InstallButton = (props: ButtonProps) => {
       </button>
     )
   }
-
   return (
     <button type="button" disabled>
       Install
@@ -135,6 +135,9 @@ const Dashboard: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
         {'Spark Wallet'}
       </Button>
       <BitcoinOnionButton></BitcoinOnionButton>
+      <Button variant="primary" onClick={setupSifir}>
+        {' '}
+      </Button>
     </div>
   )
 }
