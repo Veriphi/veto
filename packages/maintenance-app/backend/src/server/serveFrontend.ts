@@ -12,7 +12,8 @@ export default function serveFrontend(config: Config): (app: Application) => Pro
       app.use('/', proxy('localhost:3000'))
     } else {
       // Created in Dockerfile using maintenance-frontend package
-      app.use('/', express.static('frontend'))
+      console.log(`Service static files from ${config.pathToStaticFiles}`)
+      app.use('/', express.static(config.pathToStaticFiles))
     }
 
     return app
