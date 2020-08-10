@@ -15,8 +15,6 @@ import setupSifirRoute from './setupSifir'
 // Setup all available routes from FE
 export default function setupRoutes(app: Application): Application {
   console.log('Bootstrapping routes...')
-  console.log('-----------------')
-  console.log(setupSifirRoute)
 
   getMempoolInfoRoute(app)
   getNewAddressRoute(app)
