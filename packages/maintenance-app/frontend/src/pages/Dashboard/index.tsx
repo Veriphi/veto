@@ -1,13 +1,14 @@
 import React, { useEffect, useState, FunctionComponent } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { ApplicationState, State } from '@maintenance-app/types'
-import { Button, Text } from '@veriphi/veto-ui'
+import { Button, Text, Card } from '@veriphi/veto-ui'
 import axios from 'axios'
 import config from '../../utils/config'
 import useSettings from '../../hooks/useSettings'
 import { throttle } from 'lodash'
 import BitcoinOnionButton from '../../components/molecules/BitcoinOnionButton'
 import { setupSifir } from '../../api'
+import sparkImage from '../../public/spark.png'
 
 const install = throttle(async () => {
   await axios.post(`http://${config.maintenanceBackendUrl}/api/install`)
@@ -119,7 +120,7 @@ const Dashboard: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
 
   return (
     <div>
-      <Text variant="heading1">Veto Dashboard</Text>
+      <Text variant="heading1">Welcome to Your Dashboard, Gustavo </Text>
       <h3> Application state: </h3>
       <div>
         Veto: {state.applicationState.veto}
@@ -131,13 +132,22 @@ const Dashboard: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
       <Button variant="primary" onClick={toggleDarkMode}>
         {settings.darkmode ? 'Light Mode' : 'Dark Mode'}
       </Button>
-      <Button variant="primary" onClick={(event) => (window.location.href = '/sparkwallet/#/')}>
-        {'Spark Wallet'}
-      </Button>
       <BitcoinOnionButton></BitcoinOnionButton>
       <Button variant="primary" onClick={setupSifir}>
         {' '}
       </Button>
+      {/* TO MOVE TO A MOLECULE*/}
+      <Card>
+        <Text variant="cardInsetHeading">SPARK WALLET</Text>
+        <Card variant="inset">
+          <img src={sparkImage} width="50" height="50" />
+          <Text variant="cardPrimaryHeading">Spark Wallet </Text>
+          <Text variant="grey">v2.1.3 </Text>
+          <Button variant="primary" onClick={(event) => (window.location.href = '/sparkwallet/#/')}>
+            {'Spark Wallet'}
+          </Button>
+        </Card>
+      </Card>
     </div>
   )
 }

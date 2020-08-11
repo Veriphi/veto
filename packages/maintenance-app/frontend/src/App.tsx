@@ -1,14 +1,19 @@
 import React from 'react'
 import { Router, RouteComponentProps } from '@reach/router'
 import { ThemeProvider } from 'emotion-theming'
-import { lightTheme, GlobalStyles } from '@veriphi/veto-ui'
+import { getTheme, GlobalStyles } from '@veriphi/veto-ui'
 import Welcome from './pages/Welcome'
 import Dashboard from './pages/Dashboard'
 import { Global, css } from '@emotion/core'
 
 const App = () => {
+  type ThemeName = 'light' | 'dark' | undefined
+
+  const [themeName, setThemeName] = React.useState<ThemeName>('light')
+  const theme = getTheme(themeName)
+
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={theme}>
       {/* Veto-ui necessary globals */}
       <GlobalStyles />
 
