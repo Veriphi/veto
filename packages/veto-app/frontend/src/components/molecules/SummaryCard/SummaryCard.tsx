@@ -19,7 +19,6 @@ const SummaryCard = () => {
           {/* Node Balance */}
           <Flex flexDirection="column" justifyContent="space-between" mr="3rem">
             <CardTitle>Node Balance</CardTitle>
-
             <Flex>
               <Text variant="heading1" color="textGrey" mr={2} sx={{ fontSize: '2rem' }}>
                 {'BTC'}

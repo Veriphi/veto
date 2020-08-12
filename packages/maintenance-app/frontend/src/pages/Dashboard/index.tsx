@@ -1,14 +1,23 @@
 import React, { useEffect, useState, FunctionComponent } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { ApplicationState, State } from '@maintenance-app/types'
-import { Button, Text, Card } from '@veriphi/veto-ui'
+import { Button, Text } from '@veriphi/veto-ui'
 import axios from 'axios'
 import config from '../../utils/config'
 import useSettings from '../../hooks/useSettings'
 import { throttle } from 'lodash'
 import BitcoinOnionButton from '../../components/molecules/BitcoinOnionButton'
 import { setupSifir } from '../../api'
+import DashboardCard from '../../components/molecules/DashboardCard'
 import sparkImage from '../../public/spark.png'
+/*
+import greenImage from '../../public/green.png'
+import lightningImage from '../../public/lightning.png'
+import bitcoinImage from '../../public/bitcoin.png'
+import cyphernodeImage from '../../public/cyphernode.png'
+import vetoImage from '../../public/veto.png'
+import sifirImage from '../../public/sifir.png'
+*/
 
 const install = throttle(async () => {
   await axios.post(`http://${config.maintenanceBackendUrl}/api/install`)
@@ -136,20 +145,30 @@ const Dashboard: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
       <Button variant="primary" onClick={setupSifir}>
         {' '}
       </Button>
-      {/* TO MOVE TO A MOLECULE*/}
-      <Card>
-        <Text variant="cardInsetHeading">SPARK WALLET</Text>
-        <Card variant="inset">
-          <img src={sparkImage} width="50" height="50" />
-          <Text variant="cardPrimaryHeading">Spark Wallet </Text>
-          <Text variant="grey">v2.1.3 </Text>
-          <Button variant="primary" onClick={(event) => (window.location.href = '/sparkwallet/#/')}>
-            {'Spark Wallet'}
-          </Button>
-        </Card>
-      </Card>
+      <DashboardCard
+        image={sparkImage}
+        name="Spark Wallet"
+        version="2.14"
+        click={'/sparkwallet/#/'}
+        title={'SPARK WALLET'}
+      />
     </div>
   )
 }
 
 export default Dashboard
+
+//
+
+//CHANGE LOCATION.HREF TO SOMETHING BETTER
+
+/*
+
+      <DashboardCard  image={bitcoinImage} name="Bitcoin Core" version="2.14" click={(event : string) => (window.location.href = '/sparkwallet/#/')} title={"SPARK WALLET"} />
+      <DashboardCard  image={lightningImage} name="c-lightning" version="2.14" click={(event : string) => (window.location.href = '/sparkwallet/#/')} title={"SPARK WALLET"} />
+      <DashboardCard  image={sifirImage} name="Sifir" version="2.14" click={(event : string) => (window.location.href = '/sparkwallet/#/')} title={"SPARK WALLET"} />
+      <DashboardCard  image={cyphernodeImage} name="Cyphernode" version="2.14" click={(event : string) => (window.location.href = '/sparkwallet/#/')} title={"SPARK WALLET"} />
+      <DashboardCard  image={greenImage} name="Green Wallet" version="2.14" click={(event : string) => (window.location.href = '/sparkwallet/#/')} title={"SPARK WALLET"} />
+      <DashboardCard  image={vetoImage} name="Veto" version="2.14" click={(event : string) => (window.location.href = '/sparkwallet/#/')} title={"SPARK WALLET"} />
+      
+*/

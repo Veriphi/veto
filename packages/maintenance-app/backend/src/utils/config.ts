@@ -57,7 +57,7 @@ export default {
   scriptLocation: process.env.SCRIPT_LOCATION,
   cyphernode: {
     // Gateway url used to communicate with cyphernode's ecosystem
-    gatewayUrl: process.env.CYPHERNODE_URL ?? 'https://local:2009/v0/',
+    gatewayUrl: process.env.CYPHERNODE_URL ?? 'https://localhost:2009/v0/',
     // gatewayUrl: 'https://localhost:2009/v0/', Use this one if running cyphernode locally instead of the aws hosted instance.
 
     // Gateway user provided during cyphernode setup process

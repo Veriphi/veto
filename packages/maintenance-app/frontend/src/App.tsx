@@ -9,7 +9,7 @@ import { Global, css } from '@emotion/core'
 const App = () => {
   type ThemeName = 'light' | 'dark' | undefined
 
-  const [themeName, setThemeName] = React.useState<ThemeName>('light')
+  const [themeName] = React.useState<ThemeName>('light')
   const theme = getTheme(themeName)
 
   return (
