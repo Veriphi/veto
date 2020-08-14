@@ -17,5 +17,5 @@
     "resolveJsonModule": true
   },
   "exclude": ["dist", "out"],
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "src/api/cyphernode/systemInfo.js", "src/api/cyphernode/version.js", "src/api/cyphernode/version.js", "src/api/cyphernode/sparkVersion.js", "src/api/cyphernode/script.js"]
 }

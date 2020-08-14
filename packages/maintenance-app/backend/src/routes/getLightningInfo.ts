@@ -1,12 +1,11 @@
 import { Application, Request, Response } from 'express'
-import getSparkOnion from '../api/cyphernode/getSparkOnion'
+import getLightningInfo from '../api/cyphernode/getLightningInfo'
 
-export default function getSparkOnionRoute(app: Application): Application {
-  app.get('/api/getSparkOnionRoute', async (request: Request, response: Response) => {
-    console.log('/api/getSparkOnionRoute')
+export default function getLightningInfoRoute(app: Application): Application {
+  app.get('/api/getlightninginfo', async (request: Request, response: Response) => {
+    console.log('/api/getlightninginfo')
     try {
-      const data = await getSparkOnion()
-
+      const data = await getLightningInfo()
       response.send(data)
     } catch (error) {
       const errorResponse = error.toJSON ? console.error(error.toJSON()) : console.error(error)

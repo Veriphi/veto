@@ -1,11 +1,11 @@
 import { Application, Request, Response } from 'express'
-import getBitcoinOnion from '../api/cyphernode/getBitcoinOnion'
+import getBlockchainInfo from '../api/cyphernode/getBlockchainInfo'
 
-export default function getBitcoinOnionRoute(app: Application): Application {
-  app.get('/api/getOnionRoute', async (request: Request, response: Response) => {
-    console.log('/api/getOnionRoute')
+export default function getBlockchainInfoRoute(app: Application): Application {
+  app.get('/api/getblockchaininfo', async (request: Request, response: Response) => {
+    console.log('/api/getblockchaininfo')
     try {
-      const data = await getBitcoinOnion()
+      const data = await getBlockchainInfo()
       response.send(data)
     } catch (error) {
       const errorResponse = error.toJSON ? console.error(error.toJSON()) : console.error(error)
