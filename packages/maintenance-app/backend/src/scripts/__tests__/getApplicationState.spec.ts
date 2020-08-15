@@ -1,5 +1,6 @@
-import getApplicationState, { ApplicationState, State } from '../getApplicationState'
+import getApplicationState from '../getApplicationState'
 import run from '../utils/run'
+import { ApplicationState, State } from '@maintenance-app/types/src'
 
 jest.mock('../utils/run', () => jest.fn())
 

@@ -1,0 +1,15 @@
+{
+  "name": "@maintenance-app/types",
+  "version": "0.0.0",
+  "description": "Veto app shared types",
+  "author": "Veriphi",
+  "license": "PRIVATE",
+  "private": true,
+  "main": "out/index.js",
+  "type": "out/index.d.ts",
+  "scripts": {
+    "start": "tsc -p . --outDir out --watch",
+    "prebuild": "rm -fr out/*",
+    "build": "tsc -p . --outDir out"
+  }
+}

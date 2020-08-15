@@ -43,7 +43,7 @@
     "test": "echo 'This script is not used anymore. Use the root test script instead'",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "http://localhost:8181",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -58,5 +58,36 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "@babel/preset-env": "^7.8.7"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@reach/router": "^1.3.3",
+    "@veriphi/veto-ui": "^0.2.0",
+    "@veto/config": "0.0.0",
+    "@veto/db": "0.0.0",
+    "axios": "^0.19.2",
+    "emotion-theming": "^10.0.27",
+    "gun": "^0.2020.421",
+    "nanoid": "3.1.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "swr": "^0.2.0",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/react": "^10.0.2",
+    "@testing-library/user-event": "^10.0.1",
+    "@types/jest": "^25.1.3",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "ts-jest": "^25.2.1"
   }
 }

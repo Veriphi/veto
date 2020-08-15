@@ -8,8 +8,8 @@
   "main": "out/index.js",
   "type": "out/index.d.ts",
   "scripts": {
-    "postinstall": "tsc -p . --outDir out",
     "start": "tsc -p . --outDir out --watch",
+    "prebuild": "rm -fr out/*",
     "build": "tsc -p . --outDir out"
   }
 }

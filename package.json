@@ -10,10 +10,12 @@
   "workspaces": [
     "packages/maintenance-*",
     "packages/*-app/*",
+    "packages/*-app/shared/*",
     "packages/*-app",
     "packages/shared/*"
   ],
   "scripts": {
+    "prebuild": "yarn workspace @veto/config build && yarn workspace @veto/db build && yarn workspace @maintenance-app/types build",
     "build": "yarn workspace veto-backend build && yarn build:veto:frontend && yarn workspace screen-app build",
     "build:veto:frontend": "yarn workspace veto-frontend build",
     "cyphernode:setup": "SKIP_VETO=true ./scripts/setup.sh",
@@ -22,21 +24,23 @@
     "dev": "yarn cyphernode:start && yarn start",
     "lint": "prettier -l '**/*.{ts,tsx,js,jsx,json}'",
     "lint:fix": "prettier --write '**/*.{ts,tsx,js,jsx,json}'",
+    "prestart": "yarn prebuild",
     "start": "yarn start:veto",
     "start:backend": "yarn start:veto:backend",
     "start:frontend": "yarn start:veto:frontend",
-    "start:maintenance": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:maintenance:backend' 'yarn start:maintenance:frontend'",
-    "start:maintenance:backend": "NODE_ENV=${NODE_ENV:-dev} SCRIPT_LOCATION=${SCRIPT_LOCATION:-$(pwd)/scripts} yarn workspace maintenance-backend start",
-    "start:maintenance:frontend": "NODE_ENV=${NODE_ENV:-dev} SCRIPT_LOCATION=${SCRIPT_LOCATION:-$(pwd)/scripts} yarn workspace maintenance-frontend start",
+    "start:dashboard": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:dashboard:backend' 'yarn start:dashboard:frontend'",
+    "start:dashboard:backend": "DOCKER_SOURCE_DIR=$(pwd) NODE_ENV=${NODE_ENV:-dev} SCRIPT_LOCATION=${SCRIPT_LOCATION:-$(pwd)/scripts} yarn workspace dashboard-backend start",
+    "start:dashboard:frontend": "NODE_ENV=${NODE_ENV:-dev} SCRIPT_LOCATION=${SCRIPT_LOCATION:-$(pwd)/scripts} yarn workspace dashboard-frontend start",
     "start:screen": "NODE_ENV=${NODE_ENV:-dev} yarn workspace screen-app start",
-    "start:veto": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:veto:backend' 'yarn start:veto:frontend' 'yarn start:shared'",
+    "start:veto": "NODE_ENV=${NODE_ENV:-dev} concurrently --kill-others-on-fail 'yarn start:veto:backend' 'yarn start:veto:frontend' 'yarn start:veto:shared' 'yarn start:shared'",
     "start:veto:backend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-backend start:watch",
     "start:veto:frontend": "NODE_ENV=${NODE_ENV:-dev} yarn workspace veto-frontend start",
+    "start:veto:shared": "yarn workspace @veto/db start >> /dev/null",
     "start:shared": "yarn workspace @veto/config start >> /dev/null",
-    "build:shared": "yarn workspace @veto/config build",
+    "build:shared": "yarn workspace @veto/config build && yarn workspace @veto/db build",
     "test:integration": "jest --testPathPattern='./packages/.+/tests/integration/'",
     "pretest:unit": "yarn build:shared",
-    "test:unit": "jest --testPathIgnorePatterns='packages/.+/tests/integration/'",
+    "test:unit": "jest --testPathIgnorePatterns='packages/.+(/out|/tests/integration/)'",
     "test:unit:fe": "jest --testPathPattern=packages/veto-app/frontend"
   },
   "devDependencies": {
@@ -46,8 +50,8 @@
     "husky": "^4.0.6",
     "prettier": "^1.18.2",
     "pretty-quick": "^2.0.0",
-    "typescript": "^3.8.3",
-    "ts-jest": "^25.2.1"
+    "ts-jest": "^25.2.1",
+    "typescript": "^3.8.3"
   },
   "husky": {
     "hooks": {

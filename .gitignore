@@ -1,3 +1,7 @@
+# Vagrant
+Vagrantfile
+.vagrant
+
 # Dependency directories
 node_modules/
 yarn-error.log
