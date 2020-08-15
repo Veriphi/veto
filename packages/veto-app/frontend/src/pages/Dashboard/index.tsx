@@ -1,7 +1,6 @@
 import React, { useEffect, FunctionComponent } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { Button, Text } from '@veriphi/veto-ui'
-
 import useSettings from '../../hooks/useSettings'
 import SummaryCard from '../../components/molecules/SummaryCard'
 

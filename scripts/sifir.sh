@@ -30,5 +30,7 @@ EOT
 rm -r keys.txt 
 
 # RUN 
-echo 'success on Sifir' 
+echo 'success building Sifir' 
 ./run.sh
+
+exit 0 
