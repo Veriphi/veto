@@ -5,11 +5,11 @@ import Dashboard from '../../pages/Dashboard'
 import Wallets from '../../pages/Wallets'
 import History from '../../pages/History'
 import Explorer from '../../pages/Explorer'
-import Monitoring from '../../pages/Monitoring'
+import Settings from '../../pages/Settings'
 import SideMenu from '../../components/molecules/SideMenu'
 
-export type MainLayoutLabel = 'Dashboard' | 'Wallets' | 'History' | 'Explorer' | 'Monitoring'
-export type MainLayoutRoute = '/dashboard' | '/wallets' | '/history' | '/explorer' | '/monitoring'
+export type MainLayoutLabel = 'Dashboard' | 'Wallets' | 'History' | 'Explorer' | 'Settings'
+export type MainLayoutRoute = '/dashboard' | '/wallets' | '/history' | '/explorer' | '/settings'
 
 type Props = {
   path: string
@@ -17,7 +17,7 @@ type Props = {
 
 // https://www.typescriptlang.org/docs/handbook/advanced-types.html#using-type-predicates
 const isMainLayoutRoute = (route: MainLayoutRoute | string): route is MainLayoutRoute =>
-  ['/dashboard', '/wallets', '/history', '/explorer', '/monitoring'].includes(route)
+  ['/dashboard', '/wallets', '/history', '/explorer', '/setttings'].includes(route)
 
 const getActiveMenu = (currentPathName: MainLayoutRoute | string): MainLayoutRoute => {
   if (isMainLayoutRoute(currentPathName)) {
@@ -40,7 +40,7 @@ const MainLayout: FunctionComponent<Props> = ({ path }: Props): JSX.Element => {
         <Wallets path="/wallets" />
         <History path="/history" />
         <Explorer path="/explorer" />
-        <Monitoring path="/monitoring" />
+        <Settings path="/settings" />
       </Router>
     </Flex>
   )

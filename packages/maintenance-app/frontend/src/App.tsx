@@ -4,8 +4,7 @@ import { ThemeProvider } from 'emotion-theming'
 import { getTheme, GlobalStyles } from '@veriphi/veto-ui'
 import MainLayout from './layouts/MainLayout'
 import Welcome from './pages/Welcome'
-import Dashboard from './pages/Dashboard'
-import { Global, css } from '@emotion/core'
+  import { Global, css } from '@emotion/core'
 
 const App = () => {
   type ThemeName = 'light' | 'dark' | undefined

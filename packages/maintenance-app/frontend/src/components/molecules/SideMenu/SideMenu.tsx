@@ -69,8 +69,8 @@ const menuConfig: MenuConfigItem[] = [
     icon: <FontAwesomeIcon icon={faCube} />,
   },
   {
-    label: 'Monitoring',
-    route: '/monitoring',
+    label: 'Settings',
+    route: '/settings',
     icon: <FontAwesomeIcon icon={faServer} />,
   },
 ]
