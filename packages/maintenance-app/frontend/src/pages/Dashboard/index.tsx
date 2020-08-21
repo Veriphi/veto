@@ -4,9 +4,13 @@ import { Button, Text, Flex } from '@veriphi/veto-ui'
 import useSettings from '../../hooks/useSettings'
 import BitcoinOnionButton from '../../components/molecules/BitcoinOnionButton'
 import { setupSifir } from '../../api'
-import DashboardCard from '../../components/molecules/DashboardCard'
+import AppCard from '../../components/molecules/AppCard'
+import CoreCard from '../../components/molecules/CoreCard'
 import sparkImage from '../../public/spark.png'
 import bitcoinImage from '../../public/bitcoin.png'
+import useBitcoinVersion from '../../hooks/useBitcoinVersion'
+import ErrorMessage from '../../components/atoms/ErrorMessage'
+import StatusBar from '../../components/molecules/StatusBar'
 
 /*
 import greenImage from '../../public/green.png'
@@ -16,7 +20,25 @@ import vetoImage from '../../public/veto.png'
 import sifirImage from '../../public/sifir.png'
 */
 
+
+function renderBitcoinVersion(isValidating: boolean, error?: string, version?: string) {
+  if (error) {
+    return <ErrorMessage>{error}</ErrorMessage>
+  } else if (isValidating) {
+    return '...'
+  }
+
+  return (
+    <>
+      <Text>{version}</Text>
+    </>
+  )
+}
+
+
 const Dashboard: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
+  const { version, versionError, isValidating } = useBitcoinVersion()
+
   const [settings, setSettings] = useSettings()
 
   const toggleDarkMode = () => {
@@ -37,22 +59,24 @@ const Dashboard: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
       <Button variant="primary" onClick={setupSifir}>
         {' '}
       </Button>
-      <DashboardCard
+      <AppCard
         image={sparkImage}
-        name="Spark Wallet"
+        name="Spark"
         version="2.14"
-        click={'/sparkwallet/#/'}
+        click={'https://localhost/sparkwallet'}
         title={'SPARK WALLET'}
       />
-      <Flex height={"1"} />
-      <DashboardCard
+      <br />
+      <br />
+      <CoreCard
         image={bitcoinImage}
         name="Bitcoin Core "
-        version="2.14"
-        click={'/sparkwallet/#/'}
+        version={renderBitcoinVersion(isValidating, versionError, version)}
+        click={'/settings'}
         title={'BITCOIN'}
       />
-
+      <br />
+      <StatusBar />
     </div>
   )
 }

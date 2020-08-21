@@ -6,10 +6,10 @@ const useBitcoinVersion = (): {
   versionError?: string
   isValidating: boolean
 } => {
-  const { data, error, isValidating } = useRequest<{ spark?: string }>({ url: versions })
+  const { data, error, isValidating } = useRequest<{ bitcoin?: string }>({ url: versions })
   console.log(data)
   return {
-    version: data?.spark,
+    version: data?.bitcoin,
     versionError: error?.message,
     isValidating,
   }
