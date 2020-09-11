@@ -1,5 +1,5 @@
 import Gun from 'gun'
-import config from '@veto/config'
+import config from '../config'
 import { TRANSACTION_STORE_NAME, Transaction } from './transactions'
 import { NOTIFICATION_STORE_NAME, Notification } from './notifications'
 import { SETTINGS_STORE_NAME, Settings } from './settings'

@@ -69,11 +69,10 @@ const ApplicationControls = (props: ApplicationControlProps) => {
 }
 
 const Settings: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
-
   const [shouldCheck, setCheck] = useState<boolean>(true)
 
   useEffect(() => {
-    // Toggle the refresh flag every X ms to trigger a call to maintenance-app backend
+    // Toggle the refresh flag every X ms to trigger a call to veto backend
     const flagToggleIntervalId = setInterval(() => {
       setCheck(!shouldCheck)
     }, config.stateLookupRate)
@@ -108,16 +107,15 @@ const Settings: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
     <div>
       <Text variant="heading1">Settings </Text>
 
-      < h3 > Application state: </h3 >
+      <h3> Application state: </h3>
       <div>
         Veto: {state.applicationState.veto}
         <br />
-    Cyphernode: {state.applicationState.cyphernode}
+        Cyphernode: {state.applicationState.cyphernode}
       </div>
 
       <ApplicationControls applicationState={state.applicationState} install={install} />
     </div>
-
   )
 }
 

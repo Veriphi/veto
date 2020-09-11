@@ -1,5 +1,5 @@
 {
-  "name": "dashboard-backend",
+  "name": "veto-backend",
   "version": "0.0.0",
   "description": "Veto dashboard application back-end",
   "main": "src/index.ts",
