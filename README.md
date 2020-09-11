@@ -26,8 +26,6 @@ Each packages are located in the `packages/` folder.
 
 - Packages under the `packages/shared/` folder are meant to be shared across application and library.
 - Packages matching `packages/*-app` are self contained applications and should not be shared across packages.
-- Packages matching `packages/veto-*` are part of the veto application and should not be shared across packages.
-  - _At some point we might move them to `packages/veto/*`_
 
 ### Installation
 
@@ -75,36 +73,11 @@ Remember to call `yarn cyphernode:stop` when you are finished or the whole cyphe
 Run this command at the root of the project to start both front-end and back-end,
 `yarn start`
 
-Screen app need to be started independently as it capture the whole terminal and would collide with backend & frontend logs
-`yarn start:screen`
-
 To run front end on its own
 `yarn start:veto:frontend`
 
 To run back end on its own
 `yarn start:veto:backend`
-
-##### Config
-
-Configuration is provided through environment variables.
-Each variables can be found in the config file `./packages/veto-app/backend/src/utils/config.ts`
-
-##### Credentials
-
-Dev login
-
-- Password: `veto`
-
-#### Maintenance-app
-
-Run this command at the root of the project to start both front-end and back-end,
-`yarn start:maintenance`
-
-To run front end on its own
-`yarn start:maintenance:frontend`
-
-To run back end on its own
-`yarn start:maintenance:backend`
 
 ##### Config
 
@@ -140,7 +113,7 @@ Cyphernode dev credentials are
 - Username: `veriphi-dev`
 - Password: `veriphirocks!`
 
-### Build the application
+### Build the application // NOT FULLY WORKING FOR NOW
 
 To build the application run `./scripts/setup.sh`
 This will build veto's docker image and run cyphernode's setup script
@@ -174,7 +147,5 @@ The api is available at `localhost/api`
 - Shared packages are located in `packages/shares/*`
   - `@veto/config` => `packages/shares/utils`
 - Packages that belong to an application and should not be shared with others are located in the application's folder
-  - `veto-backend` => `packages/veto-app/backend`
-  - `veto-frontend` => `packages/veto-app/frontend`
-  - `maintenance-backend` => `packages/maintenance-app/backend`
-  - `maintenance-frontend` => `packages/maintenance-app/frontend`
+  - `veto-backend` => `packages/maintenance-app/backend`
+  - `veto-frontend` => `packages/maintenance-app/frontend`
